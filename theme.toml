@@ -1,0 +1,11 @@
+name = "knut"
+license = "MIT"
+licenselink = "https://github.com/fscs/website-theme/LICENSE"
+description = "Knuts Theme für seine neue Hugo Webseite"
+homepage = "https://github.com/fscs/website-theme"
+
+demosite = "https://fscs.hhu.de"
+
+[author]
+name = "Fachschaft Informatik"
+homepage = "https://fscs.hhu.de"
