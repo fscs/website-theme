@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="{{ or site.Language.LanguageCode site.Language.Lang }}"
+    dir="{{ or site.Language.LanguageDirection `ltr` }}">
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+<body class="d-flex flex-column bg-body min-vh-100">
+    <header>
+        {{ partial "header.html" . }}
+    </header>
+
+    <div class="container-xl mt-2">
+        <div class="row d-flex">
+            {{ partial "sidebar.html" . }}
+            
+            <div class="col-xl-8">
+                <main data-bs-smooth-scroll="true">
+                    <div class="vstack border rounded border-0 h-100">
+                        {{ block "main" .}} {{ end }}
+                    </div>
+                </main>
+            </div>
+            <div class="col-xl-2 d-none d-xl-flex"></div>
+        </div>
+    </div>
+    
+    <footer class="text-center bg-dark mt-auto" style="bottom: 0px;">
+        {{ partial "footer.html" . }}
+    </footer>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
