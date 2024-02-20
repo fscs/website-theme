@@ -2,7 +2,6 @@
 content/
 archetypes/
 assets/
-hugo.toml
 
 .hugo_build.lock
 

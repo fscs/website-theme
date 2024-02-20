@@ -1,0 +1,7 @@
+{{ $svg := resources.Get .}}
+
+{{ return
+    ($svg.Content | 
+    replaceRE " width=\"[1-9a-zA-Z]*\"" " width=\"1em\"" | 
+    replaceRE " height=\"[1-9a-zA-Z]*\"" " height=\"1em\"" | 
+    safeHTML ) }}
