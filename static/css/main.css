@@ -7,13 +7,13 @@
 }
 
 .toc a {
-    border-left: .125rem solid transparent;
-    padding: .125rem 0 .125rem .75rem;
-    text-decoration: none;
-    display: block;
+  border-left: 0.125rem solid transparent;
+  padding: 0.125rem 0 0.125rem 0.75rem;
+  text-decoration: none;
+  display: block;
 }
 
-.toc a.active, .toc a:hover {
-    border-left-color: black;    
+.toc a.active,
+.toc a:hover {
+  border-left-color: black;
 }
-
