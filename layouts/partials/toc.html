@@ -1,0 +1,37 @@
+<div>
+    <nav class="toc p-2 sticky-xl-top" id="knuts-table-of-contents-42">
+        <a class="text-dark fw-bold" href="#">{{ .Title }}</a>
+        <ul>
+            {{ range .Page.Fragments.Headings}}
+            {{/* render level 1 headings*/}}
+
+            {{ if ne .Title nil }}
+            <a class="text-dark fw-bold" href="#{{ .ID }}">{{ .Title }}</a>
+            {{ end }}
+
+            {{ range .Headings }}
+            {{/* render level 2 headings*/}}
+
+            {{ if eq .Level 0}}
+            {{ continue}}
+            {{ end}}
+
+            <li> 
+                <a class="text-dark" href="#{{ .ID }}">{{ .Title }}</a> 
+            </li>
+
+            {{ with .Headings }}
+            <ul>
+                {{ range .}}
+                {{/* render level 3 headings*/}}
+                <li> <a class="text-dark-emphasis" href="#{{ .ID }}">{{ .Title }}</a> </li>
+                {{ end }}
+            </ul>
+            {{ end }}
+
+            {{ end }}
+
+            {{ end }}
+        </ul>
+    </nav>
+</div>

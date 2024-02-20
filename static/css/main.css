@@ -1,0 +1,19 @@
+.calendar:hover {
+  background-color: #6c7d4720 !important;
+}
+
+.toc ul li {
+  list-style-type: none;
+}
+
+.toc a {
+    border-left: .125rem solid transparent;
+    padding: .125rem 0 .125rem .75rem;
+    text-decoration: none;
+    display: block;
+}
+
+.toc a.active, .toc a:hover {
+    border-left-color: black;    
+}
+
