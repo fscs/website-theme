@@ -1,4 +1,3 @@
-{{ $logo := resources.Get "images/logo.png"}}
 {{ $logoDimension := 76}}
 
 <div class="col-xl-2" style="border-right-color: var(--bs-offcanvas-color);">
@@ -7,7 +6,9 @@
             id="offcanvas-menu" style="border-right-width: 1px;">
             <div class="offcanvas-header align-items-lg-center pt-2 pb-0 shadow-sm">
                 <a class="link-body-emphasis d-flex align-items-center mb-md-0 text-decoration-none" href="/">
-                    <img src="{{ $logo.RelPermalink }}" height="{{ $logoDimension }}" width="{{ $logoDimension }}">
+                    {{ with resources.Get "images/logo.png" }}
+                    <img src="{{ . }}" height="{{ $logoDimension }}" width="{{ $logoDimension }}">
+                    {{ end }}
                     <span class="fs-4">{{ .Site.Title}}</span>
                 </a>
                 <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>

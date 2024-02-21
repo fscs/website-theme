@@ -1,11 +1,12 @@
-{{ $logo := resources.Get "images/logo.png"}}
 {{ $logoDimension := 76}}
 
 <div class="shadow-sm">
     <div class="container-xl mt-2" style="border-bottom-width: 1px;">
         <div class="row d-flex">
             <div class="col-4 col-sm-7 col-xl d-sm-flex d-xl-flex align-items-sm-center align-items-xl-center">
-                <img src="{{ $logo.RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}">
+                {{ with resources.Get "images/logo.png" }}
+                    <img src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}">
+                {{ end }}
                 <a class="navbar-brand text-start d-none d-sm-inline align-items-center">
                     <span class="text-capitalize fs-4 me-2">{{ .Site.Title }}</span>
                 </a>
