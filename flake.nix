@@ -15,28 +15,31 @@
       system: let
         pkgs = import nixpkgs {inherit system;};
       in {
-        defaultPackage = pkgs.stdenv.mkDerivation {
-          name = "fscs-website-theme";
-          src = self;
+        defaultPackage = let
+          tabler-icons = pkgs.fetchFromGitHub {
+            owner = "tabler";
+            repo = "tabler-icons";
+            rev = "v2.47.0";
+            hash = "sha256-7WawRKx15zbd0Gngcu+L6ztOQcKqLJvf98dg2jrKbzw=";
+          };
+        in
+          pkgs.stdenv.mkDerivation {
+            name = "fscs-website-theme";
+            src = self;
 
-          buildInputs = with pkgs; [
-            hugo
-          ];
+            buildInputs = with pkgs; [
+              hugo
+            ];
 
-          buildPhase = ''
-            mkdir assets
-            ln -s ${pkgs.fetchFromGitHub {
-              owner = "tabler";
-              repo = "tabler-icons";
-              rev = "v2.47.0";
-              hash = "sha256-7WawRKx15zbd0Gngcu+L6ztOQcKqLJvf98dg2jrKbzw=";
-            }} assets/icons
-          '';
+            buildPhase = ''
+              mkdir assets
+              ln -s ${tabler-icons}/icons assets/icons
+            '';
 
-          installPhase = ''
-            cp -r . $out
-          '';
-        };
+            installPhase = ''
+              cp -r . $out
+            '';
+          };
 
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
