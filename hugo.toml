@@ -1,3 +1,4 @@
+# dont forget to update hugo.nix.toml as well
 baseURL = 'https://example.org/'
 
 [[module.imports]]
