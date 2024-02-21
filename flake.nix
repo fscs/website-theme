@@ -41,6 +41,24 @@
             '';
           };
 
+        packages.buildSite = pkgs.stdenv.mkDerivation {
+          name = "test";
+
+          src = self.defaultPackage.${system};
+
+          buildInputs = with pkgs; [
+            hugo
+          ];
+
+          buildPhase = ''
+            hugo --config hugo.nix.toml
+          '';
+
+          installPhase = ''
+            cp -r public $out
+          '';
+        };
+
         devShell = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
             hugo
