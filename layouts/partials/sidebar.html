@@ -1,4 +1,10 @@
 {{ $logoDimension := 76}}
+<script>
+    function toggle_menu() {
+        var element = document.getElementById("offcanvas-menu");
+        element.classList.toggle("show");
+    } 
+</script>
 
 {{ define "sidebar_content" }}
 <div class="bg-transparent">
@@ -40,6 +46,7 @@
     <div class="p-2 sticky-xl-top">
         <div class="d-flex flex-column justify-content-between" style="position: relative;">
             {{ template "sidebar_content" .}}
+
         </div>
     </div>
 </div>
