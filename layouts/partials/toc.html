@@ -1,12 +1,12 @@
 <div>
-    <nav class="toc p-2 sticky-xl-top" id="knuts-table-of-contents-42">
+    <nav class="toc p-2 sticky-xl-top flex-column pe-4 border-end" id="knuts-table-of-contents-42">
         <a class="text-dark fw-bold" href="#">{{ .Title }}</a>
-        <ul style="padding: 0">
+        <nav class="nav flex-column" style="padding: 0">
             {{ range .Page.Fragments.Headings}}
             {{/* render level 1 headings*/}}
 
             {{ if ne .Title nil }}
-            <a class="text-dark fw-bold" href="#{{ .ID }}">{{ .Title }}</a>
+            <a class="nav-link ms-3 my-1 text-dark" href="#{{ .ID }}">{{ .Title }}</a>
             {{ end }}
 
             {{ range .Headings }}
@@ -16,22 +16,20 @@
             {{ continue}}
             {{ end}}
 
-            <li> 
-                <a class="text-dark" href="#{{ .ID }}">{{ .Title }}</a> 
-            </li>
+            <a class="nav-link text-dark" href="#{{ .ID }}">{{ .Title }}</a>
 
             {{ with .Headings }}
-            <ul>
+            <nav class="nav flex-column">
                 {{ range .}}
                 {{/* render level 3 headings*/}}
-                <li> <a class="text-dark-emphasis" href="#{{ .ID }}">{{ .Title }}</a> </li>
+                <a class="nav-link ms-3 text-dark-emphasis" href="#{{ .ID }}">{{ .Title }}</a> 
                 {{ end }}
-            </ul>
+            </nav>
             {{ end }}
 
             {{ end }}
 
             {{ end }}
-        </ul>
+        </nav>
     </nav>
 </div>

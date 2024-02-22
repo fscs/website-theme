@@ -2,10 +2,6 @@
   background-color: #6c7d4720 !important;
 }
 
-.toc ul li {
-  list-style-type: none;
-}
-
 .toc a {
   border-left: 0.125rem solid transparent;
   padding: 0.125rem 0 0.125rem 0.75rem;
