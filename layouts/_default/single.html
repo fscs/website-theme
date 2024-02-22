@@ -3,12 +3,13 @@
 {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }} 
 {{ $dateHuman := .Date | time.Format "02.01.2006"}}
 
-<article class="border rounded border-0 m-2 py-2 px-3 shadow">
-    <h1>{{ .Title }}</h1>
+<article data-pagefind-body class="border rounded border-0 m-2 py-2 px-3 shadow">
+    <h1 data-pagefind-meta="title">{{ .Title }}</h1>
     <span class="text-muted text-opacity-75 d-flex align-items-center">
         {{ partial "svg.html" "icons/calendar-month.svg" }}
         
-        <time datetime="{{ $dateMachine}}">{{ $dateHuman}}</time>
+        <time data-pagefind-sort="date[datetime]"
+            datetime="{{ $dateMachine}}" pubdate>{{ $dateHuman}}</time>
     </span>
     <p>
         {{ .Content }} 
