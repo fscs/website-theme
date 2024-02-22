@@ -18,25 +18,24 @@
                 <div class="bg-transparent">
                     <ul class="nav nav-pills flex-column mb-auto gap-2">
                         {{ $page := .Page }}
-                        {{ range .Site.Menus.main}}
+                        {{ range .Site.Menus.main }}
+
+                        {{ $class := "nav-link link-body-emphasis" }}
+                        {{ $ariaCurrent := "false" }}
+
+                        {{ if or ($page.IsMenuCurrent .Menu . ) ($page.HasMenuCurrent .Menu .)}}
+                        {{ $class = printf "%s %s" $class "active" }}
+                        {{ $ariaCurrent = "page" }}
+                        {{ end }}
+
                         <li class="nav-item">
-                            {{ if or ($page.IsMenuCurrent .Menu . ) ($page.HasMenuCurrent .Menu .)}}
-                            <a class="nav-link link-body-emphasis active" href="{{ .URL }}" aria-current="page"
+                            <a class="{{ $class }}" href="{{ .URL }}" aria-current="{{ $ariaCurrent }}"
                                 background-color="#111344">
                                 {{ with .Params.icon }}
                                 {{ partial "svg.html" .}}
                                 {{ end }}
                                 {{ .Name }}
                             </a>
-                            {{ else }}
-                            <a class="nav-link link-body-emphasis" href="{{ .URL }}" aria-current="page"
-                                background-color="#111344">
-                                {{ with .Params.icon }}
-                                {{ partial "svg.html" .}}
-                                {{ end }}
-                                {{ .Name }}
-                            </a>
-                            {{ end }}
                         </li>
                         {{ end }}
                     </ul>
