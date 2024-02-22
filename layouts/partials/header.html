@@ -5,7 +5,7 @@
         <div class="row d-flex">
             <div class="col-4 col-sm-7 col-xl d-sm-flex d-xl-flex align-items-sm-center align-items-xl-center">
                 {{ with resources.Get "images/logo.png" }}
-                    <img src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}">
+                    <img src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}" onclick="toggle_menu()">
                 {{ end }}
                 <a class="navbar-brand text-start d-none d-sm-inline align-items-center">
                     <span class="text-capitalize fs-4 me-2">{{ .Site.Title }}</span>

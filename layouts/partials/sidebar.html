@@ -1,8 +1,14 @@
 {{ $logoDimension := 76}}
+<script>
+    function toggle_menu() {
+        var element = document.getElementById("offcanvas-menu");
+        element.classList.toggle("show");
+    } 
+</script>
 
 <div class="col-xl-2" style="border-right-color: var(--bs-offcanvas-color);">
     <div class="p-2 sticky-xl-top">
-        <div class="offcanvas-xl offcanvas-start bg-body shadow-lg show" tabindex="-1" data-bs-backdrop="false"
+        <div class="offcanvas-xl offcanvas-start bg-body shadow-lg" tabindex="-1" data-bs-backdrop="false"
             id="offcanvas-menu" style="border-right-width: 1px;">
             <div class="offcanvas-header align-items-lg-center pt-2 pb-0 shadow-sm">
                 <a class="link-body-emphasis d-flex align-items-center mb-md-0 text-decoration-none" href="/">
@@ -11,7 +17,7 @@
                     {{ end }}
                     <span class="fs-4">{{ .Site.Title}}</span>
                 </a>
-                <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>
+                <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas" onclick="toggle_menu()"></button>
             </div>
 
             <div class="offcanvas-body d-flex flex-column justify-content-between" style="position: relative;">
