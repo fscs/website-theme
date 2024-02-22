@@ -17,25 +17,28 @@
             <div class="offcanvas-body d-flex flex-column justify-content-between" style="position: relative;">
                 <div class="bg-transparent">
                     <ul class="nav nav-pills flex-column mb-auto gap-2">
+                        {{ $page := .Page }}
+                        {{ range .Site.Menus.main}}
                         <li class="nav-item">
-                            <a class="nav-link active link-light" href="#" aria-current="page"
-                                background-color="#111344" style="color: initial;background: var(--bs-primary);">
-                                {{ partial "svg.html" "icons/home.svg"}}
-                                Home
+                            {{ if or ($page.IsMenuCurrent .Menu . ) ($page.HasMenuCurrent .Menu .)}}
+                            <a class="nav-link link-body-emphasis active" href="{{ .URL }}" aria-current="page"
+                                background-color="#111344">
+                                {{ with .Params.icon }}
+                                {{ partial "svg.html" .}}
+                                {{ end }}
+                                {{ .Name }}
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-body-emphasis" href="#">
-                                {{ partial "svg.html" "icons/script.svg"}}
-                                Protokolle
+                            {{ else }}
+                            <a class="nav-link link-body-emphasis" href="{{ .URL }}" aria-current="page"
+                                background-color="#111344">
+                                {{ with .Params.icon }}
+                                {{ partial "svg.html" .}}
+                                {{ end }}
+                                {{ .Name }}
                             </a>
+                            {{ end }}
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-body-emphasis" href="#">
-                                {{ partial "svg.html" "icons/school.svg"}}
-                                Studienanfänger
-                            </a>
-                        </li>
+                        {{ end }}
                     </ul>
                 </div>
             </div>
