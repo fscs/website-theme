@@ -12,7 +12,7 @@
         {{ $page := .Page }}
         {{ range .Site.Menus.main }}
 
-        {{ $class := "nav-link text-nowrap link-body-emphasis" }}
+        {{ $class := "nav-link link-body-emphasis" }}
         {{ $ariaCurrent := "false" }}
 
         {{ if or ($page.IsMenuCurrent .Menu . ) ($page.HasMenuCurrent .Menu .)}}
