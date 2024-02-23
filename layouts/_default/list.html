@@ -1,8 +1,17 @@
-{{ define "main" }} 
-{{ range ( .Paginator.Pages )}}
-
-{{ partial "list_element.html" . }}
-
+{{ define "pagination_aligned" }}
+<div class="d-flex flex-md-row-reverse justify-content-center justify-content-md-start">
+    {{ template "_internal/pagination.html" . }}
+</div>
 {{ end }}
+
+{{ define "main" }}
+
+{{ template "pagination_aligned" . }}
+
+{{ range ( .Paginator.Pages )}}
+{{ partial "list_element.html" . }}
+{{ end }}
+
+{{ template "pagination_aligned" . }}
 
 {{ end }}
