@@ -2,6 +2,12 @@
   background-color: #6c7d4720 !important;
 }
 
+@media (max-width: 1199.98px) {
+  .shadow-lg-xl {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  }
+}
+
 .toc a {
   border-left: 0.125rem solid transparent;
   padding: 0.125rem 0 0.125rem 0.75rem;
