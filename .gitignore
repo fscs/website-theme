@@ -2,6 +2,7 @@
 content/
 archetypes/
 assets/
+hugo.dev.toml
 
 .hugo_build.lock
 public/
