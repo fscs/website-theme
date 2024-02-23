@@ -13,6 +13,7 @@
   padding: 0.125rem 0 0.125rem 0.75rem;
   text-decoration: none;
   display: block;
+  font-size: 0.8em;
 }
 
 .toc a.active,
