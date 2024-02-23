@@ -4,13 +4,17 @@
     <div class="container-xl mt-2" style="border-bottom-width: 1px;">
         <div class="row d-flex">
             <div class="col-4 col-sm-7 col-xl d-sm-flex d-xl-flex align-items-sm-center align-items-xl-center">
-                {{ with resources.Get "images/logo.png" }}
-                    <img src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}" onclick="toggle_menu()">
-                {{ end }}
-                <a class="navbar-brand text-start d-none d-sm-inline align-items-center">
+                <button type="button" class="m-1 d-xl-none btn" onclick="toggle_menu()">
+                    {{ partial "svg.html" "icons/menu-2.svg"}}
+                </button>
+                <a class="navbar-brand text-start d-none d-sm-flex align-items-center" href="/">
+                    {{ with resources.Get "images/logo.png" }}
+                        <img src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}">
+                    {{ end }}
                     <span class="text-capitalize fs-4 me-2">{{ .Site.Title }}</span>
                 </a>
             </div>
+            
             <div class="col-8 col-sm-5 col-xl-4 d-flex d-xl-flex justify-content-end align-items-center align-items-sm-center justify-content-xl-end align-items-xl-center">
                 <div class="input-group">
                     <input id="search" type="search" class="form-control" name="Search" placeholder="Search...">
