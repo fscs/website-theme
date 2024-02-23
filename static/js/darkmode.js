@@ -27,6 +27,6 @@ function toggle_dark_mode() {
         document.cookie = "theme=dark; path=/";
     } else {
         element.setAttribute("data-bs-theme", "light");
-        document.cookie = "theme=light' path=/";
+        document.cookie = "theme=light; path=/";
     }
 }
