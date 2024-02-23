@@ -40,6 +40,15 @@
         })
     }
 
+    function toggle_dark_mode() {
+        var element = document.getElementById("theme");
+        if (element.getAttribute("data-bs-theme") == "light") {
+            element.setAttribute("data-bs-theme", "dark");
+        } else {
+            element.setAttribute("data-bs-theme", "light");
+        }
+    }
+
 </script>
 <div class="shadow-sm">
     <div class="container-xl mt-2" style="border-bottom-width: 1px;">
@@ -58,6 +67,9 @@
                         <span class="input-group-text">
                             {{ partial "svg.html" "icons/search.svg"}}
                         </span>
+                        <button class="btn" type="submit" onclick="toggle_dark_mode()">
+                            {{ partial "svg.html" "icons/moon.svg"}}
+                        </button>
                         <div id="results" style="
                                 position: fixed;
                                 display: none;
