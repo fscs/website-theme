@@ -39,13 +39,26 @@
             }
         })
     }
-
-    function toggle_dark_mode() {
+    init();
+    function init() {
         var element = document.getElementById("theme");
-        if (element.getAttribute("data-bs-theme") == "light") {
+        if (document.cookie.includes("theme=dark")) {
             element.setAttribute("data-bs-theme", "dark");
         } else {
             element.setAttribute("data-bs-theme", "light");
+        }
+    }
+
+
+    function toggle_dark_mode() {
+        document.cookie = "theme=light";
+        var element = document.getElementById("theme");
+        if (element.getAttribute("data-bs-theme") == "light") {
+            element.setAttribute("data-bs-theme", "dark");
+            document.cookie = "theme=dark; path=/";
+        } else {
+            element.setAttribute("data-bs-theme", "light");
+            document.cookie = "theme=light' path=/";
         }
     }
 
