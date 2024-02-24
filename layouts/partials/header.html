@@ -42,25 +42,26 @@
                 <button class="btn" data-bs-target="#modal-search" data-bs-toggle="modal" type="button">
                         {{ partial "svg.html" "icons/search.svg"}}
                 </button>
-                <div id="modal-search" class="modal fade" role="dialog" tabindex="-1">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <div class="input-group">
-                                    <input class="form-control" type="search" name="Search" id="modalSearchInput" />
-                                    <span class="input-group-text">
-                                        {{ partial "svg.html" "icons/search.svg"}}
-                                    </span>
-                                </div>
-                                <button class="btn ms-2" type="button" data-bs-target="#modal-search" data-bs-toggle="modal">
-                                    {{ partial "svg.html" "icons/x.svg"}}
-                                </button>
+            </div>
+            
+            <div id="modal-search" class="modal fade" role="dialog" tabindex="-1">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="input-group">
+                                <input class="form-control" type="search" name="Search" id="modalSearchInput" />
+                                <span class="input-group-text">
+                                    {{ partial "svg.html" "icons/search.svg"}}
+                                </span>
                             </div>
-                            <div id="modalSearchResults">
-                                <div class="searchFilters" id="modalSearchResults.filter"> 
-                                </div>
-                                <div class="searchResultsList" id="modalSearchResults.content"/>
-                                </div>
+                            <button class="btn ms-2" type="button" data-bs-target="#modal-search" data-bs-toggle="modal">
+                                {{ partial "svg.html" "icons/x.svg"}}
+                            </button>
+                        </div>
+                        <div id="modalSearchResults">
+                            <div class="searchFilters" id="modalSearchResults.filter"> 
+                            </div>
+                            <div class="searchResultsList" id="modalSearchResults.content"/>
                             </div>
                         </div>
                     </div>
