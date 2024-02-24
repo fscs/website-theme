@@ -1,0 +1,12 @@
+{{ define "main" }}
+<script>
+    let query = new URLSearchParams(window.location.search).get("Search");
+    initSearch(query,"search-full", "full-results");
+</script>
+    <input id="search-full" type="search" class="form-control" name="Search" placeholder="Search...">
+        <div id="full-results">
+            <div id="full-results.filter" style="flex: 2;"></div>
+            <div id="full-results.content"></div>
+        </div>
+
+{{ end }}
