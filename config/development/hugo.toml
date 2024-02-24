@@ -1,6 +1,4 @@
-# dont forget to update hugo.nix.toml as well
-baseURL = 'https://example.org/'
-
+# modules
 [[module.imports]]
 path = "github.com/tabler/tabler-icons"
 [[module.imports.mounts]]
