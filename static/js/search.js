@@ -1,6 +1,6 @@
 
 var pagefind;
-async function initSearch(query, searchID, resultsID) {
+async function initSearch(query, searchID, resultsID, resultCount) {
     pagefind = await import("/pagefind/pagefind.js");
 
     const inputElement = document.getElementById(searchID);
@@ -8,32 +8,34 @@ async function initSearch(query, searchID, resultsID) {
 
     inputElement.addEventListener('input', async () => {
         await resetFilters(resultsID + ".filter")
-        searchPage(inputElement.value, resultsID).await;
+        searchPage(inputElement.value, resultsID, resultCount).await;
     })
 
     if (query !== "") {
         searchPage(query, resultsID);
         inputElement.value = query;
     }
+    
+    if(resultCount !== 0){
+        //close search results if clicked outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest("#" + resultsID) && !event.target.closest("#" + searchID)) {
+                document.getElementById(resultsID).style.display = "none";
+            }
+        });
 
-    //close search results if clicked outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest("#" + resultsID) && !event.target.closest("#" + searchID)) {
+        //close search results if scrolled
+        document.addEventListener('scroll', function() {
             document.getElementById(resultsID).style.display = "none";
-        }
-    });
+        });
 
-    //close search results if scrolled
-    document.addEventListener('scroll', function() {
-        document.getElementById(resultsID).style.display = "none";
-    });
-
-    //close search results if esc key is pressed
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
-            document.getElementById(resultsID).style.display = "none";
-        }
-    });
+        //close search results if esc key is pressed
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                document.getElementById(resultsID).style.display = "none";
+            }
+        });
+    }
 
 }
 
@@ -48,7 +50,7 @@ async function resetFilters(filterID) {
 }
 
 
-async function searchPage(query, resultID) {
+async function searchPage(query, resultID, resultCount) {
     pagefind.preload(query);
 
     var filter = getSelectedFilters(resultID);
@@ -65,7 +67,7 @@ async function searchPage(query, resultID) {
 
     if (search !== null) {
         // Get the first 5 results
-        const fiveResults = await Promise.all(search.results.slice(0, 5).map(r => r.data()));
+        const fiveResults = await Promise.all(search.results.slice(0, resultCount).map(r => r.data()));
 
         // Display the results
         if (query === "") { 
