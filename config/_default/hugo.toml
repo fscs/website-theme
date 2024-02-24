@@ -1,0 +1,39 @@
+baseURL = 'https://fscs.hhu.de'
+title = "Fachschaft Informatik"
+pluralizeListTitles = false
+copyright = 'Copyright © {year} Fachschaft Informatik'
+
+defaultContentLanguage = "de"
+
+[params.socials.instagram]
+url = "https://www.instagram.com/hhufscs/"
+icon = "icons/brand-instagram.svg"
+
+[params.flags]
+de = "🇩🇪"
+en = "🇬🇧"
+
+[languages.de]
+languageName = "Deutsch"
+title = "Fachschaft Informatik"
+languageCode = "de-DE"
+languageDirection = "ltr"
+
+[languages.en]
+languageName = "English"
+title = "Faculty Computer Science"
+languageCode = "en-US"
+languageDirection = "ltr"
+
+# menus
+[[menus.main]]
+name = "Home"
+weight = -1
+pageRef = "/"
+params = { icon = "icons/home.svg" }
+
+[[menus.main]]
+name = "Protokolle"
+weight = 1
+pageRef = "/protokolle"
+params = { icon = "icons/script.svg" }
