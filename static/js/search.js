@@ -151,9 +151,12 @@ async function generateFilter(searchID, resultsID) {
 
 function toggleMobileSearch() {
     var search = document.getElementById("modal-search");
+    var body = document.getElementsByTagName("body")[0];
     if (search.style.display === "none" || search.style.display === "") {
         search.style.display = "block";
+        body.classList.add("modal-open");
     } else {
         search.style.display = "none";
+        body.classList.remove("modal-open");
     }
 }

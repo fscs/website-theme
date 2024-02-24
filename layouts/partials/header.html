@@ -38,12 +38,10 @@
             <script>
                 initSearch("", "modalSearchInput", "modalSearchResults");
             </script>
-            <div class="d-xl-none" style="display: flex;">
+            <div class="d-xl-none">
                 <div class="input-group p-2 d-flex">
-                    <button class="btn" type="button" onclick="toggleMobileSearch()">
-                        <span class="input-group-text">
+                    <button class="input-group-text" data-bs-target="#modal-search" data-bs-toggle="modal" type="button" onclick="toggleMobileSearch()">
                             {{ partial "svg.html" "icons/search.svg"}}
-                        </span>
                     </button>
                 </div>
                 <div id="modal-search" class="modal fade show" role="dialog" tabindex="-1" style="display: none;">
