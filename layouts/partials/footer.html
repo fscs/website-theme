@@ -1,21 +1,12 @@
 <div class="container text-white py-4 py-lg-5">
+    <p> {{ .Site.Title }} </p>
     <ul class="list-inline">
-        <li class="list-inline-item me-4"><a class="link-light" href="#">Web design</a></li>
-        <li class="list-inline-item me-4"><a class="link-light" href="#">Development</a></li>
-        <li class="list-inline-item"><a class="link-light" href="#">Hosting</a></li>
+        {{ range .Site.Params.socials }}
+        <li class="list-inline-item">
+            <a href="{{ .url }}" class="text-white">
+                {{ partial "svg.html" .icon }}
+            </a>
+        {{ end }}
     </ul>
-    <ul class="list-inline">
-        <li class="list-inline-item me-4">
-            {{ partial "svg.html" "icons/brand-meta.svg"}}
-        </li>
-        <li class="list-inline-item me-4">
-            {{ partial "svg.html" "icons/brand-instagram.svg"}}
-        </li>
-        <li class="list-inline-item me-4">
-            {{ partial "svg.html" "icons/brand-github.svg"}}
-        </li>
-    </ul>
-    {{ with .Site.Copyright}}
-    <p class="mb-0">{{ . }}</p>
-    {{ end }}
+    <p class="mb-0">{{ replace .Site.Copyright "{year}" now.Year }}</p>
 </div>
