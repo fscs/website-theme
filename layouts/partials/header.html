@@ -29,14 +29,7 @@
                         <button class="btn" onclick="toggle_dark_mode()">
                             {{ partial "svg.html" "icons/moon.svg"}}
                         </button>
-                        <div class="border rounded border-0 m-2 py-2 px-3 shadow" id="results" style="
-                            max-height: 50vh;
-                            position: absolute;
-                            top: 4em;
-                            z-index: 10000;
-                            position: fixed;
-                            display: none;
-                            background-color: var(--bs-body-bg);">
+                        <div class="border rounded shadow searchResults" id="results">
                         <div id="results.filter" style="flex: 2;">
                         </div>
                         <div id="results.content" style="

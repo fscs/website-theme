@@ -20,3 +20,13 @@
 .toc a:hover {
   border-left-color: black;
 }
+
+.searchResults {
+    max-height: 50vh;
+    position: absolute;
+    top: 4em;
+    z-index: 10000;
+    position: fixed;
+    display: none;
+    background-color: var(--bs-body-bg);
+}

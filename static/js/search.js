@@ -15,8 +15,30 @@ async function initSearch(query, searchID, resultsID) {
         searchPage(query, resultsID);
         inputElement.value = query;
     }
+
+    //close search results if clicked outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest("#" + resultsID) && !event.target.closest("#" + searchID)) {
+            document.getElementById(resultsID).style.display = "none";
+        }
+    });
+
+    //close search results if scrolled
+    document.addEventListener('scroll', function() {
+        document.getElementById(resultsID).style.display = "none";
+    });
+
+    //close search results if esc key is pressed
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            document.getElementById(resultsID).style.display = "none";
+        }
+    });
+
 }
 
+
+//reset filters
 async function resetFilters(filterID) {
     let filters = document.getElementById(filterID);
 
