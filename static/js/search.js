@@ -148,3 +148,12 @@ async function generateFilter(searchID, resultsID) {
 
     filter.appendChild(dropdown);
 }
+
+function toggleMobileSearch() {
+    var search = document.getElementById("modal-search");
+    if (search.style.display === "none" || search.style.display === "") {
+        search.style.display = "block";
+    } else {
+        search.style.display = "none";
+    }
+}

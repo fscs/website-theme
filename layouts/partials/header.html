@@ -18,27 +18,61 @@
                 </a>
             </div>
             
+            {{/* desktop search */}}
             <div class="col-8 col-sm-5 col-xl-4 d-flex d-xl-flex justify-content-end align-items-center align-items-sm-center justify-content-xl-end align-items-xl-center">
-                <div class="input-group">
+                <div class="input-group col-xl-2 p-2 d-none d-xl-flex">
                     <form action="/search" method="get">
-                    <input id="search" type="search" class="form-control" name="Search" placeholder="Search...">
+                        <input id="search" type="search" class="form-control" name="Search" placeholder="Search...">
                     </form>
                     <span class="input-group-text">
                         {{ partial "svg.html" "icons/search.svg"}}
                     </span>
-                        <button class="btn" onclick="toggle_dark_mode()">
-                            {{ partial "svg.html" "icons/moon.svg"}}
-                        </button>
-                        <div class="border rounded shadow searchResults" id="results">
-                        <div id="results.filter" style="flex: 2;">
+                    <div class="border rounded shadow searchResults" id="results">
+                        <div class="searchFilters" id="results.filter"> 
                         </div>
-                        <div id="results.content" style="
-                            flex:5;
-                            overflow-y: auto;">
-                        </div>
-                        </div>
+                        <div class="searchResultsList" id="results.content"/>
+                    </div>
                 </div>
             </div>
+            {{/* mobile search */}}
+            <script>
+                initSearch("", "modalSearchInput", "modalSearchResults");
+            </script>
+            <div class="d-xl-none" style="display: flex;">
+                <div class="input-group p-2 d-flex">
+                    <button class="btn" type="button" onclick="toggleMobileSearch()">
+                        <span class="input-group-text">
+                            {{ partial "svg.html" "icons/search.svg"}}
+                        </span>
+                    </button>
+                </div>
+                <div id="modal-search" class="modal fade show" role="dialog" tabindex="-1" style="display: none;">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="input-group">
+                                    <input class="form-control" type="search" name="Search" id="modalSearchInput" />
+                                    <span class="input-group-text">
+                                        {{ partial "svg.html" "icons/search.svg"}}
+                                    </span>
+                                </div>
+                                <button class="btn ms-2" type="button" onclick="toggleMobileSearch()">
+                                    {{ partial "svg.html" "icons/x.svg"}}
+                                </button>
+                            </div>
+                            <div id="modalSearchResults">
+                                <div class="searchFilters" id="modalSearchResults.filter"> 
+                                </div>
+                                <div class="searchResultsList" id="modalSearchResults.content"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn" onclick="toggle_dark_mode()">
+                {{ partial "svg.html" "icons/moon.svg"}}
+            </button>
         </div>
     </div>
 </div>
