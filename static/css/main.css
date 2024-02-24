@@ -22,14 +22,16 @@
 }
 
 .searchResults {
-    max-height: 50vh;
-    position: relative;
-    top: 4em;
-    z-index: 10000;
-    position: fixed;
     display: none;
     background-color: var(--bs-body-bg);
     margin-right: 1em;
+}
+
+.searchResults#results{
+    max-height: 50vh;
+    top: 4em;
+    z-index: 10000;
+    position: fixed;
 }
 
 .searchFilters {
