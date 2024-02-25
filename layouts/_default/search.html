@@ -1,21 +1,39 @@
 {{ define "main" }}
-<script>
-    let query = new URLSearchParams(window.location.search).get("Search");
-    initSearch(query,"search-full", "full-results", 0);
 
-    //hide small search bar
+{{ $fullResultsID := "full-results" }}
+{{ $fullSearchBoxID := "search-full" }}
+
+<script async>
+    const resultsID = "{{ $fullResultsID }}";
+    const searchBoxID = "{{ $fullSearchBoxID }}";
+
+    initSearch(searchBoxID, resultsID, 0).then(() => {
+        // search the parameter if there is one
+        const query = new URLSearchParams(window.location.search).get("q");
+        
+        if (query != "") {
+            const inputElement = document.getElementById(searchBoxID);
+            inputElement.value = query;
+
+            searchPage(query, resultsID)
+        }
+    })
+
+    //hide small search bar and icon
     document.getElementById("search-bar").style.display = "none";
-    //hide mobile search icon
     document.getElementById("modalSearchBar").style.display = "none";
 </script>
-    <input id="search-full" type="search" class="form-control" name="Search" placeholder="Search...">
-        <div class="searchResults" id="full-results">
-            <div class="searchFilters" id="full-results.filter" style="flex: 2;"></div>
-            <div class="searchResultsList" id="full-results.content"></div>
-        </div>
-        <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status" id="fullSearchLoading">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
+
+<input class="form-control" id="{{ $fullSearchBoxID }}" type="search" name="Search" placeholder="Search...">
+
+<div class="searchResults" id="{{ $fullResultsID }}">
+    <div class="searchFilters" id="{{ $fullResultsID }}.filter" style="flex: 2;"></div>
+    <div class="searchResultsList" id="{{ $fullResultsID }}.content"></div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status" id="fullSearchLoading">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
 {{ end }}

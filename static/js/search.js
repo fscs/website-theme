@@ -1,6 +1,15 @@
-
 var pagefind;
-async function initSearch(query, searchID, resultsID, resultCount) {
+
+/**
+ * initialize search for the given input and result elements.
+ * expects an element <resultsID>.filter to place filter pills in
+ * and an element <resultsID>.content to place the results in
+ *
+ * @param {0} searchBoxID id of the box where the search query will be entered
+ * @param {1} resultsID id of the box where results will be displayed
+ * @param {3} resultLimit optional, if specified only shows that number of results
+ */
+async function initSearch(searchID, resultsID, resultCount) {
     pagefind = await import("/pagefind/pagefind.js");
 
     const inputElement = document.getElementById(searchID);
@@ -11,12 +20,7 @@ async function initSearch(query, searchID, resultsID, resultCount) {
         searchPage(inputElement.value, resultsID, resultCount).await;
     })
 
-    if (query !== "") {
-        searchPage(query, resultsID);
-        inputElement.value = query;
-    }
-    
-    if(resultCount !== 0){
+    if (resultCount !== 0) {
         //close search results if clicked outside
         document.addEventListener('click', function(event) {
             if (!event.target.closest("#" + resultsID) && !event.target.closest("#" + searchID)) {
