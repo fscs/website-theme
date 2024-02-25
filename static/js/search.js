@@ -51,6 +51,9 @@ async function resetFilters(filterID) {
 
 
 async function searchPage(query, resultID, resultCount) {
+    await pagefind.destroy();
+    await pagefind.init();
+
     pagefind.preload(query);
 
     var filter = getSelectedFilters(resultID);
@@ -67,34 +70,48 @@ async function searchPage(query, resultID, resultCount) {
 
     if (search !== null) {
         // Get the first 5 results
-        const fiveResults = await Promise.all(search.results.slice(0, resultCount).map(r => r.data()));
+        var results;
+        if(resultCount === 0){
+            results = await Promise.all(search.results.map(r => r.data()));
+        } else {
+            results = await Promise.all(search.results.slice(0, resultCount).map(r => r.data()));
+        }
 
+
+        console.log(query);
         // Display the results
         if (query === "") { 
             search_results.style.display = "none"; 
             return;
         }
-        if (search.results.length === 0) {
+
+        if (results.length === 0) {
+            search_results.style.display = "flex";
             search_results_content.innerHTML = "No results found";
-            search_results_content.style.display = "block";
             return;
         }
+        
 
         search_results.style.display = "flex";
+        console.log("asd");
         search_results_content.innerHTML = "";
 
-        for (let i = 0; i < fiveResults.length; i++) {
+        for (let i = 0; i < results.length; i++) {
             var a = document.createElement("a");
-            a.href = fiveResults[i].url;
-            a.innerHTML = fiveResults[i].meta.title;
+            a.href = results[i].url;
+            a.innerHTML = results[i].meta.title;
             var content = document.createElement("p");
-            content.innerHTML = fiveResults[i].excerpt;
+            content.innerHTML = results[i].excerpt;
             search_results_content.appendChild(a);
             search_results_content.appendChild(content);
         }
+        
+        if(document.getElementById("fullSearchLoading") !== null){
+            document.getElementById("fullSearchLoading").style.display = "none";
+        }
 
         // retun the first 5 results
-        return fiveResults;
+        return results;
     }
 }
 
