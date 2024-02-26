@@ -9,50 +9,52 @@ var pagefind;
  * @param {1} resultsID id of the box where results will be displayed
  * @param {3} resultLimit optional, if specified only shows that number of results
  */
-async function initSearch(searchID, resultsID, resultCount) {
+async function initSearch(searchID, resultsID, resultLimit) {
     pagefind = await import("/pagefind/pagefind.js");
 
     const inputElement = document.getElementById(searchID);
     await generateFilter(searchID, resultsID);
 
-    inputElement.addEventListener('input', async () => {
-        await resetFilters(resultsID + ".filter")
-        searchPage(inputElement.value, resultsID, resultCount).await;
-    })
+    if (inputElement == null) {
+        console.log("oh no " + searchID);
+    }
 
-    if (resultCount !== 0) {
-        //close search results if clicked outside
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest("#" + resultsID) && !event.target.closest("#" + searchID)) {
-                document.getElementById(resultsID).style.display = "none";
-            }
-        });
+    inputElement.addEventListener("input", async () => {
+        await resetFilters(resultsID + ".filter");
+        searchPage(inputElement.value, resultsID, resultLimit).await;
+    });
+}
 
-        //close search results if scrolled
-        document.addEventListener('scroll', function() {
+/**
+ * utility function to setup some event handlers to dismiss the result box
+ * when escape is pressed, some other part is clicked or the page is scrolled
+ *
+ * @param {0} searchBoxID id of the box where the search query is entered
+ * @param {1} resultsID id of the box where results will be displayed
+ */
+function setupDismissHandlers(searchID, resultsID) {
+    //close search results if clicked outside
+    document.addEventListener("click", function(event) {
+        if (
+            !event.target.closest("#" + resultsID) &&
+            !event.target.closest("#" + searchID)
+        ) {
             document.getElementById(resultsID).style.display = "none";
-        });
+        }
+    });
 
-        //close search results if esc key is pressed
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                document.getElementById(resultsID).style.display = "none";
-            }
-        });
-    }
+    //close search results if scrolled
+    document.addEventListener("scroll", function() {
+        document.getElementById(resultsID).style.display = "none";
+    });
 
+    //close search results if esc key is pressed
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            document.getElementById(resultsID).style.display = "none";
+        }
+    });
 }
-
-
-//reset filters
-async function resetFilters(filterID) {
-    let filters = document.getElementById(filterID);
-
-    for (let i = 0; i < filters.getElementsByTagName("select").length; i++) {
-        filters.getElementsByTagName("select")[i].selectedIndex = 0;
-    }
-}
-
 
 async function searchPage(query, resultID, resultCount) {
     await pagefind.destroy();
@@ -63,29 +65,33 @@ async function searchPage(query, resultID, resultCount) {
     var filter = getSelectedFilters(resultID);
     var search_results = document.getElementById(resultID);
     var search_results_content = document.getElementById(resultID + ".content");
-    
+
     // Search for the query
-    const search = await pagefind.debouncedSearch(query, {
-        sort: {
-            date: "desc"
+    const search = await pagefind.debouncedSearch(
+        query,
+        {
+            sort: {
+                date: "desc",
+            },
+            filters: filter,
         },
-        filters: filter
-    }, 300);
+        300,
+    );
 
     if (search !== null) {
         // Get the first 5 results
         var results;
-        if(resultCount === 0){
-            results = await Promise.all(search.results.map(r => r.data()));
+        if (resultCount === 0) {
+            results = await Promise.all(search.results.map((r) => r.data()));
         } else {
-            results = await Promise.all(search.results.slice(0, resultCount).map(r => r.data()));
+            results = await Promise.all(
+                search.results.slice(0, resultCount).map((r) => r.data()),
+            );
         }
 
-
-        console.log(query);
         // Display the results
-        if (query === "") { 
-            search_results.style.display = "none"; 
+        if (query === "") {
+            search_results.style.display = "none";
             return;
         }
 
@@ -94,10 +100,8 @@ async function searchPage(query, resultID, resultCount) {
             search_results_content.innerHTML = "No results found";
             return;
         }
-        
 
         search_results.style.display = "flex";
-        console.log("asd");
         search_results_content.innerHTML = "";
 
         for (let i = 0; i < results.length; i++) {
@@ -109,8 +113,8 @@ async function searchPage(query, resultID, resultCount) {
             search_results_content.appendChild(a);
             search_results_content.appendChild(content);
         }
-        
-        if(document.getElementById("fullSearchLoading") !== null){
+
+        if (document.getElementById("fullSearchLoading") !== null) {
             document.getElementById("fullSearchLoading").style.display = "none";
         }
 
@@ -119,11 +123,26 @@ async function searchPage(query, resultID, resultCount) {
     }
 }
 
+/**
+ * returns a list of filters pagefind was able to detect
+ */
 async function getAvailableFilters() {
     let filters = await pagefind.filters();
     return filters;
 }
 
+/**
+ * resets the filter with the given id to its default value
+ *
+ * @param {0} filterID id of the filter select element
+ */
+async function resetFilters(filterID) {
+    let filters = document.getElementById(filterID);
+
+    for (let i = 0; i < filters.getElementsByTagName("select").length; i++) {
+        filters.getElementsByTagName("select")[i].selectedIndex = 0;
+    }
+}
 
 function getSelectedFilters(resultID) {
     let filter = document.getElementById(resultID + ".filter");
@@ -133,7 +152,9 @@ function getSelectedFilters(resultID) {
         return {};
     }
     let filters = {};
-    filters[dropdown.parentElement.getElementsByTagName("h3")[0].innerHTML.toLowerCase()] = selected;
+    filters[
+        dropdown.parentElement.getElementsByTagName("h3")[0].innerHTML.toLowerCase()
+    ] = selected;
     return filters;
 }
 
@@ -145,11 +166,11 @@ async function generateFilter(searchID, resultsID) {
     dropdown.appendChild(new Option("All", "all"));
 
     //iterate over json object
-    for ( [key, value] of Object.entries(filters)) {
+    for ([key, value] of Object.entries(filters)) {
         let h3 = document.createElement("h3");
         h3.innerHTML = key.charAt(0).toUpperCase() + key.slice(1);
         filter.appendChild(h3);
-        for( [keys, values] of Object.entries(value)) {
+        for ([keys, values] of Object.entries(value)) {
             let option = document.createElement("option");
             option.value = keys;
             option.innerHTML = keys.charAt(0).toUpperCase() + keys.slice(1);
@@ -166,8 +187,8 @@ async function generateFilter(searchID, resultsID) {
     }
 
     dropdown.onchange = function() {
-        searchPage(document.getElementById(searchID).value, resultsID)
-    }
+        searchPage(document.getElementById(searchID).value, resultsID);
+    };
 
     filter.appendChild(dropdown);
 }

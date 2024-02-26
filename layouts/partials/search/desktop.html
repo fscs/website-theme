@@ -1,20 +1,22 @@
+{{ $desktopSearchBoxID := "search" }}
+{{ $desktopResultsID := "results" }}
+
 <script>
-    initSearch("search", "results", 5);
+    initSearch("{{ $desktopSearchBoxID }}", "{{ $desktopResultsID }}", 5);
+    setupDismissHandlers("{{ $desktopSearchBoxID }}", "{{ $desktopResultsID }}");
 </script>
 
-<div
-    class="col-8 col-sm-5 col-xl-4 d-flex d-xl-flex justify-content-end align-items-center align-items-sm-center justify-content-xl-end align-items-xl-center">
-    <form action="/search" method="get" id="search-bar">
-        <div class="input-group col-xl-2 p-2 d-none d-xl-flex">
-            <input id="search" type="search" class="form-control" name="Search" placeholder="Search...">
-            <button class="input-group-text" type="submit">
-                {{ partial "svg.html" "icons/search.svg"}}
-            </button>
-            <div class="border rounded shadow searchResults" id="results">
-                <div class="searchFilters" id="results.filter">
-                </div>
-                <div class="searchResultsList" id="results.content" />
-            </div>
+<form action="/search" method="get" id="search-bar">
+    <div class="input-group col-xl-2 p-2 d-none d-xl-flex">
+        <input id="{{ $desktopSearchBoxID }}" type="search" class="form-control" name="q" placeholder="Search...">
+
+        <button class="input-group-text" type="submit">
+            {{ partial "svg.html" "icons/search.svg"}}
+        </button>
+
+        <div class="border rounded shadow searchResults" id="{{ $desktopResultsID}}">
+            <div class="searchFilters" id="{{ $desktopResultsID }}.filter"></div>
+            <div class="searchResultsList" id="{{ $desktopResultsID }}.content"></div>
         </div>
-    </form>
-</div>
+    </div>
+</form>

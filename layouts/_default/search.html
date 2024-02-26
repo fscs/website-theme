@@ -1,27 +1,27 @@
 {{ define "main" }}
 
-{{ $fullResultsID := "full-results" }}
 {{ $fullSearchBoxID := "search-full" }}
+{{ $fullResultsID := "full-results" }}
 
 <script async>
     const resultsID = "{{ $fullResultsID }}";
     const searchBoxID = "{{ $fullSearchBoxID }}";
 
-    initSearch(searchBoxID, resultsID, 0).then(() => {
+    initSearch("{{ $fullSearchBoxID }}", "{{ $fullResultsID }}", 0).then(() => {
         // search the parameter if there is one
         const query = new URLSearchParams(window.location.search).get("q");
-        
+
         if (query != "") {
-            const inputElement = document.getElementById(searchBoxID);
+            const inputElement = document.getElementById("{{ $fullSearchBoxID }}");
             inputElement.value = query;
 
-            searchPage(query, resultsID)
+            searchPage(query, "{{ $fullResultsID }}");
         }
-    })
+    });
 
     //hide small search bar and icon
     document.getElementById("search-bar").style.display = "none";
-    document.getElementById("modalSearchBar").style.display = "none";
+    document.getElementById("modalSearchBarIcon").style.display = "none";
 </script>
 
 <input class="form-control" id="{{ $fullSearchBoxID }}" type="search" name="Search" placeholder="Search...">
