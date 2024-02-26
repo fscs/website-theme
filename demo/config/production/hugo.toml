@@ -1,0 +1,3 @@
+# modules
+[[module.imports]]
+path = "github.com/fscs/website-theme"
