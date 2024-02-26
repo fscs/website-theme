@@ -5,9 +5,9 @@ var pagefind;
  * expects an element <resultsID>.filter to place filter pills in
  * and an element <resultsID>.content to place the results in
  *
- * @param {0} searchBoxID id of the box where the search query will be entered
- * @param {1} resultsID id of the box where results will be displayed
- * @param {3} resultLimit optional, if specified only shows that number of results
+ * @param {string} searchID id of the box where the search query will be entered
+ * @param {string} resultsID id of the box where results will be displayed
+ * @param {number | undefined} resultLimit optional, if specified only shows that number of results
  */
 async function initSearch(searchID, resultsID, resultLimit) {
     pagefind = await import("/pagefind/pagefind.js");
@@ -29,8 +29,8 @@ async function initSearch(searchID, resultsID, resultLimit) {
  * utility function to setup some event handlers to dismiss the result box
  * when escape is pressed, some other part is clicked or the page is scrolled
  *
- * @param {0} searchBoxID id of the box where the search query is entered
- * @param {1} resultsID id of the box where results will be displayed
+ * @param {string} searchID id of the box where the search query is entered
+ * @param {string} resultsID id of the box where results will be displayed
  */
 function setupDismissHandlers(searchID, resultsID) {
     //close search results if clicked outside
@@ -60,9 +60,9 @@ function setupDismissHandlers(searchID, resultsID) {
  * search the page for the given query and insert results in the element with the given id.
  * expects an element <resultsID>.content to place results in
  *
- * @param {0} query the query to search. if empty, the result box will be automatically hidden
- * @param {1} resultID id of the element to place results in
- * @param {2} resultLimit optional, if specified only show this amount of results
+ * @param {string} query the query to search. if empty, the result box will be automatically hidden
+ * @param {string} resultID id of the element to place results in
+ * @param {number | undefined} resultLimit optional, if specified only show this amount of results
  *
  */
 async function searchPage(query, resultID, resultLimit) {
@@ -144,7 +144,7 @@ async function getAvailableFilters() {
 /**
  * resets the filter with the given id to its default value
  *
- * @param {0} filterID id of the filter select element
+ * @param {string} filterID id of the filter select element
  */
 async function resetFilters(filterID) {
     let filters = document.getElementById(filterID);
@@ -179,8 +179,8 @@ function getSelectedFilters(resultID) {
  * generate filter pills for filters pagefind was able to find.
  * expects an element <resultsID>.filter to place filter pills in
  *
- * @param {0} searchID id of the element the query will be entered in
- * @param {1} resultsID id of the element the results will be placed in
+ * @param {string} searchID id of the element the query will be entered in
+ * @param {string} resultsID id of the element the results will be placed in
  */
 async function generateFilter(searchID, resultsID) {
     let filters = await getAvailableFilters();
