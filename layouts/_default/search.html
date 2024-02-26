@@ -7,7 +7,7 @@
     const resultsID = "{{ $fullResultsID }}";
     const searchBoxID = "{{ $fullSearchBoxID }}";
 
-    initSearch("{{ $fullSearchBoxID }}", "{{ $fullResultsID }}", 0).then(() => {
+    initSearch("{{ $fullSearchBoxID }}", "{{ $fullResultsID }}").then(() => {
         // search the parameter if there is one
         const query = new URLSearchParams(window.location.search).get("q");
 

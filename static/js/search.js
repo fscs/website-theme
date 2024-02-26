@@ -56,15 +56,27 @@ function setupDismissHandlers(searchID, resultsID) {
     });
 }
 
-async function searchPage(query, resultID, resultCount) {
-    await pagefind.destroy();
-    await pagefind.init();
-
-    pagefind.preload(query);
-
-    var filter = getSelectedFilters(resultID);
+/**
+ * search the page for the given query and insert results in the element with the given id.
+ * expects an element <resultsID>.content to place results in
+ *
+ * @param {0} query the query to search. if empty, the result box will be automatically hidden
+ * @param {1} resultID id of the element to place results in
+ * @param {2} resultLimit optional, if specified only show this amount of results
+ *
+ */
+async function searchPage(query, resultID, resultLimit) {
     var search_results = document.getElementById(resultID);
     var search_results_content = document.getElementById(resultID + ".content");
+
+    // if we receive an empty query we hide the result box since the user
+    // has most likely deleted their previous query
+    if (query === "") {
+        search_results.style.display = "none";
+        return;
+    }
+
+    const filter = getSelectedFilters(resultID);
 
     // Search for the query
     const search = await pagefind.debouncedSearch(
@@ -78,49 +90,47 @@ async function searchPage(query, resultID, resultCount) {
         300,
     );
 
-    if (search !== null) {
-        // Get the first 5 results
-        var results;
-        if (resultCount === 0) {
-            results = await Promise.all(search.results.map((r) => r.data()));
-        } else {
-            results = await Promise.all(
-                search.results.slice(0, resultCount).map((r) => r.data()),
-            );
-        }
-
-        // Display the results
-        if (query === "") {
-            search_results.style.display = "none";
-            return;
-        }
-
-        if (results.length === 0) {
-            search_results.style.display = "flex";
-            search_results_content.innerHTML = "No results found";
-            return;
-        }
-
-        search_results.style.display = "flex";
-        search_results_content.innerHTML = "";
-
-        for (let i = 0; i < results.length; i++) {
-            var a = document.createElement("a");
-            a.href = results[i].url;
-            a.innerHTML = results[i].meta.title;
-            var content = document.createElement("p");
-            content.innerHTML = results[i].excerpt;
-            search_results_content.appendChild(a);
-            search_results_content.appendChild(content);
-        }
-
-        if (document.getElementById("fullSearchLoading") !== null) {
-            document.getElementById("fullSearchLoading").style.display = "none";
-        }
-
-        // retun the first 5 results
-        return results;
+    if (search == null) {
+        return;
     }
+
+    var results;
+
+    if (resultLimit !== undefined) {
+        results = await Promise.all(search.results.map((r) => r.data()));
+    } else {
+        results = await Promise.all(
+            search.results.slice(0, resultLimit).map((r) => r.data()),
+        );
+    }
+
+    if (results.length === 0) {
+        search_results.style.display = "flex";
+        search_results_content.innerHTML = "No results found";
+        return;
+    }
+
+    search_results.style.display = "flex";
+    search_results_content.innerHTML = "";
+
+    for (let i = 0; i < results.length; i++) {
+        const thisresult = results[i];
+        var a = document.createElement("a");
+        a.href = thisresult.url;
+        a.innerHTML = thisresult.meta.title;
+
+        var content = document.createElement("p");
+        content.innerHTML = thisresult.excerpt;
+
+        search_results_content.appendChild(a);
+        search_results_content.appendChild(content);
+    }
+
+    if (document.getElementById("fullSearchLoading") !== null) {
+        document.getElementById("fullSearchLoading").style.display = "none";
+    }
+
+    return results;
 }
 
 /**
@@ -147,17 +157,31 @@ async function resetFilters(filterID) {
 function getSelectedFilters(resultID) {
     let filter = document.getElementById(resultID + ".filter");
     let dropdown = filter.getElementsByTagName("select")[0];
+
     let selected = dropdown.options[dropdown.selectedIndex].value;
+
     if (selected === "all") {
         return {};
     }
+
+    // hack to get the type of the filter.
+    let filter_type = dropdown.parentElement
+        .getElementsByTagName("h3")[0]
+        .innerHTML.toLowerCase();
+
     let filters = {};
-    filters[
-        dropdown.parentElement.getElementsByTagName("h3")[0].innerHTML.toLowerCase()
-    ] = selected;
+    filters[filter_type] = selected;
+
     return filters;
 }
 
+/**
+ * generate filter pills for filters pagefind was able to find.
+ * expects an element <resultsID>.filter to place filter pills in
+ *
+ * @param {0} searchID id of the element the query will be entered in
+ * @param {1} resultsID id of the element the results will be placed in
+ */
 async function generateFilter(searchID, resultsID) {
     let filters = await getAvailableFilters();
     let filter = document.getElementById(resultsID + ".filter");
@@ -169,6 +193,7 @@ async function generateFilter(searchID, resultsID) {
     for ([key, value] of Object.entries(filters)) {
         let h3 = document.createElement("h3");
         h3.innerHTML = key.charAt(0).toUpperCase() + key.slice(1);
+
         filter.appendChild(h3);
         for ([keys, values] of Object.entries(value)) {
             let option = document.createElement("option");
@@ -186,6 +211,7 @@ async function generateFilter(searchID, resultsID) {
         }
     }
 
+    // if the selected filter changes, redo the search
     dropdown.onchange = function() {
         searchPage(document.getElementById(searchID).value, resultsID);
     };
@@ -196,6 +222,7 @@ async function generateFilter(searchID, resultsID) {
 function toggleMobileSearch() {
     var search = document.getElementById("modal-search");
     var body = document.getElementsByTagName("body")[0];
+
     if (search.style.display === "none" || search.style.display === "") {
         search.style.display = "block";
         body.classList.add("modal-open");
