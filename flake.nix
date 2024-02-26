@@ -40,18 +40,23 @@
           '';
         };
 
-        packages.buildTestSite = pkgs.stdenv.mkDerivation {
-          name = "buildTestSite";
+        packages.buildDemoSite = pkgs.stdenv.mkDerivation {
+          name = "buildDemoSite";
 
-          src = self.defaultPackage.${system};
+          src = ./demo;
 
           buildInputs = with pkgs; [
             hugo
+            go
+            git
             pagefind
           ];
 
           buildPhase = ''
-            hugo -Detesting-no-modules
+            mkdir themes
+            ln -s ${self.defaultPackage.${system}} themes/knut
+
+            hugo -e nix
             pagefind --site public
           '';
 
@@ -60,12 +65,12 @@
           '';
         };
 
-        packages.serveTestSite = pkgs.writeScriptBin "serve" ''
-          ${pkgs.simple-http-server}/bin/simple-http-server -ip 1313 ${self.packages.${system}.buildTestSite}
+        packages.serve = pkgs.writeScriptBin "serve" ''
+          ${pkgs.simple-http-server}/bin/simple-http-server -ip 1313 ${self.packages.${system}.buildDemoSite}
         '';
 
         defaultApp = flake-utils.lib.mkApp {
-          drv = self.packages.${system}.serveTestSite;
+          drv = self.packages.${system}.serve;
         };
 
         devShell = pkgs.mkShell {

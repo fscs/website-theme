@@ -1,0 +1,3 @@
+[[module.imports]]
+path = "knut"
+ignoreConfig = true
