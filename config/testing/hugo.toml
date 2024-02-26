@@ -1,7 +1,8 @@
 baseURL = 'https://fscs.hhu.de'
 title = "Fachschaft Informatik"
-pluralizeListTitles = false
 copyright = 'Copyright © {year} Fachschaft Informatik'
+enableEmoji = true
+pluralizeListTitles = false
 
 defaultContentLanguage = "de"
 
