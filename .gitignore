@@ -1,7 +1,6 @@
 # dont commit content used for testing
 ./content/
 ./archetypes/
-./assets/
 
 .hugo_build.lock
 public/

@@ -2,9 +2,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <title>{{ .Title}} - {{ .Site.Title }}</title>
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/bs-theme-overrides.css">
-<link rel="stylesheet" href="/css/Navbar-Right-Links-icons.css">
-<link rel="stylesheet" href="/css/main.css">
 
-<script src="/js/darkmode.js"></script>
-<script src="/js/search.js"></script>
+{{/* minify javascript */}}
+{{ $scripts := (slice "darkmode.js" "search.js" "cookies.js")}}
+
+{{ range $scripts }}
+{{ $location := printf "js/%s" . }}
+
+{{ with resources.Get $location }}
+{{ $js := . | resources.Minify }}
+<script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
+{{ end }}
+
+{{ end }}
+
+{{ $stylesheets := (slice "bs-theme-overrides.css" "Navbar-Right-Links-icons.css" "main.css")}}
+
+{{/* minify css*/}}
+{{ range $stylesheets }}
+{{ $location := printf "css/%s" . }}
+
+{{ with resources.Get $location }}
+{{ $css := . | resources.Minify }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{ end }}
+
+{{ end }}
