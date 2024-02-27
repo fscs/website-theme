@@ -2,8 +2,10 @@
 <html id="theme" data-bs-theme="light" lang="{{ or site.Language.LanguageCode site.Language.Lang }}"
     dir="{{ or site.Language.LanguageDirection `ltr` }}">
 
+    <script src="/js/cookies.js"></script>
 <head>
     {{ partial "head.html" . }}
+    <script src="/js/darkmode.js"></script>
 </head>
 
 <body class="d-flex flex-column bg-body min-vh-100">
@@ -33,6 +35,7 @@
     <footer class="text-center bg-dark mt-auto" style="bottom: 0px;">
         {{ partial "footer.html" . }}
     </footer>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

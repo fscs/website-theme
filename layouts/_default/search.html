@@ -1,0 +1,39 @@
+{{ define "main" }}
+
+{{ $fullSearchBoxID := "search-full" }}
+{{ $fullResultsID := "full-results" }}
+
+<script async>
+    const resultsID = "{{ $fullResultsID }}";
+    const searchBoxID = "{{ $fullSearchBoxID }}";
+
+    initSearch("{{ $fullSearchBoxID }}", "{{ $fullResultsID }}").then(() => {
+        // search the parameter if there is one
+        const query = new URLSearchParams(window.location.search).get("q");
+
+        if (query != "") {
+            const inputElement = document.getElementById("{{ $fullSearchBoxID }}");
+            inputElement.value = query;
+
+            searchPage(query, "{{ $fullResultsID }}");
+        }
+    });
+
+    //hide small search bar and icon
+    document.getElementById("search-bar").style.display = "none";
+    document.getElementById("modalSearchBarIcon").style.display = "none";
+</script>
+
+<input class="form-control" id="{{ $fullSearchBoxID }}" type="search" name="Search" placeholder="Search...">
+
+<div class="searchResults" id="{{ $fullResultsID }}">
+    <div class="searchFilters" id="{{ $fullResultsID }}.filter" style="flex: 2;"></div>
+    <div class="searchResultsList" id="{{ $fullResultsID }}.content"></div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status" id="fullSearchLoading">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+{{ end }}

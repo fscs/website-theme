@@ -9,35 +9,21 @@
                 </button>
                 <a class="navbar-brand text-start d-none d-sm-flex align-items-center" href="/">
                     {{ with resources.Get "images/logo.png" }}
-                        <img src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}">
+                    <img src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}">
                     {{ end }}
                     <span class="text-capitalize fs-4 me-2">{{ .Site.Title }}</span>
                 </a>
             </div>
-            
-            <div class="col-8 col-sm-5 col-xl-4 d-flex d-xl-flex justify-content-end align-items-center align-items-sm-center justify-content-xl-end align-items-xl-center">
-                <div class="input-group">
-                    <input id="search" type="search" class="form-control" name="Search" placeholder="Search...">
-                        <span class="input-group-text">
-                            {{ partial "svg.html" "icons/search.svg"}}
-                        </span>
-                        <button class="btn" onclick="toggle_dark_mode()">
-                            {{ partial "svg.html" "icons/moon.svg"}}
-                        </button>
-                        <div id="results" style="
-                                position: fixed;
-                                display: none;
-                                top: 5em;
-                                right: 15px;
-                                border: 3px solid #f1f1f1;
-                                z-index: 9;
-                                color: black;
-                                width: 20%;
-                                max-height: 50vh;
-                                overflow-y: auto;
-                                background-color: white;">
-                        </div>
-                </div>
+
+
+            <div class="col-8 col-sm-5 col-xl-4 d-flex justify-content-end align-items-center">
+                {{ partial "search/desktop.html" .}}
+                
+                {{ partial "search/mobile.html" . }}
+                
+                <button class="btn" onclick="toggle_dark_mode()">
+                    {{ partial "svg.html" "icons/moon.svg"}}
+                </button>
             </div>
         </div>
     </div>
