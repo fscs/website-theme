@@ -7,19 +7,19 @@
 </script>
 
 <div class="d-xl-none">
-    <button class="btn" data-bs-target="#{{ $modalSearchBoxID }}" data-bs-toggle="modal" type="button"
+    <button class="btn" data-bs-target="#modal-search" data-bs-toggle="modal" type="button"
         id="modalSearchBarIcon">
         {{ partial "svg.html" "icons/search.svg"}}
     </button>
 </div>
 
-<div id="{{ $modalSearchBoxID }}" class="modal fade" role="dialog" tabindex="-1">
+<div id="modal-search" class="modal fade" role="dialog" tabindex="-1">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <form action="/search" method="get" id="search-bar" style="flex: 1;">
                     <div class="input-group d-xl-flex">
-                        <input class="form-control" type="search" name="q" id="modalSearchInput" />
+                        <input class="form-control" type="search" name="q" id="{{ $modalSearchBoxID }}" />
 
                         <button class="input-group-text" type="submit">
                             {{ partial "svg.html" "icons/search.svg"}}
