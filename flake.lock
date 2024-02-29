@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "crane": {
+      "inputs": {
+        "nixpkgs": [
+          "server",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708794349,
+        "narHash": "sha256-jX+B1VGHT0ruHHL5RwS8L21R6miBn4B6s9iVyUJsJJY=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "2c94ff9a6fbeb9f3ea0107f28688edbe9c81deaa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -37,7 +58,60 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "server": "server"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "flake-utils": [
+          "server",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "server",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708999822,
+        "narHash": "sha256-X55GxqI3oDEfqy38Pt7xyypYNly4bkd/RajFE+FGn+A=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "1a618c62479a6896ac497aaa0d969c6bd8e24911",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "server": {
+      "inputs": {
+        "crane": "crane",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay",
+        "theme": "theme",
+        "website": "website"
+      },
+      "locked": {
+        "lastModified": 1709169295,
+        "narHash": "sha256-YzlKbNgdk1VArl3q1d/Uv2sIsTRBDKLr1OL8lBUCJYs=",
+        "ref": "refs/heads/main",
+        "rev": "5f5e54883650a8d5cc4ddf3124526ddf8ec35131",
+        "revCount": 13,
+        "type": "git",
+        "url": "ssh://git@github.com/fscs/website-server.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/fscs/website-server.git"
       }
     },
     "systems": {
@@ -53,6 +127,60 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "theme": {
+      "inputs": {
+        "flake-utils": [
+          "server",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "server",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1709165699,
+        "narHash": "sha256-asrug8JYAFA3a5oR8gTGseaH00dfZEeBwW0tHl4lFDo=",
+        "owner": "fscs",
+        "repo": "website-theme",
+        "rev": "a490f8ba9d0eba71831c920b0e465e153ed74b6a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fscs",
+        "repo": "website-theme",
+        "type": "github"
+      }
+    },
+    "website": {
+      "inputs": {
+        "flake-utils": [
+          "server",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "server",
+          "nixpkgs"
+        ],
+        "theme": [
+          "server",
+          "theme"
+        ]
+      },
+      "locked": {
+        "lastModified": 1709036964,
+        "narHash": "sha256-JG2sSR73B6Wy1cqvDK84hjWyrsC35yLKP8/wAMTNU0s=",
+        "ref": "refs/heads/main",
+        "rev": "7593666f04926ac80d61bebc78dab763b424a67e",
+        "revCount": 12,
+        "type": "git",
+        "url": "ssh://git@git.hhu.de/fscs/website.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@git.hhu.de/fscs/website.git"
       }
     }
   },

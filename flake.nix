@@ -3,13 +3,23 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
+
+    server = {
+      type = "git";
+      url = "ssh://git@github.com/fscs/website-server.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     flake-utils,
+    server
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
@@ -31,7 +41,7 @@
           ];
 
           buildPhase = ''
-            mkdir -p assets # p flag to no fail if the directory exists
+            mkdir -p assets # p flag to not fail if the directory exists
             ln -s ${tabler-icons}/icons assets/icons
           '';
 
@@ -40,8 +50,8 @@
           '';
         };
 
-        packages.buildDemoSite = pkgs.stdenv.mkDerivation {
-          name = "buildDemoSite";
+        packages.demoSite = pkgs.stdenv.mkDerivation {
+          name = "demoSite";
 
           src = ./demo;
 
@@ -61,16 +71,16 @@
           '';
 
           installPhase = ''
-            cp -r public $out
+            mkdir -p $out/bin
+            mkdir -p $out/bin/templates
+            cp -r public $out/bin/static
+            cp ${server.defaultPackage.${system}}/bin/backend $out/bin/backend
           '';
         };
 
-        packages.serve = pkgs.writeScriptBin "serve" ''
-          ${pkgs.simple-http-server}/bin/simple-http-server -ip 1313 ${self.packages.${system}.buildDemoSite}
-        '';
-
         defaultApp = flake-utils.lib.mkApp {
-          drv = self.packages.${system}.serve;
+          drv = self.packages.${system}.demoSite;
+          exePath = "/bin/backend";
         };
 
         devShell = pkgs.mkShell {
