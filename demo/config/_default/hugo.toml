@@ -5,6 +5,8 @@ enableEmoji = true
 
 defaultContentLanguage = "de"
 
+params.onlyHeadings = ["protokolle"]
+
 [params.socials.instagram]
 url = "https://www.instagram.com/hhufscs/"
 icon = "icons/brand-instagram.svg"
@@ -12,6 +14,8 @@ icon = "icons/brand-instagram.svg"
 [params.socials.github]
 url = "https://github.com/fscsk"
 icon = "icons/brand-github.svg"
+
+
 
 # languages
 [languages.de]

@@ -6,22 +6,20 @@
         {{ time.AsTime .Date | time.Format "02.01.2006"}}
     </span>
     <p>
-        {{ range .Fragments.Headings }}
-
-        {{ with .Title }}
-        {{ . }}<br />
-        {{ end }}
-
-
-        {{ range .Headings}}
-
-        {{ with .Title }}
-        {{ . }}<br />
-        {{ end }}
-
-        {{ end }}
-
-        {{ end}}
+        {{ if in .Site.Params.onlyHeadings .Type }}
+            {{ range .Fragments.Headings }}
+                {{ with .Title }}
+                {{ . }}<br />
+                {{ end }}
+                {{ range .Headings}}
+                    {{ with .Title }}
+                    {{ . }}<br />
+                    {{ end }}
+                {{ end }}
+            {{ end}}
+        {{ else }}
+            {{ .Summary }}
+        {{ end }} 
     </p>
     <a class="btn btn-primary" role="button" href="{{.RelPermalink}}">Zum Post</a>
 </article>
