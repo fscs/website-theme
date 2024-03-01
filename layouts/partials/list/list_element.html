@@ -6,7 +6,7 @@
         {{ time.AsTime .Date | time.Format "02.01.2006"}}
     </span>
     <p>
-        {{ if in .Site.Params.onlyHeadings.for .Type }}
+        {{ if in .Site.Params.onlyHeadings .Type }}
             {{ range .Fragments.Headings }}
                 {{ with .Title }}
                 {{ . }}<br />
