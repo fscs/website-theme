@@ -13,6 +13,10 @@ icon = "icons/brand-instagram.svg"
 url = "https://github.com/fscsk"
 icon = "icons/brand-github.svg"
 
+[params.onlyHeadings]
+for = ["protokolle"]
+
+
 # languages
 [languages.de]
 languageName = "Deutsch"
