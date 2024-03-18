@@ -1,16 +1,15 @@
-let calendarPromise = fetchCalendarJson("/calendar/");
+let calendarPromise = fetchCalendarJson("/api/calendar/");
 
 /**
  * Fetches the calendar data from the server and generates the calendar cards.
  * The calendar cards are then appended to the calendar-body.
  */
-calendarPromise.then((calendar) =>
-    calendar
-        .map(generateCalendarCard)
-        .forEach((node) =>
-            document.getElementById("calendar-body").appendChild(node)
-        )
-);
+calendarPromise.then(async (calendar) => {
+    for (let event of calendar) {
+        let card = await generateCalendarCard(event);
+        document.getElementById("calendar-body").appendChild(card);
+    }
+});
 
 /**
  * Fetches the calendar data from the backend
@@ -27,7 +26,7 @@ async function fetchCalendarJson(url) {
  * @returns The generated calendar card as html
  * using the predefined template at website-theme/layouts/partials/calendar.html
  */
-function generateCalendarCard(event) {
+async function generateCalendarCard(event) {
     let template = document.getElementById("calendar-card-template");
     let clone = document.importNode(template, true);
 
@@ -40,7 +39,72 @@ function generateCalendarCard(event) {
             month: "2-digit",
             day: "2-digit",
         });
+    clone.content
+        .getElementById("open-calendar")
+        .setAttribute("data-bs-cal-title", event.summary);
+    clone.content
+        .getElementById("open-calendar")
+        .setAttribute("data-bs-cal-location", event.location);
+
+    clone.content
+        .getElementById("open-calendar")
+        .setAttribute("data-bs-cal-desc", event.description);
+    clone.content
+        .getElementById("open-calendar")
+        .setAttribute("data-bs-cal-desc", event.description);
+
+    clone.content.getElementById("open-calendar").setAttribute(
+        "data-bs-cal-date",
+        start_date.toLocaleDateString("de-DE", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        })
+    );
     clone.content.getElementById("location").innerHTML = event.location;
 
     return clone.content;
+}
+
+function init_cal_modal() {
+    var calendarModal = document.getElementById("modal-calendar");
+    calendarModal.addEventListener("show.bs.modal", async function (event) {
+        var button = event.relatedTarget;
+        var title = button.getAttribute("data-bs-cal-title");
+        var date = button.getAttribute("data-bs-cal-date");
+        var location = button.getAttribute("data-bs-cal-location");
+        if (title === "Sitzung") {
+            var description = await get_next_tops();
+        } else {
+            var description = button.getAttribute("data-bs-cal-desc");
+        }
+        if (description === "null") {
+            description = "Keine Beschreibung verfügbar";
+        }
+        var modalTitle = calendarModal.querySelector(".modal-title");
+        var modalDate = calendarModal.querySelector(".modal-calendar-date");
+        var modalLocation = calendarModal.querySelector(
+            ".modal-calendar-location"
+        );
+
+        var modalDescription = calendarModal.querySelector(
+            ".modal-calendar-description"
+        );
+
+        modalTitle.textContent = title;
+        modalDate.textContent = date;
+        modalLocation.textContent = location;
+        modalDescription.innerHTML = description;
+    });
+}
+async function get_next_tops() {
+    let html = "";
+    let response = await fetch("/api/topmanager/current_tops");
+    let tops = await response.json();
+    html += "<ul>";
+    tops.forEach((top) => {
+        html += "<li> Top " + top.position + ": " + top.name + "</li>";
+    });
+    html += "</ul>";
+    return html;
 }
