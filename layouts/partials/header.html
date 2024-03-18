@@ -3,20 +3,21 @@
 <div class="shadow-sm">
     <div class="container-xl mt-2" style="border-bottom-width: 1px;">
         <div class="row d-flex">
-            <div class="col-4 col-sm-7 col-xl d-sm-flex d-xl-flex align-items-sm-center align-items-xl-center">
+            <div class="col-10 col-sm-7 col-xl d-flex d-sm-flex d-xl-flex align-items-sm-center align-items-xl-center">
                 <button type="button" class="m-1 d-xl-none btn" onclick="toggle_menu()">
                     {{ partial "svg.html" "icons/menu-2.svg"}}
                 </button>
-                <a class="navbar-brand text-start d-none d-sm-flex align-items-center" href="/">
+                <a class="navbar-brand text-start d-flex align-items-center align-items-sm-center" href="/">
                     {{ with resources.Get "images/logo.png" }}
-                    <img src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}">
+                    <img class="d-xl-flex d-none" src="{{ .RelPermalink }}" width="{{ $logoDimension }}" height="{{ $logoDimension }}">
                     {{ end }}
                     <span class="text-capitalize fs-4 me-2">{{ .Site.Title }}</span>
                 </a>
             </div>
 
 
-            <div class="col-8 col-sm-5 col-xl-4 d-flex justify-content-end align-items-center">
+
+            <div class="col-2 col-sm-5 col-xl-4 d-flex justify-content-end align-items-center">
                 {{ partial "search/desktop.html" .}}
                 
                 {{ partial "search/mobile.html" . }}
