@@ -19,7 +19,7 @@
     self,
     nixpkgs,
     flake-utils,
-    server
+    server,
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
@@ -72,15 +72,14 @@
 
           installPhase = ''
             mkdir -p $out/bin
-            mkdir -p $out/bin/templates
             cp -r public $out/bin/static
-            cp ${server.defaultPackage.${system}}/bin/backend $out/bin/backend
+            cp ${server.defaultPackage.${system}}/bin/fscs-website-backend $out/bin/fscs-website-backend
           '';
         };
 
         defaultApp = flake-utils.lib.mkApp {
           drv = self.packages.${system}.demoSite;
-          exePath = "/bin/backend";
+          exePath = "/bin/fscs-website-backend";
         };
 
         devShell = pkgs.mkShell {
