@@ -1,15 +1,17 @@
-let calendarPromise = fetchCalendarJson("/api/calendar/");
+function build_calendar(url) {
+    let calendarPromise = fetchCalendarJson(url);
 
-/**
- * Fetches the calendar data from the server and generates the calendar cards.
- * The calendar cards are then appended to the calendar-body.
- */
-calendarPromise.then(async (calendar) => {
-    for (let event of calendar) {
-        let card = await generateCalendarCard(event);
-        document.getElementById("calendar-body").appendChild(card);
-    }
-});
+    /**
+     * Fetches the calendar data from the server and generates the calendar cards.
+     * The calendar cards are then appended to the calendar-body.
+     */
+    calendarPromise.then(async (calendar) => {
+        for (let event of calendar) {
+            let card = await generateCalendarCard(event);
+            document.getElementById("calendar-body").appendChild(card);
+        }
+    });
+}
 
 /**
  * Fetches the calendar data from the backend
@@ -66,8 +68,8 @@ async function generateCalendarCard(event) {
     return clone.content;
 }
 
-function init_cal_modal() {
-    var calendarModal = document.getElementById("modal-calendar");
+function init_cal_modal(id) {
+    var calendarModal = document.getElementById(id);
     calendarModal.addEventListener("show.bs.modal", async function (event) {
         var button = event.relatedTarget;
         var title = button.getAttribute("data-bs-cal-title");
