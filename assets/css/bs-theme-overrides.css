@@ -2,3 +2,9 @@
 [data-bs-theme="light"] {
   --bs-border-radius: 0.375rem;
 }
+
+.highlight pre {
+  padding: 1rem;
+  border-radius: 0.375rem;
+  box-shadow: var(--bs-box-shadow);
+}

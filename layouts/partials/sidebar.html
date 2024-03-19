@@ -22,13 +22,35 @@
         {{ $class = printf "%s %s" $class "link-body-emphasis" }}
         {{ end }}
 
-        <li class="nav-item overflow-hidden">
+        <li class="nav-item overflow-hidden" style="width:100%">
             <a class="{{ $class }}" href="{{ .URL }}" aria-current="{{ $ariaCurrent }}" background-color="#111344">
                 {{ with .Params.icon }}
                 {{ partial "svg.html" .}}
                 {{ end }}
                 {{ .Name }}
             </a>
+                {{ if .HasChildren }}
+                <ul style="margin-left: 1.5rem;
+  margin-top: 0.4em;
+  border-left: 1px var(--bs-body-color) solid;
+  padding-left: 0;">
+                    {{ range .Children }}
+                    {{ $class := "nav-link" }}
+                    {{ $ariaCurrent := "false" }}
+
+                    {{ if or ($page.IsMenuCurrent .Menu . ) ($page.HasMenuCurrent .Menu .)}}
+                    {{ $class = printf "%s %s" $class "active" }}
+                    {{ $ariaCurrent = "page" }}
+                    {{ else }}
+                    {{ $class = printf "%s %s" $class "link-body-emphasis" }}
+                    {{ end }}
+                    <li class="nav-item overflow-hidden"><a class="{{ $class }}" href="{{ .URL }}">
+                            {{ .Name }}
+                    </a></li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+
         </li>
         {{ end }}
     </ul>
