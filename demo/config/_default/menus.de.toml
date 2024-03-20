@@ -1,0 +1,37 @@
+[[main]]
+name = "Startseite"
+weight = 1
+pageRef = "/"
+params = { icon = "icons/home.svg" }
+
+[[main]]
+name = "Studierende"
+weight = 3
+pageRef = "/studierende"
+params = { icon = "icons/school.svg" }
+
+[[main]]
+name = "POs"
+weight = 1
+parent = "Studierende"
+pageRef = "/studierende/pos"
+params = { icon = "icons/script.svg" }
+
+[[main]]
+name = "Nachklausur-tutorien"
+weight = 2
+parent = "Studierende"
+pageRef = "/studierende/nkt"
+params = { icon = "icons/news.svg" }
+
+[[main]]
+name = "Protokolle"
+weight = 4
+pageRef = "/protokolle"
+params = { icon = "icons/script.svg" }
+
+[[main]]
+name = "About Us"
+weight = 100
+pageRef = "/about"
+params = { icon = "icons/question-mark.svg" }
