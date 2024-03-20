@@ -59,3 +59,15 @@
   color: var(--bs-primary);
   font-size: 1.5em;
 }
+
+.sidebarChild {
+  margin-left: 1.5rem;
+  margin-top: 0.4em;
+  border-left: 1px var(--bs-body-color) solid;
+  padding-left: 0;
+}
+
+.sidebarChild a {
+  line-break: auto;
+  margin-left: var(--bs-nav-link-padding-x);
+}
