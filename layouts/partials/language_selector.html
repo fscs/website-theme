@@ -1,0 +1,19 @@
+{{ if .IsTranslated }}
+<div class="dropdown ms-2">
+    {{ with .Language}}
+    <button class="btn dropdown-toggle" aria-expanded="true" data-bs-toggle="dropdown" aria-label="{{ .LanguageName}}"
+        type="button">
+        {{ or (index site.Params.flags .Lang) .Lang }}
+    </button>
+    {{ end }}
+
+    <div class="dropdown-menu" data-bs-popper="none" style="min-width: 0px;">
+        {{ range .Translations }}
+        <a class="dropdown-item" aria-label="{{ .Language.LanguageName }}" href="{{ .RelPermalink }}"
+            hreflang="{{ .Language.Lang }}">
+            {{ or (index site.Params.flags .Lang) .Lang }}
+        </a>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

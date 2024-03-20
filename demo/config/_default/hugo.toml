@@ -6,7 +6,12 @@ enableEmoji = true
 defaultContentLanguage = "de"
 defaultContentLanguageInSubdir = true
 
-params.onlyHeadings = ["protokolle"]
+[params]
+onlyHeadings = ["protokolle"]
+
+[params.flags]
+de = "🇩🇪"
+en = "🇬🇧"
 
 [markup.goldmark.renderer]
 unsafe = true
