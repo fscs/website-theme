@@ -44,7 +44,7 @@
                     {{ else }}
                     {{ $class = printf "%s %s" $class "link-body-emphasis" }}
                     {{ end }}
-                    <li class="nav-item overflow-hidden"><a class="{{ $class }}" href="{{ .URL }}">
+                    <li class="nav-item overflow-hidden"><a style="line-break:anywhere; margin-left: var(--bs-nav-link-padding-x);" class="{{ $class }}" href="{{ .URL }}">
                             {{ .Name }}
                     </a></li>
                     {{ end }}

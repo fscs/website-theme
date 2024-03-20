@@ -26,6 +26,9 @@
                 {{ if .IsPage }}
                     {{ partial "toc.html" .}}
                 {{ end }}
+                {{ if .IsHome }}
+                    {{ partial "next-sitzung.html" . }}
+                {{ end }}
             </div>
         </div>
     </div>
