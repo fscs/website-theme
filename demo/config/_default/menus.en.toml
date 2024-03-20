@@ -1,11 +1,11 @@
 [[main]]
-name = "Startseite"
+name = "Home"
 weight = 1
 pageRef = "/"
 params = { icon = "icons/home.svg" }
 
 [[main]]
-name = "Studierende"
+name = "Students"
 identifier = "students"
 weight = 3
 pageRef = "/studierende"
@@ -19,14 +19,14 @@ pageRef = "/studierende/pos"
 params = { icon = "icons/script.svg" }
 
 [[main]]
-name = "Nachklausur-tutorien"
+name = "Postexam-tutoring"
 weight = 2
 parent = "students"
 pageRef = "/studierende/nkt"
 params = { icon = "icons/news.svg" }
 
 [[main]]
-name = "Protokolle"
+name = "Protocols"
 weight = 4
 pageRef = "/protokolle"
 params = { icon = "icons/script.svg" }

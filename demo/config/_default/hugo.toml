@@ -4,6 +4,7 @@ pluralizeListTitles = false
 enableEmoji = true
 
 defaultContentLanguage = "de"
+defaultContentLanguageInSubdir = true
 
 params.onlyHeadings = ["protokolle"]
 
@@ -18,18 +19,18 @@ icon = "icons/brand-instagram.svg"
 url = "https://github.com/fscsk"
 icon = "icons/brand-github.svg"
 
-
-
 # languages
 [languages.de]
 languageName = "Deutsch"
 title = "Fachschaft Informatik"
+contentDir = "content/de"
 languageCode = "de"
 languageDirection = "ltr"
 
 [languages.en]
 languageName = "English"
 title = "Faculty Computer Science"
+contentDir = "content/en"
 languageCode = "en"
 languageDirection = "ltr"
 
