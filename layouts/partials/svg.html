@@ -1,7 +1,25 @@
-{{ $svg := resources.Get .}}
+{{ $properties := (slice)}}
+
+{{ $icon := ""}}
+{{ $width := "1em"}}
+{{ $height := "1em"}}
+
+{{ if reflect.IsSlice .}}
+    {{ if lt (. | len) 1}}
+        {{ errorf "must pass an icon path" }} 
+    {{ end }}
+
+    {{ $icon = (index . 0)}}
+    {{ $width = (or (index . 1) $width)}}
+    {{ $height = (or (index . 2) $height)}}
+{{ else }}
+    {{ $icon = . }}
+{{ end }}
+
+{{ $svg := resources.Get $icon }}
 
 {{ return
     ($svg.Content | 
-    replaceRE " width=\"[1-9a-zA-Z]*\"" " width=\"1em\"" | 
-    replaceRE " height=\"[1-9a-zA-Z]*\"" " height=\"1em\"" | 
+    replaceRE " width=\"[1-9a-zA-Z]*\"" (printf " width=\"%s\"" $width) | 
+    replaceRE " height=\"[1-9a-zA-Z]*\"" (printf " height=\"%s\"" $height) | 
     safeHTML ) }}
