@@ -15,18 +15,18 @@
                 </a>
             </div>
 
-
-
             <div class="col-2 col-sm-5 col-xl-4 d-flex justify-content-end align-items-center">
                 {{ partial "search/desktop.html" .}}
                 
                 {{ partial "search/mobile.html" . }}
-                
-                <button class="btn" onclick="toggle_dark_mode()">
-                    {{ partial "svg.html" "icons/moon.svg"}}
-                </button>
 
-                {{ partial "language_selector.html" .}}
+                <div class="btn d-none d-sm-inline">
+                    {{ partial "darkmode_toggle.html" .}}
+                </div>
+
+                <div class="d-none d-sm-inline">
+                    {{ partial "language_selector.html" .}}
+                </div>
             </div>
         </div>
     </div>
