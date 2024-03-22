@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html id="theme" data-bs-theme="light" lang="{{ or site.Language.LanguageCode site.Language.Lang }}"
     dir="{{ or site.Language.LanguageDirection `ltr` }}">
-    
+
 <head>
     {{ partial "head.html" . }}
 </head>
@@ -14,9 +14,10 @@
     <div class="container-xl my-2">
         <div class="row d-flex">
             {{ partial "sidebar.html" . }}
-            
+
             <div class="col-xl-8">
-                <main data-bs-smooth-scroll="true" data-bs-spy="scroll" data-bs-target="#knuts-table-of-contents-42" tabindex=0>
+                <main data-bs-smooth-scroll="true" data-bs-spy="scroll" data-bs-target="#knuts-table-of-contents-42"
+                    tabindex=0>
                     <div class="vstack border rounded border-0 h-100">
                         {{ block "main" .}} {{ end }}
                     </div>
@@ -24,19 +25,29 @@
             </div>
             <div class="col-xl-2 p-2 d-none d-xl-flex">
                 {{ if .IsPage }}
-                    {{ partial "toc.html" .}}
+                {{ partial "toc.html" .}}
                 {{ end }}
                 {{ if .IsHome }}
-                    {{ partial "next-sitzung.html" . }}
+                {{ partial "next-sitzung.html" . }}
                 {{ end }}
             </div>
         </div>
     </div>
-    
+
+    {{ if .IsPage }}
+    <div class="fab-container d-xl-none" style="position: fixed; bottom: 30px; right: 30px; z-index: 2;">
+        <div class="d-flex align-items-center">
+            <button class="btn btn-primary">
+                {{ partial "svg.html" (slice "icons/list-tree.svg" "1.2em" "1.2em")}}
+            </button>
+        </div>
+    </div>
+    {{ end }}
+
     <footer class="text-center bg-dark mt-auto" style="bottom: 0px;">
         {{ partial "footer.html" . }}
     </footer>
-    
+
     <script src="/bootstrap/js/bootstrap.min.js"></script>
 </body>
 

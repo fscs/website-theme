@@ -73,13 +73,36 @@
           installPhase = ''
             mkdir -p $out/bin
             cp -r public $out/bin/static
+            cp -r ${server.defaultPackage.${system}}/bin/migrations $out/bin/migrations
             cp ${server.defaultPackage.${system}}/bin/fscs-website-backend $out/bin/fscs-website-backend
           '';
         };
 
+        packages.runDemoSite = pkgs.writeScriptBin "run.sh" ''
+          #!/usr/bin/env bash
+          DATA_DIR="$PWD/db/data"
+          SOCKET_DIR="$PWD/db/sockets"
+          SOCKET_URL="$(echo $SOCKET_DIR | sed 's/\//%2f/g')"
+          export DATABASE_URL="postgresql://$SOCKET_URL:5432/postgres"
+
+          mkdir -p "$DATA_DIR" "$SOCKET_DIR"
+
+          echo Initializing the Database
+          ${pkgs.postgresql}/bin/initdb -D "$DATA_DIR"
+
+          echo Starting the Database
+          ${pkgs.postgresql}/bin/pg_ctl -D $DATA_DIR -o "-k $SOCKET_DIR -h \"\"" start
+
+          echo Starting the server
+          ${self.packages.${system}.demoSite}/bin/fscs-website-backend --database-url $DATABASE_URL --use-executable-dir
+
+          echo Stopping the Database
+          ${pkgs.postgresql}/bin/pg_ctl -D "$DATA_DIR" stop
+        '';
+
         defaultApp = flake-utils.lib.mkApp {
-          drv = self.packages.${system}.demoSite;
-          exePath = "/bin/fscs-website-backend";
+          drv = self.packages.${system}.runDemoSite;
+          exePath = "/bin/run.sh";
         };
 
         devShell = pkgs.mkShell {

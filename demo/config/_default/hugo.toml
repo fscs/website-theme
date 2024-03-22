@@ -1,4 +1,4 @@
-baseURL = "https://example.org/"
+baseURL = "/"
 copyright = 'Copyright © {year} Fachschaft Informatik'
 pluralizeListTitles = false
 enableEmoji = true
