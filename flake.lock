@@ -211,11 +211,11 @@
         "website": "website_3"
       },
       "locked": {
-        "lastModified": 1711108710,
-        "narHash": "sha256-/uvTEhMlgCGM2ltasOH/MamkGN/TEJ+sHbR8vSAfLIc=",
+        "lastModified": 1711110368,
+        "narHash": "sha256-jfCNVfMpPtEGwvE4KPIZxBXwzEEtle1tUew7SKw+6mY=",
         "ref": "refs/heads/main",
-        "rev": "930017210858dbafbc6a0c4bc3f7c829f66af709",
-        "revCount": 47,
+        "rev": "e07ae82ac92244b6fd09a673e463700792cb9d0f",
+        "revCount": 49,
         "type": "git",
         "url": "ssh://git@github.com/fscs/website-server.git"
       },
