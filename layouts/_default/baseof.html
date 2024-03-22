@@ -34,16 +34,6 @@
         </div>
     </div>
 
-    {{ if .IsPage }}
-    <div class="fab-container d-xl-none" style="position: fixed; bottom: 30px; right: 30px; z-index: 2;">
-        <div class="d-flex align-items-center">
-            <button class="btn btn-primary">
-                {{ partial "svg.html" (slice "icons/list-tree.svg" "1.2em" "1.2em")}}
-            </button>
-        </div>
-    </div>
-    {{ end }}
-
     <footer class="text-center bg-dark mt-auto" style="bottom: 0px;">
         {{ partial "footer.html" . }}
     </footer>

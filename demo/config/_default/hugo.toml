@@ -34,7 +34,7 @@ languageDirection = "ltr"
 
 [languages.en]
 languageName = "English"
-title = "Faculty Computer Science"
+title = "Fachschaft Informatik"
 contentDir = "content/en"
 languageCode = "en"
 languageDirection = "ltr"

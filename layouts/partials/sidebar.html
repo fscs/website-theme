@@ -7,7 +7,7 @@
 </script>
 
 {{ define "sidebar_content" }}
-<div class="bg-transparent">
+<div class="bg-transparent overflow-auto">
     <ul class="nav nav-pills flex-column mb-auto gap-2">
         {{ $page := .Page }}
         {{ range .Site.Menus.main }}
@@ -73,6 +73,16 @@
         <div class="offcanvas-body d-flex flex-column justify-content-between overflow-hidden"
             style="position: relative;">
             {{ template "sidebar_content" .}}
+
+        </div>
+
+        <div class="hstack m-2 ms-auto">
+            <div class="d-sm-none">
+                {{ partial "language_selector.html" . }} 
+            </div>
+            <div class="d-sm-none">
+                {{ partial "darkmode_toggle.html" . }}
+            </div>
         </div>
     </div>
 </div>
