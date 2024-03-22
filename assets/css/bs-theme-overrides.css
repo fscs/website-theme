@@ -20,7 +20,7 @@
     --bs-btn-bg: #0b50b5 !important;
 }
 
-[data-bs-theme="dark"] .nav-link.active {
+[data-bs-theme="dark"] .nav-link.active:not(.link-body-emphasis):not(.text-dark-emphasis) {
     --bs-nav-pills-link-active-bg: #0b50b5;
     --bs-btn-border-color: #0d6efd;
     border:  var(--bs-border-width) solid #0d6efd !important;

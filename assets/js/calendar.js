@@ -114,6 +114,7 @@ async function get_next_tops() {
 async function get_next_sitzung() {
     let response = await fetch("/api/topmanager/next_sitzung");
     if (response.status != 200) {
+        cal;
         return "Keine Sitzung gefunden";
     }
     let sitzung = await response.json();
