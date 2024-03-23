@@ -88,7 +88,7 @@
           mkdir -p "$DATA_DIR" "$SOCKET_DIR"
 
           echo Initializing the Database
-          ${pkgs.postgresql}/bin/initdb -D "$DATA_DIR"
+          ${pkgs.postgresql}/bin/initdb -D "$DATA_DIR" --locale=C.utf8
 
           echo Starting the Database
           ${pkgs.postgresql}/bin/pg_ctl -D $DATA_DIR -o "-k $SOCKET_DIR -h \"\"" start

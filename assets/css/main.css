@@ -71,3 +71,24 @@
   line-break: auto;
   margin-left: var(--bs-nav-link-padding-x);
 }
+
+.dot.red {
+    height: 25px;
+    width: 25px;
+    background-color: #f00;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.green {
+    height: 25px;
+    width: 25px;
+    background-color: #0f0;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#fs_status {
+    display: flex;
+    justify-items: center;
+}

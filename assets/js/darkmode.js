@@ -1,4 +1,3 @@
-
 var element = document.getElementById("theme");
 var enableDarkmode = false;
 
@@ -34,4 +33,3 @@ function toggle_dark_mode() {
         setCookie("theme", "light", 365);
     }
 }
-
