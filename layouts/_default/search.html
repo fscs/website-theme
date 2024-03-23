@@ -24,7 +24,7 @@
     document.getElementById("modalSearchBarIcon").style.display = "none";
 </script>
 
-<input class="form-control" id="{{ $fullSearchBoxID }}" type="search" name="Search" placeholder="Search...">
+<input class="form-control" id="{{ $fullSearchBoxID }}" type="search" name="Search" placeholder="{{ T "theme.search.placeholder" }}">
 
 <div class="searchResults" id="{{ $fullResultsID }}">
     <div class="searchFilters" id="{{ $fullResultsID }}.filter" style="flex: 2;"></div>

@@ -19,7 +19,7 @@
             <div class="modal-header">
                 <form action="/{{ .Site.Language.Lang }}/search" method="get" id="search-bar" style="flex: 1;">
                     <div class="input-group d-xl-flex">
-                        <input class="form-control" type="search" name="q" id="{{ $modalSearchBoxID }}" placeholder="Search...">
+                        <input class="form-control" type="search" name="q" id="{{ $modalSearchBoxID }}" placeholder="{{ T "theme.search.placeholder" }}">
 
                         <button class="input-group-text" type="submit">
                             {{ partial "svg.html" "icons/search.svg"}}

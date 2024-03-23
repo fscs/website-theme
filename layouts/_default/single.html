@@ -10,7 +10,7 @@
 
         <time data-pagefind-sort="date[datetime]" datetime="{{ $dateMachine }}" pubdate>{{ $dateHuman}}</time>
         {{ range .Params.categories }}
-        <meta data-pagefind-filter="kategorie[content]" content="{{ . }}">
+        <meta data-pagefind-filter="{{ T "theme.search.category" }}[content]" content="{{ . }}">
         {{ end }}
 
     </span>

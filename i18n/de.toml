@@ -1,0 +1,5 @@
+[theme]
+
+[theme.search]
+placeholder = "Suchen..."
+category = "kategorie"

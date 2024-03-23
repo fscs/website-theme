@@ -8,7 +8,7 @@
 
 <form action="/{{ .Site.Language.Lang }}/search" method="get" id="search-bar">
     <div class="input-group col-xl-2 p-2 d-none d-xl-flex">
-        <input id="{{ $desktopSearchBoxID }}" type="search" class="form-control" name="q" placeholder="Search...">
+        <input id="{{ $desktopSearchBoxID }}" type="search" class="form-control" name="q" placeholder="{{ T "theme.search.placeholder" }}">
 
         <button class="input-group-text" type="submit">
             {{ partial "svg.html" "icons/search.svg"}}
