@@ -3,7 +3,7 @@
         {{ range .Site.Params.socials }}
         <li class="list-inline-item">
             <a href="{{ .url }}" class="text-white">
-                {{ partial "svg.html" .icon }}
+                {{ partial "svg.html" (slice .icon "1.5em" "1.5em") }}
             </a>
         {{ end }}
     </ul>
