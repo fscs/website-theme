@@ -21,7 +21,7 @@ url = "https://www.instagram.com/hhufscs/"
 icon = "icons/brand-instagram.svg"
 
 [params.socials.github]
-url = "https://github.com/fscsk"
+url = "https://github.com/fscs"
 icon = "icons/brand-github.svg"
 
 # languages
