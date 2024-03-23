@@ -1,16 +1,16 @@
 {{ define "main" }}
-
 <main>
-
     <br><br>    
-    <h1>We couldn't find this Page!</h1>
-
+    <h1>{{ T "theme.notfound.heading" }}</h1>
     <p>
-        Please try our search page to look for it or go back 
-        to the <a href="/">home page</a>.
+        {{ T "theme.notfound.body" }} <br><br>
+
+        <a class="btn btn-primary" href="/{{ .Site.Language.Lang }}/">
+            <span>
+                {{ partial "svg.html" "icons/arrow-back.svg" }}
+                {{ T "theme.notfound.backhome"}}
+            </span>
+        </a>
     </p>
-
 </main>
-
 {{ end }}
-

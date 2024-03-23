@@ -3,3 +3,8 @@
 [theme.search]
 placeholder = "Search..."
 category = "category"
+
+[theme.notfound]
+heading = "No page found ¯\\_(ツ)_/¯"
+body = "Hmm, that didnt work."
+backhome = "Back to Homepage"
