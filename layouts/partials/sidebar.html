@@ -27,7 +27,7 @@
                 {{ with .Params.icon }}
                 {{ partial "svg.html" .}}
                 {{ end }}
-                {{ .Name }}
+                {{ or (T .Identifier) .Name | safeHTML }}
             </a>
             {{ if .HasChildren }}
             <ul class="sidebarChild">
@@ -42,9 +42,8 @@
                 {{ $class = printf "%s %s" $class "link-body-emphasis" }}
                 {{ end }}
                 <li class="nav-item overflow-hidden">
-                    <a class="{{ $class }}"
-                        href="{{ .URL }}">
-                        {{ .Name }}
+                    <a class="{{ $class }}" href="{{ .URL }}">
+                        {{ or (T .Identifier) .Name | safeHTML }}
                     </a>
                 </li>
                 {{ end }}
@@ -78,7 +77,7 @@
 
         <div class="hstack m-2 ms-auto">
             <div class="d-sm-none">
-                {{ partial "language_selector.html" . }} 
+                {{ partial "language_selector.html" . }}
             </div>
             <div class="d-sm-none">
                 {{ partial "darkmode_toggle.html" . }}
