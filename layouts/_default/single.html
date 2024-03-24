@@ -6,7 +6,7 @@
 <article data-pagefind-body class="border rounded border-0 m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);">
     <h1 data-pagefind-meta="title">{{ .Title }}</h1>
     <span class="text-muted text-opacity-75 d-flex align-items-center">
-        {{ partial "svg.html" "icons/calendar-month.svg" }}
+        {{ partial "svg.html" "icons/outline/calendar-month.svg" }}
 
         <time data-pagefind-sort="date[datetime]" datetime="{{ $dateMachine }}" pubdate>{{ $dateHuman}}</time>
         {{ range .Params.categories }}

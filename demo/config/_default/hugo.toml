@@ -18,11 +18,11 @@ unsafe = true
 
 [params.socials.instagram]
 url = "https://www.instagram.com/hhufscs/"
-icon = "icons/brand-instagram.svg"
+icon = "icons/outline/brand-instagram.svg"
 
 [params.socials.github]
 url = "https://github.com/fscs"
-icon = "icons/brand-github.svg"
+icon = "icons/outline/brand-github.svg"
 
 # languages
 [languages.de]

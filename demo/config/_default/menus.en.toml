@@ -3,14 +3,14 @@
 identifier = "home"
 weight = 1
 pageRef = "/"
-params = { icon = "icons/home.svg" }
+params = { icon = "icons/outline/home.svg" }
 
 #
 [[main]]
 identifier = "students"
 weight = 3
 pageRef = "/studierende"
-params = { icon = "icons/school.svg" }
+params = { icon = "icons/outline/school.svg" }
 
 [[main]]
 identifier = "examregulations"
@@ -29,11 +29,11 @@ pageRef = "/studierende/nkt"
 identifier = "subscripts"
 weight = 4
 pageRef = "/protokolle"
-params = { icon = "icons/script.svg" }
+params = { icon = "icons/outline/script.svg" }
 
 #
 [[main]]
 identifier = "aboutus"
 weight = 100
 pageRef = "/about"
-params = { icon = "icons/question-mark.svg" }
+params = { icon = "icons/outline/question-mark.svg" }
