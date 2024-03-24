@@ -13,6 +13,10 @@ onlyHeadings = ["protokolle"]
 de = "🇩🇪"
 en = "🇬🇧"
 
+[params.sectionIcons]
+protokolle = "icons/outline/script.svg"
+news = "icons/outline/news.svg"
+
 [markup.goldmark.renderer]
 unsafe = true
 

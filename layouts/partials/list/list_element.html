@@ -1,9 +1,10 @@
 <article class="border rounded border-0 m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);">
     <h1>
-        {{ if eq .Type "protokolle" }}
-            {{ partial "svg.html" "icons/outline/script.svg" }}
-        {{ else if eq .Type "news" }}
-            {{ partial "svg.html" "icons/outline/news.svg" }}
+        {{ $type := .Type}}
+        {{ with .Site.Params.sectionIcons }}
+            {{ with (index . $type) }}
+                {{ partial "svg.html" . }}
+            {{ end }}
         {{ end }}
 
         {{ .Title }}</h1>
