@@ -28,8 +28,8 @@
         tabler-icons = pkgs.fetchFromGitHub {
           owner = "tabler";
           repo = "tabler-icons";
-          rev = "v2.47.0";
-          hash = "sha256-7WawRKx15zbd0Gngcu+L6ztOQcKqLJvf98dg2jrKbzw=";
+          rev = "v3.1.0";
+          hash = "sha256-dHMXORjkIvoK1CgfdifRPl1iyDJ+t5WFyhCFk5QhZCY=";
         };
       in {
         defaultPackage = pkgs.stdenv.mkDerivation {
