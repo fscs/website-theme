@@ -28,10 +28,7 @@
                 {{ partial "toc.html" .}}
                 {{ end }}
                 {{ if .IsHome }}
-                <div style="flex-direction: column;">
-                    <div class="d-none d-sm-inline">
-                        {{ partial "door_state.html" .}}
-                    </div>
+                <div style="width: -moz-available;width: -webkit-fill-available;">
                     {{ partial "next-sitzung.html" . }}
                     {{ end }}
                 </div>
