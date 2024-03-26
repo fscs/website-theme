@@ -36,6 +36,8 @@ function build_next_sitzung_announcement() {
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
         };
         html += "<h2>Sitzung:</h2>";
         html +=

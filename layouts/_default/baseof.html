@@ -28,8 +28,13 @@
                 {{ partial "toc.html" .}}
                 {{ end }}
                 {{ if .IsHome }}
-                {{ partial "next-sitzung.html" . }}
-                {{ end }}
+                <div style="flex-direction: column;">
+                    <div class="d-none d-sm-inline">
+                        {{ partial "door_state.html" .}}
+                    </div>
+                    {{ partial "next-sitzung.html" . }}
+                    {{ end }}
+                </div>
             </div>
         </div>
     </div>

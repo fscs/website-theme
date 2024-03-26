@@ -92,3 +92,10 @@
     display: flex;
     justify-items: center;
 }
+
+#next-sitzung-announcement {
+  height: fit-content;
+  background-color: var(--bs-body-bg);
+  border-color: #57c7ff;
+  padding: 1em;
+}
