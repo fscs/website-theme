@@ -8,7 +8,7 @@ defaultContentLanguageInSubdir = true
 
 [params]
 onlyHeadings = ["protokolle"]
-impressum = "/impressum"
+impressumURL = "/impressum"
 
 [params.flags]
 de = "🇩🇪"

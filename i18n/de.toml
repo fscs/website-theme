@@ -1,4 +1,5 @@
 [theme]
+imprint = "Impressum"
 
 [theme.search]
 placeholder = "Suchen..."
