@@ -6,7 +6,7 @@
     setupDismissHandlers("{{ $desktopSearchBoxID }}", "{{ $desktopResultsID }}");
 </script>
 
-<form action="/{{ .Site.Language.Lang }}/search" method="get" id="search-bar">
+<form action="{{ ( .Site.GetPage "/search" ).RelPermalink}}" method="get" id="search-bar">
     <div class="input-group col-xl-2 p-2 d-none d-xl-flex">
         <input id="{{ $desktopSearchBoxID }}" type="search" class="form-control" name="q" placeholder="{{ T "theme.search.placeholder" }}">
 
