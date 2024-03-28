@@ -41,6 +41,11 @@ async function generateCalendarCard(event) {
             month: "2-digit",
             day: "2-digit",
         });
+    clone.content.getElementById("clock").innerHTML =
+        start_date.toLocaleTimeString("de-DE", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
     clone.content
         .getElementById("open-calendar")
         .setAttribute("data-bs-cal-title", event.summary);
@@ -63,6 +68,14 @@ async function generateCalendarCard(event) {
             day: "2-digit",
         })
     );
+
+    clone.content.getElementById("open-calendar").setAttribute(
+        "data-bs-cal-time",
+        start_date.toLocaleTimeString("de-DE", {
+            hour: "2-digit",
+            minute: "2-digit"
+        })
+    );
     clone.content.getElementById("location").innerHTML = event.location;
 
     return clone.content;
@@ -74,6 +87,7 @@ function init_cal_modal(id) {
         var button = event.relatedTarget;
         var title = button.getAttribute("data-bs-cal-title");
         var date = button.getAttribute("data-bs-cal-date");
+        var time = button.getAttribute("data-bs-cal-time");
         var location = button.getAttribute("data-bs-cal-location");
         if (title === "Sitzung") {
             var description = await get_next_tops();
@@ -85,6 +99,7 @@ function init_cal_modal(id) {
         }
         var modalTitle = calendarModal.querySelector(".modal-title");
         var modalDate = calendarModal.querySelector(".modal-calendar-date");
+        var modalTime = calendarModal.querySelector(".modal-calendar-time");
         var modalLocation = calendarModal.querySelector(
             ".modal-calendar-location"
         );
@@ -95,6 +110,7 @@ function init_cal_modal(id) {
 
         modalTitle.textContent = title;
         modalDate.textContent = date;
+        modalTime.textContent = time;
         modalLocation.textContent = location;
         modalDescription.innerHTML = description;
     });
