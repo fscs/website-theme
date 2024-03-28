@@ -99,3 +99,7 @@
   border-color: #57c7ff;
   padding: 1em;
 }
+
+tbody, td, tfoot, th, thead, tr{
+    border: 1px var(--bs-body-color) solid;
+}

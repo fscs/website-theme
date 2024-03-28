@@ -12,7 +12,7 @@
         {{ $page := .Page }}
         {{ range .Site.Menus.main }}
 
-        {{ $class := "nav-link" }}
+        {{ $class := "nav-link sidebar-item" }}
         {{ $ariaCurrent := "false" }}
 
         {{ if or ($page.IsMenuCurrent .Menu . ) ($page.HasMenuCurrent .Menu .)}}
@@ -32,7 +32,7 @@
             {{ if .HasChildren }}
             <ul class="sidebarChild">
                 {{ range .Children }}
-                {{ $class := "nav-link" }}
+                {{ $class := "nav-link sidebar-item" }}
                 {{ $ariaCurrent := "false" }}
 
                 {{ if or ($page.IsMenuCurrent .Menu . ) ($page.HasMenuCurrent .Menu .)}}
