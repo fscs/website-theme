@@ -9,4 +9,5 @@
     </ul>
     <p class="mb-0">{{ replace .Site.Copyright "{year}" now.Year }}</p>
     <a href="{{ (.Site.GetPage .Site.Params.impressumURL ).RelPermalink}}" class="text-white">{{ T "theme.imprint" }}</a>
+    <a href="{{ (.Site.GetPage .Site.Params.contactURL ).RelPermalink}}" class="text-white">{{ T "theme.conprint" }}</a>
 </div>

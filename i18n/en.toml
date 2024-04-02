@@ -1,5 +1,6 @@
 [theme]
 imprint = "Imprint"
+conprint = "Contact"
 
 [theme.search]
 placeholder = "Search..."
