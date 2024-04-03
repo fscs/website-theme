@@ -1,7 +1,7 @@
 {{ if .IsTranslated }}
 <div class="dropdown">
     {{ with .Language}}
-    <button class="btn dropdown-toggle" aria-expanded="true" data-bs-toggle="dropdown" aria-label="{{ T "languageSelectorLabel" }} {{ .LanguageName}}"
+    <button class="btn dropdown-toggle" aria-expanded="true" data-bs-toggle="dropdown" aria-label="{{ T "theme.languageSelectorLabel" }} {{ .LanguageName}}"
         type="button">
         {{ or (index site.Params.flags .Lang) .Lang }}
     </button>
