@@ -1,6 +1,7 @@
 [theme]
 imprint = "Impressum"
 conprint = "Kontakt"
+languageSelectorLabel = "Ausgewählte Sprache"
 
 [theme.search]
 placeholder = "Suchen..."
