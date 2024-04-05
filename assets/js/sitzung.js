@@ -1,17 +1,19 @@
 async function get_next_tops() {
     let html = "";
-    let response = await fetch("/api/topmanager/current_tops");
+    let response = await fetch("/api/topmanager/current_tops/");
     let tops = await response.json();
     html += "<ul style='list-style:none; padding-left:.5em'>";
+    html += "<li>Top 0: Regularien</li>";
+    html += "<li>Top 1: Berichte</li>";
     tops.forEach((top) => {
-        html += "<li>Top " + top.position + ": " + top.name + "</li>";
+        html += "<li>Top " + (top.weight + 2) + ": " + top.name + "</li>";
     });
     html += "</ul>";
     return html;
 }
 
 async function get_next_sitzung() {
-    let response = await fetch("/api/topmanager/next_sitzung");
+    let response = await fetch("/api/topmanager/next_sitzung/");
     if (response.status != 200) {
         cal;
         return "Keine Sitzung gefunden";
