@@ -99,11 +99,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1712325431,
-        "narHash": "sha256-7ZbAKcg/wxOwDFp8U2XNXcl9sk1pVlO3KjdjHvemzQ4=",
+        "lastModified": 1712327499,
+        "narHash": "sha256-AS0VDdzMPvuBXtgcyz+IDLlHZLySL8Hi/90aHVo1AQQ=",
         "ref": "refs/heads/main",
-        "rev": "c199d7cd1764a2d288ee8ba7aa478ff81e426148",
-        "revCount": 66,
+        "rev": "7dc80ca7f73e40fd403585757780b70028e54d0a",
+        "revCount": 69,
         "type": "git",
         "url": "ssh://git@github.com/fscs/website-server.git"
       },
