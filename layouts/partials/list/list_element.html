@@ -14,42 +14,42 @@
         {{ time.AsTime .Date | time.Format "02.01.2006"}}
     </span>
     <div class="d-none d-xl-flex" style="display: flex;">
-    <p style="flex:6">
-        {{ if in .Site.Params.onlyHeadings .Type }}
-            {{ range .Fragments.Headings }}
-                {{ with .Title }}
-                {{ . }}<br />
-                {{ end }}
-                {{ range .Headings}}
+        <p style="flex:6">
+            {{ if in .Site.Params.onlyHeadings .Type }}
+                {{ range .Fragments.Headings }}
                     {{ with .Title }}
                     {{ . }}<br />
                     {{ end }}
-                {{ end }}
-            {{ end}}
-        {{ else }}
-            {{ .Summary }}
-        {{ end }} 
-    </p>
-    <a style="flex:1; height:fit-content; align-self: end; margin-bottom: 0.5em;" class="btn btn-primary" role="button" href="{{.RelPermalink}}">Zum Post</a>
+                    {{ range .Headings}}
+                        {{ with .Title }}
+                        {{ . }}<br />
+                        {{ end }}
+                    {{ end }}
+                {{ end}}
+            {{ else }}
+                {{ .Summary }}
+            {{ end }} 
+        </p>
+        <a style="flex:1; height:fit-content; align-self: end; margin-bottom: 0.5em;" class="btn btn-primary post-button" role="button" href="{{.RelPermalink}}">Zum Post</a>
     </div>
 
     <div class="d-xl-none" style="display: flex; flex-direction: column;">
-    <p style="flex:6">
-        {{ if in .Site.Params.onlyHeadings .Type }}
-            {{ range .Fragments.Headings }}
-                {{ with .Title }}
-                {{ . }}<br />
-                {{ end }}
-                {{ range .Headings}}
+        <p style="flex:6">
+            {{ if in .Site.Params.onlyHeadings .Type }}
+                {{ range .Fragments.Headings }}
                     {{ with .Title }}
                     {{ . }}<br />
                     {{ end }}
-                {{ end }}
-            {{ end}}
-        {{ else }}
-            {{ .Summary }}
-        {{ end }} 
-    </p>
-    <a style="flex:1; height:fit-content; align-self: end; margin-bottom: 0.5em; width:100%" class="btn btn-primary" role="button" href="{{.RelPermalink}}">Zum Post</a>
+                    {{ range .Headings}}
+                        {{ with .Title }}
+                        {{ . }}<br />
+                        {{ end }}
+                    {{ end }}
+                {{ end}}
+            {{ else }}
+                {{ .Summary }}
+            {{ end }} 
+        </p>
+        <a style="flex:1; height:fit-content; align-self: end; margin-bottom: 0.5em; width:100%" class="btn btn-primary post-button" role="button" href="{{.RelPermalink}}">Zum Post</a>
     </div>
 </article>
