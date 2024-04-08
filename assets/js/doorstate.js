@@ -3,7 +3,7 @@ function get_doorstate() {
 
     doorstate.then(async (response) => {
         let doorstate = await response.json();
-        let state = doorstate.state;
+        let state = doorstate.is_open;
         let door = document.getElementsByClassName("fs_status");
 
         for (let i = 0; i < door.length; i++) {
