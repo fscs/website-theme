@@ -5,9 +5,11 @@ async function get_next_tops() {
     html += "<ul style='list-style:none; padding-left:.5em'>";
     html += "<li>Top 0: Regularien</li>";
     html += "<li>Top 1: Berichte</li>";
+    count = 2;
     tops.forEach((top) => {
-        html += "<li>Top " + (top.weight + 2) + ": " + top.name + "</li>";
-    });
+        count++;
+        html += "<li>Top " + count + ": " + top.name + "</li>";
+});
     html += "</ul>";
     return html;
 }
