@@ -30,7 +30,7 @@
                 {{ .Summary }}
             {{ end }} 
         </p>
-        <a style="flex:1; height:fit-content; align-self: end; margin-bottom: 0.5em;" class="btn btn-primary post-button" role="button" href="{{.RelPermalink}}">Zum Post</a>
+        <a style="flex:1; height:fit-content; align-self: end; margin-bottom: 0.5em;" class="btn btn-primary post-button" role="button" href="{{.RelPermalink}}">{{ T "theme.toPostLabel" }}</a>
     </div>
 
     <div class="d-xl-none" style="display: flex; flex-direction: column;">
@@ -50,6 +50,6 @@
                 {{ .Summary }}
             {{ end }} 
         </p>
-        <a style="flex:1; height:fit-content; align-self: end; margin-bottom: 0.5em; width:100%" class="btn btn-primary post-button" role="button" href="{{.RelPermalink}}">Zum Post</a>
+        <a style="flex:1; height:fit-content; align-self: end; margin-bottom: 0.5em; width:100%" class="btn btn-primary post-button" role="button" href="{{.RelPermalink}}">{{ T "theme.toPostLabel" }}</a>
     </div>
 </article>

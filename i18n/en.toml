@@ -2,6 +2,7 @@
 imprint = "Imprint"
 conprint = "Contact"
 languageSelectorLabel = "Selected Language"
+toPostLabel = "To Post"
 
 [theme.search]
 placeholder = "Search..."
