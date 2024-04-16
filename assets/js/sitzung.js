@@ -7,8 +7,8 @@ async function get_next_tops() {
     html += "<li>Top 1: Berichte</li>";
     count = 2;
     tops.forEach((top) => {
-        count++;
         html += "<li>Top " + count + ": " + top.name + "</li>";
+        count++;
 });
     html += "</ul>";
     return html;
