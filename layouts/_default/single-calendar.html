@@ -1,13 +1,17 @@
 {{ define "main" }}
 <template id="calendar-card-template">
-    <a id="open-calendar" class="text-decoration-none" data-bs-target="#modal-calendar-branchen" type="button" data-bs-toggle="modal" data-bs-cal-title="Test" data-bs-cal-location="Test" data-bs-cal-date="Test" data-bs-cal-desc="Desc" >
-        <div class="card shadow overflow-visible calendar" style="background: transparent;border-color: #6c7d47;">
+    <a id="open-calendar" class="text-decoration-none" data-bs-target="#modal-calendar" type="button" data-bs-toggle="modal" data-bs-cal-title="Test" data-bs-cal-location="Test" data-bs-cal-date="Test" data-bs-cal-desc="Desc" data-bs-cal-time="Time">
+        <div class="card shadow overflow-visible calendar" style="background-color: var(--bs-body-bg); border-color: #57c7ff;">
             <div class="card-body" style="min-width: 200px;">
                 <h1 class="text-truncate fs-4" id="heading">test</h1>
                 <span class="text-secondary d-flex align-items-center">
                     {{partial "svg.html" "icons/outline/calendar-month.svg"}}
-
                     <span id="date"></span>
+                </span>
+
+                <span class="text-secondary d-flex align-items-center">
+                    {{partial "svg.html" "icons/outline/clock.svg"}}
+                    <span id="clock"></span>
                 </span>
 
                 <span class="text-secondary d-flex align-items-center">
@@ -19,6 +23,7 @@
         </div>
     </a>
 </template>
+
 
 <div id="modal-calendar-branchen" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
