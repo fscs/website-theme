@@ -24,8 +24,7 @@
     </a>
 </template>
 
-
-<div id="modal-calendar-branchen" class="modal fade" tabindex="-1">
+<div id="modal-calendar" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,6 +38,10 @@
                 <span class="text-secondary d-flex align-items-center">
                     {{partial "svg.html" "icons/outline/calendar-month.svg"}}
                     <span class="modal-calendar-date">Date</span>
+                </span>
+                <span class="text-secondary d-flex align-items-center">
+                    {{partial "svg.html" "icons/outline/clock.svg"}}
+                    <span class="modal-calendar-time">time</span>
                 </span>
                 <span class="text-secondary d-flex align-items-center">
                     {{partial "svg.html" "icons/filled/map-pin.svg"}}
