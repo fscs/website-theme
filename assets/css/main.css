@@ -103,3 +103,7 @@
 tbody, td, tfoot, th, thead, tr{
     border: 1px var(--bs-body-color) solid;
 }
+
+#open-calendar {
+    max-width: 400px;
+}
