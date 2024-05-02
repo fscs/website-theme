@@ -107,3 +107,7 @@ tbody, td, tfoot, th, thead, tr{
 #open-calendar {
     max-width: 400px;
 }
+
+.nav-item {
+    list-style-type: none;
+}
