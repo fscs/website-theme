@@ -1,0 +1,7 @@
+{{ with .Get 0}}
+    {{ with resources.Get . }}
+        <img src="{{ .RelPermalink }}" style="width: -moz-available; width: -webkit-fill-available" />
+    {{ end }}
+{{ else }}
+    {{ errorf "img shortcode needs a path to an image"}}
+{{ end }}
