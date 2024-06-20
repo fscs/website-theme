@@ -65,7 +65,23 @@
             <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
             {{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
             <guid>{{ .Permalink }}</guid>
-            <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>
+            
+            <description>
+                {{- if in .Site.Params.onlyHeadings .Type }}
+                    {{- range .Fragments.Headings -}}
+                        {{- with .Title -}}
+                            {{- . }}&lt;br&gt;
+                        {{- end -}}
+                        {{- range .Headings -}}
+                            {{- with .Title -}}
+                                {{ . }}&lt;br&gt;
+                            {{- end }}
+                        {{- end }}
+                    {{- end -}}
+                {{- else -}}
+                    {{ .Summary | transform.XMLEscape | safeHTML }}
+                {{- end -}} 
+            </description>
         </item>
     {{- end }}
     {{- end }}
