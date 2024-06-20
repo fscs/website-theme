@@ -9,7 +9,9 @@
 {{ template "pagination_aligned" . }}
 
 {{ range ( .Paginator.Pages )}}
-{{ partial "list/list_element.html" . }}
+    {{ if not .Params.hidden }}
+        {{ partial "list/list_element.html" . }}
+    {{ end }}
 {{ end }}
 
 {{ template "pagination_aligned" . }}

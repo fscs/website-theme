@@ -6,6 +6,8 @@ enableEmoji = true
 defaultContentLanguage = "de"
 defaultContentLanguageInSubdir = true
 
+enableRobotsTxt = true
+
 [params]
 onlyHeadings = ["protokolle"]
 impressumURL = "/impressum"
