@@ -11,7 +11,7 @@
 
 <article {{ $pagefindBody }} class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);" id="mainContent">
     <h1 data-pagefind-meta="title">{{ .Title }}</h1>
-    <span class="badge text-bg-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Last Modified">
+    <span class="badge text-bg-secondar mb-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Last Modified">
         {{ partial "svg.html" "icons/outline/calendar-month.svg" }}
 
         <time data-pagefind-sort="date[datetime]" datetime="{{ $dateMachine }}" pubdate>{{ $dateHuman}}</time>
