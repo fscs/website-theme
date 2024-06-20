@@ -8,10 +8,10 @@
         {{ end }}
 
         {{ .Title }}</h1>
-    <span class="text-muted text-opacity-75 d-flex align-items-center">
+    <span class="badge text-bg-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Last Modified">
         {{ partial "svg.html" "icons/outline/calendar-month.svg" }}
 
-        {{ time.AsTime .Date | time.Format "02.01.2006"}}
+        {{ time.AsTime .Lastmod | time.Format "02.01.2006"}}
     </span>
     <div class="d-none d-xl-flex" style="display: flex;">
         <p style="flex:6">
