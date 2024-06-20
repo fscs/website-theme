@@ -2,7 +2,7 @@
 imprint = "Impressum"
 conprint = "Kontakt"
 languageSelectorLabel = "Ausgewählte Sprache"
-toPostLabel = "Zum Artikel"
+toPostLabel = "Weiterlesen"
 
 [theme.search]
 placeholder = "Suchen..."
