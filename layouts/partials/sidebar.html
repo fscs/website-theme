@@ -7,7 +7,7 @@
 </script>
 
 {{ define "sidebar_content" }}
-<div class="bg-transparent overflow-auto">
+<div class="overflow-auto p-2 rounded" style="background-color: var(--bs-dark-bg-subtle);">
     <ul class="nav nav-pills flex-column mb-auto gap-2">
         {{ $page := .Page }}
         {{ range .Site.Menus.main }}
