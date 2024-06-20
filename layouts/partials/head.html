@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 
 {{/* minify javascript */}}
-{{ $scripts := (slice "cookies.js" "darkmode.js" "search.js" "calendar.js" "doorstate.js" "sitzung.js")}}
+{{ $scripts := (slice "cookies.js" "darkmode.js" "search.js" "calendar.js" "doorstate.js" "sitzung.js" "tables.js")}}
 
 {{ range $scripts }}
 {{ $location := printf "js/%s" . }}
