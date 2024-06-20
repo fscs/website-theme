@@ -31,8 +31,8 @@
           rev = "v3.1.0";
           hash = "sha256-dHMXORjkIvoK1CgfdifRPl1iyDJ+t5WFyhCFk5QhZCY=";
         };
-      in {
-        defaultPackage = pkgs.stdenv.mkDerivation {
+      in rec {
+        packages.default = pkgs.stdenv.mkDerivation {
           name = "fscs-website-theme";
           src = self;
 
@@ -64,7 +64,7 @@
 
           buildPhase = ''
             mkdir themes
-            ln -s ${self.defaultPackage.${system}} themes/knut
+            ln -s ${packages.default} themes/knut
 
             hugo -e nix
             pagefind --site public
@@ -94,22 +94,24 @@
           ${pkgs.postgresql}/bin/pg_ctl -D $DATA_DIR -o "-k $SOCKET_DIR -h \"\"" start
 
           echo Starting the server
-          ${self.packages.${system}.demoSite}/bin/fscs-website-backend --database-url $DATABASE_URL --use-executable-dir
+          ${packages.demoSite}/bin/fscs-website-backend --database-url $DATABASE_URL --use-executable-dir
 
           echo Stopping the Database
           ${pkgs.postgresql}/bin/pg_ctl -D "$DATA_DIR" stop
         '';
 
-        defaultApp = flake-utils.lib.mkApp {
-          drv = self.packages.${system}.runDemoSite;
+        apps.default = flake-utils.lib.mkApp {
+          drv = packages.runDemoSite;
           exePath = "/bin/run.sh";
         };
 
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
             hugo
             go
             git
+            pagefind
+            simple-http-server
           ];
         };
       }
