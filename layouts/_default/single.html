@@ -3,7 +3,13 @@
 {{ $dateMachine := .Lastmod | time.Format "2006-01-02T15:04:05-07:00" }}
 {{ $dateHuman := .Lastmod | time.Format "02.01.2006" }}
 
-<article data-pagefind-body class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);" id="mainContent">
+{{ $pagefindBody := ""}}
+
+{{ if not .Params.hidden }}
+    {{ $pagefindBody := "data-pagefind-body" }}
+{{ end }}
+
+<article {{ $pagefindBody }} class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);" id="mainContent">
     <h1 data-pagefind-meta="title">{{ .Title }}</h1>
     <span class="text-muted text-opacity-75 d-flex align-items-center">
         {{ partial "svg.html" "icons/outline/calendar-month.svg" }}
