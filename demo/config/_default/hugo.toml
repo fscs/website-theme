@@ -12,6 +12,7 @@ enableRobotsTxt = true
 onlyHeadings = ["protokolle"]
 impressumURL = "/impressum"
 contactURL = "/kontakt"
+homepageList = ["news", "protokolle"]
 
 [params.flags]
 de = "🇩🇪"

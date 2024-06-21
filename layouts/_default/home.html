@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ partial "calendar.html" .}}
 
-{{ range .Site.RegularPages | first 3 }}
+{{ range where ( where .Site.RegularPages "Section" "in" .Site.Params.homepageList ) ".Params.hidden"  "!=" true | first 10 }}
 {{ partial "list/list_element.html" . }}
 {{ end }}
 
