@@ -34,11 +34,15 @@
     </span>
     <div class="d-none d-xl-flex flex-column">
         {{ template "post_preview" . }}
-        <a class="btn btn-primary post-button mb-2 align-self-end" role="button" href="{{.RelPermalink}}">{{ T "theme.toPostLabel" }}</a>
+        {{ if .RenderString .Content }}
+            <a class="btn btn-primary post-button mb-2 align-self-end" role="button" href="{{.RelPermalink}}">{{ T "theme.toPostLabel" }}</a>
+        {{ end }}
     </div>
 
     <div class="d-flex d-xl-none flex-column">
         {{ template "post_preview" . }}
+        {{ if .RenderString .Content }}
         <a class="btn btn-primary post-button mb-2" role="button" href="{{.RelPermalink}}">{{ T "theme.toPostLabel" }}</a>
+        {{ end }}
     </div>
 </article>
