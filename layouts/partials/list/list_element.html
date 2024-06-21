@@ -19,15 +19,18 @@
 
 <article class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);">
     <h1>
-        {{- $type := path.BaseName .CurrentSection.Path -}}
-        {{- with .Site.Params.sectionIcons -}}
-            {{- with (index . $type) -}}
-                {{- partial "svg.html" . -}}
+        <span class="d-inline-flex align-items-center">
+            {{- $type := path.BaseName .CurrentSection.Path -}}
+            {{- with .Site.Params.sectionIcons -}}
+                {{- with (index . $type) -}}
+                    {{- partial "svg.html" . -}}
+                {{- end -}}
             {{- end -}}
-        {{- end -}}
 
-        {{- .Title -}}</h1>
-    <span class="badge text-bg-secondary mb-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Last Modified">
+            {{- .Title -}}
+        </span>
+    </h1>
+    <span class="badge text-bg-secondary mb-2 d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Last Modified">
         {{ partial "svg.html" "icons/outline/calendar-month.svg" }}
 
         {{time.AsTime .Lastmod | time.Format "02.01.2006" }}
