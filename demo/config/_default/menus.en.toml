@@ -24,6 +24,12 @@ weight = 2
 parent = "students"
 pageRef = "/studierende/nkt"
 
+[[main]]
+identifier = "news"
+weight = 3
+parent = "students"
+pageRef = "/studierende/news"
+
 #
 [[main]]
 identifier = "subscripts"

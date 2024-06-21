@@ -19,7 +19,7 @@
 
 <article class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);">
     <h1>
-        {{- $type := .Type -}}
+        {{- $type := path.BaseName .CurrentSection.Path -}}
         {{- with .Site.Params.sectionIcons -}}
             {{- with (index . $type) -}}
                 {{- partial "svg.html" . -}}
