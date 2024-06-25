@@ -2,7 +2,7 @@
 imprint = "Imprint"
 conprint = "Contact"
 languageSelectorLabel = "Selected Language"
-toPostLabel = "Full Post"
+toPostLabel = "Continue Reading"
 notauthorized = "It seems you are not authorized to view this section."
 authbutton  = "Log In"
 privatecontentwarning = "Hidden Section ahead!"
