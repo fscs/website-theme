@@ -5,6 +5,7 @@ languageSelectorLabel = "Selected Language"
 toPostLabel = "Full Post"
 notauthorized = "It seems you are not authorized to view this section."
 authbutton  = "Log In"
+privatecontentwarning = "Hidden Section ahead!"
 
 [theme.tags]
 lastmod = "Last Modified"

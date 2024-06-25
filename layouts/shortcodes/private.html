@@ -1,14 +1,18 @@
 {{- $showPrivate := getenv "HUGO_SHOW_PRIVATE" | strings.CountRunes | eq 0 -}}
 
 {{- if not $showPrivate -}}
-    {{- .Inner | markdownify -}}
+    <details>
+        <summary>{{ T "theme.privatecontentwarning"}}</summary>
+        {{- .Inner | markdownify -}}
+    </details>
+
 {{ else }}
-    <div class="alert alert-danger">
+    <div class="alert alert-danger d-flex flex-column">
+        <strong>Whoops!</strong>
         {{ T "theme.notauthorized"}}
-        <br>
         
         {{ with .Page }}
-            <a class="btn btn-primary mt-2" href="/auth/login?path=/{{ .Language.Lang }}{{ .Path }}">
+            <a class="btn btn-danger mt-2 align-self-end" href="/auth/login?path=/{{ .Language.Lang }}{{ .Path }}">
                 {{ T "theme.authbutton"}}
             </a>
         {{ end }}
