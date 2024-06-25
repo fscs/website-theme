@@ -1,12 +1,6 @@
-{{ define "pagination_aligned" }}
-<div class="d-flex m-2 flex-md-row-reverse justify-content-center justify-content-md-start">
-    {{ partial "list/pagination.html" . }}
-</div>
-{{ end }}
-
 {{ define "main" }}
 
-{{ template "pagination_aligned" . }}
+{{ partial "list/pagination_aligned" . }}
 
 {{ range ( .Paginator.Pages )}}
     {{ if not (and (isset .Params "hidden") .Params.hidden) }}
@@ -14,6 +8,6 @@
     {{ end }}
 {{ end }}
 
-{{ template "pagination_aligned" . }}
+{{ partial "list/pagination_aligned" . }}
 
 {{ end }}

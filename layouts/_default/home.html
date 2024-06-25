@@ -1,8 +1,13 @@
 {{ define "main" }}
 {{ partial "calendar.html" .}}
 
-{{ range where ( where .Site.RegularPages "Section" "in" .Site.Params.homepageList ) ".Params.hidden"  "!=" true | first 10 }}
-{{ partial "list/list_element.html" . }}
+{{ $pageCollection := where ( where .Site.RegularPages "Section" "in" .Site.Params.homepageList ) ".Params.hidden" "!=" true }}
+{{ $paginator := .Paginate $pageCollection}}
+
+{{ range $paginator.Pages }}
+    {{ partial "list/list_element.html" . }}
 {{ end }}
+
+{{ partial "list/pagination_aligned" . }}
 
 {{ end }}
