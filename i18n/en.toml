@@ -3,7 +3,8 @@ imprint = "Imprint"
 conprint = "Contact"
 languageSelectorLabel = "Selected Language"
 toPostLabel = "Full Post"
-notauthorized = "It seems you awe nyot authowized t-to view this section. 🐈"
+notauthorized = "It seems you are not authorized to view this section."
+authbutton  = "Log In"
 
 [theme.search]
 placeholder = "Search..."

@@ -4,6 +4,7 @@ conprint = "Kontakt"
 languageSelectorLabel = "Ausgewählte Sprache"
 toPostLabel = "Weiterlesen"
 notauthorized = "Es scheint als hättest du keine Rechte um diese Sektion zu sehen."
+authbutton  = "Einloggen"
 
 [theme.search]
 placeholder = "Suchen..."
