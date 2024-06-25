@@ -2,6 +2,10 @@
 title: About Us
 ---
 
+{{< private >}}
+yo mama
+{{< /private >}}
+
 |asdf|asdf|
 |----|----|
 |1|2

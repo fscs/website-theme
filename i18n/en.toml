@@ -3,6 +3,7 @@ imprint = "Imprint"
 conprint = "Contact"
 languageSelectorLabel = "Selected Language"
 toPostLabel = "Full Post"
+notauthorized = "It seems you awe nyot authowized t-to view this section. 🐈"
 
 [theme.search]
 placeholder = "Search..."

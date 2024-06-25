@@ -3,6 +3,7 @@ imprint = "Impressum"
 conprint = "Kontakt"
 languageSelectorLabel = "Ausgewählte Sprache"
 toPostLabel = "Weiterlesen"
+notauthorized = "Es scheint als hättest du keine Rechte um diese Sektion zu sehen."
 
 [theme.search]
 placeholder = "Suchen..."
