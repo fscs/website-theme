@@ -5,6 +5,7 @@ languageSelectorLabel = "Selected Language"
 toPostLabel = "Full Post"
 notauthorized = "It seems you are not authorized to view this section."
 authbutton  = "Log In"
+lastmod = "Last Modified"
 
 [theme.search]
 placeholder = "Search..."

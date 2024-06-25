@@ -9,16 +9,23 @@
     {{ $pagefindBody := "data-pagefind-body" }}
 {{ end }}
 
-<article {{ $pagefindBody }} class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);" id="mainContent">
+<article {{ $pagefindBody }} class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);"
+    id="mainContent">
+    {{ range .Params.categories }}
+    <meta data-pagefind-filter="{{ T " theme.search.category" }}[content]" content="{{ . }}">
+    {{ end }}
+
     <h1 data-pagefind-meta="title">{{ .Title }}</h1>
-    <span class="badge text-bg-secondary mb-2 d-inline-flex" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Last Modified">
-        {{ partial "svg.html" "icons/outline/calendar-month.svg" }}
 
-        <time data-pagefind-sort="date[datetime]" datetime="{{ $dateMachine }}" pubdate>{{ $dateHuman}}</time>
-        {{ range .Params.categories }}
-        <meta data-pagefind-filter="{{ T "theme.search.category" }}[content]" content="{{ . }}">
-        {{ end }}
+    <span 
+        class="badge text-bg-secondary mb-2 d-inline-flex align-items-center gap-1" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="{{ T "theme.lastmod" }}" 
+        aria-label="{{ T "theme.lastmod" }}">
+        {{ partial "svg.html" "icons/outline/clock-edit.svg" }}
 
+        <time data-pagefind-sort="date[datetime]" datetime="{{ $dateMachine }}">{{ $dateHuman}}</time>
     </span>
 
     <p>
