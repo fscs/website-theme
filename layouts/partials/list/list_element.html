@@ -22,7 +22,7 @@
 
 <article class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);">
     <h1>
-        <span class="d-inline-flex align-items-center gap-2">
+        <span class="text-break d-inline-flex align-items-center gap-2">
             {{- $type := path.BaseName .CurrentSection.Path -}}
             {{- with .Site.Params.sectionIcons -}}
                 {{- with (index . $type) -}}
@@ -60,7 +60,7 @@
         {{ end }}
     </div>
 
-    <div class="d-flex d-xl-none flex-column">
+    <div class="text-break d-flex d-xl-none flex-column">
         {{ template "post_preview" . }}
         {{ if .RenderString .Content }}
         <a class="btn btn-primary post-button mb-2" role="button" href="{{.RelPermalink}}">{{ T "theme.toPostLabel" }}</a>
