@@ -1,6 +1,6 @@
 User-agent: *
 {{ range .Pages }}
-{{- if or .Params.hidden .Draft -}}
+{{- if or (and (isset .Params "hidden") .Params.hidden) .Draft -}}
 Disallow: {{ .RelPermalink }}
 {{ end -}}
 {{- end -}}
