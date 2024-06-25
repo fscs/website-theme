@@ -12,7 +12,7 @@
         {{ T "theme.notauthorized"}}
         
         {{ with .Page }}
-            <a class="btn btn-danger mt-2 align-self-end" href="/auth/login?path=/{{ .Language.Lang }}{{ .Path }}">
+            <a class="btn btn-danger mt-2 align-self-end" href="/auth/login/?path=/{{ .Language.Lang }}{{ .Path }}">
                 {{ T "theme.authbutton"}}
             </a>
         {{ end }}
