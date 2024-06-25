@@ -5,7 +5,11 @@ languageSelectorLabel = "Selected Language"
 toPostLabel = "Full Post"
 notauthorized = "It seems you are not authorized to view this section."
 authbutton  = "Log In"
+
+[theme.tags]
 lastmod = "Last Modified"
+draft = "Draft"
+hidden = "Hidden"
 
 [theme.search]
 placeholder = "Search..."

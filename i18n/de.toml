@@ -5,7 +5,11 @@ languageSelectorLabel = "Ausgewählte Sprache"
 toPostLabel = "Weiterlesen"
 notauthorized = "Es scheint als hättest du keine Rechte um diese Sektion zu sehen."
 authbutton  = "Einloggen"
+
+[theme.tags]
 lastmod = "Zuletzt Geändert"
+draft = "Entwurf"
+hidden = "Versteckt"
 
 [theme.search]
 placeholder = "Suchen..."

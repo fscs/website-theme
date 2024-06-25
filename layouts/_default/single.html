@@ -18,15 +18,31 @@
     <h1 data-pagefind-meta="title">{{ .Title }}</h1>
 
     <span 
-        class="badge text-bg-secondary mb-2 d-inline-flex align-items-center gap-1" 
+        class="badge text-bg-primary mb-2 d-inline-flex align-items-center gap-1" 
         data-bs-toggle="tooltip"
         data-bs-placement="bottom" 
-        title="{{ T "theme.lastmod" }}" 
-        aria-label="{{ T "theme.lastmod" }}">
+        title="{{ T "theme.tags.lastmod" }}" 
+        aria-label="{{ T "theme.tags.lastmod" }}">
         {{ partial "svg.html" "icons/outline/clock-edit.svg" }}
 
         <time data-pagefind-sort="date[datetime]" datetime="{{ $dateMachine }}">{{ $dateHuman}}</time>
     </span>
+
+    {{ if .Draft }}
+        <span class="badge text-bg-info mb-2 d-inline-flex align-items-center gap-1">
+            {{ partial "svg.html" "icons/outline/edit.svg" }}
+            
+            {{ T "theme.tags.draft"}}
+        </span>
+    {{ end }}
+    
+    {{ if .Params.hidden }}
+        <span class="badge text-bg-danger mb-2 d-inline-flex align-items-center gap-1">
+            {{ partial "svg.html" "icons/outline/ghost.svg" }}
+            
+            {{ T "theme.tags.hidden"}}
+        </span>
+    {{ end }}
 
     <p>
         {{ .Content }}
