@@ -1,13 +1,13 @@
 <div class="container text-white py-4 py-lg-5">
     <ul class="list-inline">
-        {{ range .Site.Params.socials }}
-        <li class="list-inline-item">
-            <a href="{{ .url }}" class="text-white">
-                {{ partial "svg.html" (slice .icon "1.5em" "1.5em") }}
+        {{ range $key, $value := .Site.Params.socials }}
+        <li class="list-inline-item" aria-label="{{ $key }}">
+            <a href="{{ $value.url }}" class="text-white">
+                {{ partial "svg.html" (slice $value.icon "1.5em" "1.5em") }}
             </a>
-        {{ end }}
+            {{ end }}
     </ul>
-    <p class="mb-0">{{ replace .Site.Copyright "{year}" now.Year }}</p>
+    <p class="mb-2">{{ replace .Site.Copyright "{year}" now.Year }}</p>
     <a href="{{ (.Site.GetPage .Site.Params.impressumURL ).RelPermalink}}" class="text-white">{{ T "theme.imprint" }}</a>
     <a href="{{ (.Site.GetPage .Site.Params.contactURL ).RelPermalink}}" class="text-white">{{ T "theme.conprint" }}</a>
 </div>
