@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "bootstrap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708442069,
+        "narHash": "sha256-LHVVm2NqlWS4HEhtSehPuLu/8yjEUex5EmMEfd2u7v8=",
+        "owner": "twbs",
+        "repo": "bootstrap",
+        "rev": "6e1f75f420f68e1d52733b8e407fc7c3766c9dba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "twbs",
+        "ref": "v5.3.3",
+        "repo": "bootstrap",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -39,6 +56,23 @@
         "type": "github"
       }
     },
+    "icons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710444208,
+        "narHash": "sha256-dHMXORjkIvoK1CgfdifRPl1iyDJ+t5WFyhCFk5QhZCY=",
+        "owner": "tabler",
+        "repo": "tabler-icons",
+        "rev": "f12135fe425d90190602addc96a3858f18635c20",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tabler",
+        "ref": "v3.1.0",
+        "repo": "tabler-icons",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1719436386,
@@ -57,7 +91,9 @@
     },
     "root": {
       "inputs": {
+        "bootstrap": "bootstrap",
         "flake-utils": "flake-utils",
+        "icons": "icons",
         "nixpkgs": "nixpkgs",
         "server": "server"
       }

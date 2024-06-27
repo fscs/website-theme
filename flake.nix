@@ -13,6 +13,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+
+    # theme dependencies
+    icons = {
+      url = "github:tabler/tabler-icons/v3.1.0";
+      flake = false;
+    };
+
+    bootstrap = {
+      url = "github:twbs/bootstrap/v5.3.3";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -20,17 +31,12 @@
     nixpkgs,
     flake-utils,
     server,
+    icons,
+    bootstrap,
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {inherit system;};
-
-        tabler-icons = pkgs.fetchFromGitHub {
-          owner = "tabler";
-          repo = "tabler-icons";
-          rev = "v3.1.0";
-          hash = "sha256-dHMXORjkIvoK1CgfdifRPl1iyDJ+t5WFyhCFk5QhZCY=";
-        };
       in rec {
         packages.default = pkgs.stdenv.mkDerivation {
           name = "fscs-website-theme";
@@ -41,8 +47,10 @@
           ];
 
           buildPhase = ''
-            mkdir -p assets # p flag to not fail if the directory exists
-            ln -s ${tabler-icons}/icons assets/icons
+            mkdir -p assets/js/ assets/scss/
+            ln -s ${icons}/icons assets/icons
+            ln -s ${bootstrap}/js assets/js/bootstrap
+            ln -s ${bootstrap}/scss assets/scss/bootstrap
           '';
 
           installPhase = ''
