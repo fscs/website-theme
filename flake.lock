@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "bootstrap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708442069,
+        "narHash": "sha256-LHVVm2NqlWS4HEhtSehPuLu/8yjEUex5EmMEfd2u7v8=",
+        "owner": "twbs",
+        "repo": "bootstrap",
+        "rev": "6e1f75f420f68e1d52733b8e407fc7c3766c9dba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "twbs",
+        "ref": "v5.3.3",
+        "repo": "bootstrap",
+        "type": "github"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -74,6 +91,7 @@
     },
     "root": {
       "inputs": {
+        "bootstrap": "bootstrap",
         "flake-utils": "flake-utils",
         "icons": "icons",
         "nixpkgs": "nixpkgs",

@@ -7,16 +7,22 @@
       url = "github:numtide/flake-utils";
     };
 
-    icons = {
-      url = "github:tabler/tabler-icons/v3.1.0";
-      flake = false;
-    };
-    
     server = {
       type = "git";
       url = "ssh://git@github.com/fscs/website-server.git";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
+    };
+
+    # theme dependencies
+    icons = {
+      url = "github:tabler/tabler-icons/v3.1.0";
+      flake = false;
+    };
+
+    bootstrap = {
+      url = "github:twbs/bootstrap/v5.3.3";
+      flake = false;
     };
   };
 
@@ -26,6 +32,7 @@
     flake-utils,
     icons,
     server,
+    bootstrap,
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
@@ -41,15 +48,17 @@
             ];
 
             buildPhase = ''
-              mkdir -p assets # p flag to not fail if the directory exists
+              mkdir -p assets/js/ assets/scss/
               ln -s ${icons}/icons assets/icons
+              ln -s ${bootstrap}/js assets/js/bootstrap
+              ln -s ${bootstrap}/scss assets/scss/bootstrap
             '';
 
             installPhase = ''
               cp -r . $out
             '';
           };
-        
+
           demoSite = pkgs.stdenv.mkDerivation {
             name = "demoSite";
 
@@ -67,46 +76,46 @@
               hugo -e nix -d site
               hugo -e nix-hidden -d site_hidden
               hugo -e nix-private -d site_auth
-              
+
               pagefind --site site
               pagefind --site site_hidden
               pagefind --site site_auth
             '';
 
             installPhase = ''
-                mkdir $out
-                cp -r site $out/static
-                cp -r site_hidden $out/static_hidden
-                cp -r site_auth $out/static_auth
+              mkdir $out
+              cp -r site $out/static
+              cp -r site_hidden $out/static_hidden
+              cp -r site_auth $out/static_auth
             '';
           };
 
           runDemoSite = pkgs.writeScriptBin "run.sh" ''
-              #!/usr/bin/env bash
-              DATA_DIR="$PWD/db/data"
-              SOCKET_DIR="$PWD/db/sockets"
-              SOCKET_URL="$(echo $SOCKET_DIR | sed 's/\//%2f/g')"
-              export DATABASE_URL="postgresql://$SOCKET_URL:5432/postgres"
+            #!/usr/bin/env bash
+            DATA_DIR="$PWD/db/data"
+            SOCKET_DIR="$PWD/db/sockets"
+            SOCKET_URL="$(echo $SOCKET_DIR | sed 's/\//%2f/g')"
+            export DATABASE_URL="postgresql://$SOCKET_URL:5432/postgres"
 
-              mkdir -p "$DATA_DIR" "$SOCKET_DIR"
+            mkdir -p "$DATA_DIR" "$SOCKET_DIR"
 
-              echo Initializing the Database
-              ${pkgs.postgresql}/bin/initdb -D "$DATA_DIR" --locale=C.utf8
+            echo Initializing the Database
+            ${pkgs.postgresql}/bin/initdb -D "$DATA_DIR" --locale=C.utf8
 
-              echo Starting the Database
-              ${pkgs.postgresql}/bin/pg_ctl -D $DATA_DIR -o "-k $SOCKET_DIR -h \"\"" start
+            echo Starting the Database
+            ${pkgs.postgresql}/bin/pg_ctl -D $DATA_DIR -o "-k $SOCKET_DIR -h \"\"" start
 
-              echo Starting the server
-              ${server.defaultPackage.${system}}/bin/fscs-website-backend \
-                  --host 0.0.0.0 \
-                  --port 8080 \
-                  --database-url $DATABASE_URL \
-                  --content-dir ${demoSite}/static \
-                  --private-content-dir ${default}/static_auth \
-                  --hidden-content-dir ${default}/static_hidden
+            echo Starting the server
+            ${server.defaultPackage.${system}}/bin/fscs-website-backend \
+                --host 0.0.0.0 \
+                --port 8080 \
+                --database-url $DATABASE_URL \
+                --content-dir ${demoSite}/static \
+                --private-content-dir ${default}/static_auth \
+                --hidden-content-dir ${default}/static_hidden
 
-              echo Stopping the Database
-              ${pkgs.postgresql}/bin/pg_ctl -D "$DATA_DIR" stop
+            echo Stopping the Database
+            ${pkgs.postgresql}/bin/pg_ctl -D "$DATA_DIR" stop
           '';
         };
 
