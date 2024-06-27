@@ -56,7 +56,7 @@ function build_next_sitzung_announcement() {
         html +=
             '<span class="d-inline-flex align-items-center gap-1"> <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock"> <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 7v5l3 3" /> </svg>' + date.toLocaleTimeString("de-DE", timeOptions) + "</span><br>";
         html +=
-            '<span> <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock"> <path d="M18.364 4.636a9 9 0 01.203 12.519l-.203.21-4.243 4.242a3 3 0 01-4.097.135l-.144-.135-4.244-4.243a9 9 0 0112.728-12.728zM12 8a3 3 0 100 6 3 3 0 000-6z"></svg></path>' + location + "</span>";
+            '<span class="d-inline-flex align-items-center gap-1"> <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock"> <path d="M18.364 4.636a9 9 0 01.203 12.519l-.203.21-4.243 4.242a3 3 0 01-4.097.135l-.144-.135-4.244-4.243a9 9 0 0112.728-12.728zM12 8a3 3 0 100 6 3 3 0 000-6z"></svg></path>' + location + "</span>";
         html += "<h4>Tops</h3>";
         html += tops;
         announcement.innerHTML = html;
