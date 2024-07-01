@@ -19,7 +19,7 @@
     <h1 data-pagefind-meta="title">{{ .Title }}</h1>
 
     <span 
-        class="badge text-bg-secondary mb-2 d-inline-flex align-items-center gap-1" 
+        class="badge text-bg-secondary me-1 mb-2 d-inline-flex align-items-center gap-1" 
         data-bs-toggle="tooltip"
         data-bs-placement="bottom" 
         title="{{ T "theme.tags.lastmod" }}" 
@@ -30,7 +30,7 @@
     </span>
 
     {{ if .Draft }}
-        <span class="badge text-bg-info mb-2 d-inline-flex align-items-center gap-1">
+        <span class="badge text-bg-info me-1 mb-2 d-inline-flex align-items-center gap-1">
             {{ partial "svg.html" "icons/outline/edit.svg" }}
             
             {{ T "theme.tags.draft"}}
@@ -38,7 +38,7 @@
     {{ end }}
     
     {{ if .Params.hidden }}
-        <span class="badge text-bg-danger mb-2 d-inline-flex align-items-center gap-1">
+        <span class="badge text-bg-danger me-1 mb-2 d-inline-flex align-items-center gap-1">
             {{ partial "svg.html" "icons/outline/ghost.svg" }}
             
             {{ T "theme.tags.hidden"}}
