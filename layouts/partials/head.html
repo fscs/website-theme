@@ -10,27 +10,13 @@
 {{ end }}
 
 {{/* minify javascript */}}
-{{ $scripts := (slice "cookies.js" "darkmode.js" "search.js" "calendar.js" "doorstate.js" "sitzung.js" "tables.js")}}
+{{- range resources.Match "js/*.js" -}}
+{{- $js := . | resources.Minify | fingerprint -}}
+<script type="text/javascript" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+{{- end -}}
 
-{{ range $scripts }}
-{{ $location := printf "js/%s" . }}
-
-{{ with resources.Get $location }}
-{{ $js := . | resources.Minify }}
-<script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-{{ end }}
-
-{{ end }}
-
-{{ $stylesheets := (slice "bs-theme-overrides.css" "Navbar-Right-Links-icons.css" "main.css")}}
-
-{{/* minify css*/}}
-{{ range $stylesheets }}
-{{ $location := printf "css/%s" . }}
-
-{{ with resources.Get $location }}
-{{ $css := . | resources.Minify }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}">
-{{ end }}
-
-{{ end }}
+{{/* minify css */}}
+{{- range resources.Match "css/*.css" -}}
+{{- $css := . | resources.Minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- end -}}
