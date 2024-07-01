@@ -1,0 +1,7 @@
+{{- $showPrivate := getenv "HUGO_SHOW_PRIVATE" | strings.CountRunes | eq 0 -}}
+
+{{- if not $showPrivate -}}
+    <a class="btn d-flex align-items-center" href="/auth/logout/" aria-label="Logout">
+        {{ partial "svg.html" "icons/outline/logout.svg"}}
+    </a>
+{{- end -}}
