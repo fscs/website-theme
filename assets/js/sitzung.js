@@ -7,9 +7,20 @@ async function get_next_tops() {
     html += "<li>Top 1: Berichte</li>";
     count = 2;
     tops.forEach((top) => {
+        if(top.top_type == "sonstiges"){
+            return;
+        }
         html += "<li>Top " + count + ": " + top.name + "</li>";
         count++;
-});
+    });
+    tops.forEach((top) => {
+        if(top.top_type != "sonstiges"){
+            return;
+        }
+        html += "<li>Top " + count + ": " + top.name + "</li>";
+        count++;
+    });
+
     html += "</ul>";
     return html;
 }
