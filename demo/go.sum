@@ -1,2 +1,8 @@
 github.com/fscs/website-theme v0.0.0-20240226180834-2a0e2d0a9feb h1:nUkCaYvn4VT4t+SRpNCAbDOUFEPn0kP2iwTAka2ICDU=
 github.com/fscs/website-theme v0.0.0-20240226180834-2a0e2d0a9feb/go.mod h1:hcNmOPTC+IR4iLAREKzeKQVhA7dXbuRcyJq3wMIzKK8=
+github.com/gohugoio/hugo-mod-jslibs-dist/popperjs/v2 v2.21100.20000 h1:GZxx4Hc+yb0/t3/rau1j8XlAxLE4CyXns2fqQbyqWfs=
+github.com/gohugoio/hugo-mod-jslibs-dist/popperjs/v2 v2.21100.20000/go.mod h1:mFberT6ZtcchrsDtfvJM7aAH2bDKLdOnruUHl0hlapI=
+github.com/tabler/tabler-icons v3.7.0+incompatible h1:h353GmldMrncavfw/AEIVtVLBCb+dHMae0c+XF0vA0Y=
+github.com/tabler/tabler-icons v3.7.0+incompatible/go.mod h1:Ap75CRdhXxprnUnPlUCRLvJ2pIFNqwxIipj3GfD6XHE=
+github.com/twbs/bootstrap v5.3.3+incompatible h1:goFoqinzdHfkeegpFP7pvhbd0g+A3O2hbU3XCjuNrEQ=
+github.com/twbs/bootstrap v5.3.3+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
