@@ -2,7 +2,6 @@
 title: About Us
 ---
 
-{{< private >}}
 |asdf|asdf|
 |----|----|
 |1|2
@@ -11,7 +10,6 @@ title: About Us
 |4|5
 |5|6
 |6|7
-{{< /private >}}
 
 |asdf|asdf|
 |----|----|
