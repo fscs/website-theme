@@ -1,7 +1,7 @@
 function showToc() {
     let toc_options = document.getElementById("toc-options");
 
-    if (toc_options.style.display === "none") {
+    if (toc_options.style.display == "none") {
         toc_options.style.display = "block";
     }
     else {
