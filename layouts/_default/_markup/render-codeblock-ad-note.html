@@ -1,4 +1,4 @@
 <div class="alert alert-info">
     <strong>Info</strong><br>
-    {{- .Inner | safeHTML }}
+    {{- .Inner | safeHTML | markdownify }}
 </div>

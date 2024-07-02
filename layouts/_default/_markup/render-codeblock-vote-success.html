@@ -1,4 +1,4 @@
 <div class="alert alert-success">
     <strong>Angenommen</strong><br>
-    {{- .Inner | safeHTML }}
+    {{- .Inner | safeHTML | markdownify }}
 </div>
