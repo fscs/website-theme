@@ -58,26 +58,6 @@
     </p>
 </article>
 
-<div class="d-flex bd-highlight mb-3">
-    {{ with .PrevInSection }}
-        <a class="icon-link me-auto p-2" href="{{ .RelPermalink }}">
-            {{ partial "svg.html" "icons/outline/arrow-narrow-left.svg"}}
-            Previous
-        </a>
-    {{ else }}
-        <div class="me-auto"></div>
-    {{ end }}
-
-    {{ with .NextInSection }}
-        <a class="icon-link p-2" href="{{ .RelPermalink }}">
-            Next
-                {{ partial "svg.html" "icons/outline/arrow-narrow-right.svg"}}
-        </a>
-    {{ else }}
-        <div></div>
-    {{ end }}
-</div>
-
 <script>
     patch_markdown_tables("mainContent")
 </script>
