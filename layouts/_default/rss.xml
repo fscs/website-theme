@@ -75,7 +75,7 @@
             
             <description>
                 {{- with .Params.summary -}}
-                    {{- . | transform.XMLEscape | safeHTML -}}
+                    {{- . | markdownify | transform.XMLEscape | safeHTML -}}
                 {{- else -}}
                     {{- range .Fragments.Headings -}}
                         {{- with .Title | transform.XMLEscape | safeHTML -}}
