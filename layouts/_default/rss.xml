@@ -59,6 +59,13 @@
     {{- end }}
     {{- range $pages -}}
     {{- if not (and (isset .Params "hidden") .Params.hidden) }}
+    {{ if isset .Params "hiddenuntil"}}
+        {{ $hiddenUntil := time.AsTime .Params.hiddenuntil }}
+        {{ $date := time.Now }}
+        {{ if not (gt $date.Unix $hiddenUntil.Unix) }}
+            {{ continue }}
+        {{ end }}
+    {{ end }}
         <item>
             <title>{{ .Title }}</title>
             <link>{{ .Permalink }}</link>
