@@ -1,19 +1,19 @@
 {{- define "post_preview" -}}
     <p style="flex:6">
-        {{ if in .Site.Params.onlyHeadings .Type -}}
+        {{- with .Params.summary -}}
+            {{- . | safeHTML -}}
+        {{- else -}}
             {{- range .Fragments.Headings -}}
-                {{- with .Title -}}
-                {{- . -}}<br />
+                {{- with .Title | safeHTML -}}
+                {{- . -}}<br/>
                 {{- end -}}
                 {{- range .Headings -}}
-                    {{- with .Title -}}
-                    {{- . -}}<br />
+                    {{- with .Title | safeHTML -}}
+                    {{- . -}}<br/>
                     {{- end -}}
                 {{- end -}}
             {{- end -}}
-        {{- else -}}
-            {{- .Summary -}}
-        {{- end -}} 
+        {{- end -}}
     </p>
 {{- end -}}
 

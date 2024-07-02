@@ -74,20 +74,20 @@
             <guid>{{ .Permalink }}</guid>
             
             <description>
-                {{- if in .Site.Params.onlyHeadings .Type }}
+                {{- with .Params.summary -}}
+                    {{- . | transform.XMLEscape | safeHTML -}}
+                {{- else -}}
                     {{- range .Fragments.Headings -}}
-                        {{- with .Title -}}
-                            {{- . }}&lt;br&gt;
+                        {{- with .Title | transform.XMLEscape | safeHTML -}}
+                        {{- . -}}&lt;br&gt;
                         {{- end -}}
                         {{- range .Headings -}}
-                            {{- with .Title -}}
-                                {{ . }}&lt;br&gt;
-                            {{- end }}
-                        {{- end }}
+                            {{- with .Title | transform.XMLEscape | safeHTML -}}
+                            {{- . -}}&lt;br&gt;
+                            {{- end -}}
+                        {{- end -}}
                     {{- end -}}
-                {{- else -}}
-                    {{ .Summary | transform.XMLEscape | safeHTML }}
-                {{- end -}} 
+                {{- end -}}
             </description>
         </item>
     {{- end }}

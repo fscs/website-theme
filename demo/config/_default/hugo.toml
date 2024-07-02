@@ -9,7 +9,6 @@ defaultContentLanguageInSubdir = true
 enableRobotsTxt = true
 
 [params]
-onlyHeadings = ["protokolle"]
 impressumURL = "/impressum"
 contactURL = "/kontakt"
 homepageList = ["news", "protokolle"]
