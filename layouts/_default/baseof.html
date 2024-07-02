@@ -23,16 +23,24 @@
                     </div>
                 </main>
             </div>
-            <div class="col-xl-2 p-2 d-none d-xl-flex">
-                {{ if .IsPage }}
-                {{ partial "toc.html" .}}
-                {{ end }}
-                {{ if .IsHome }}
-                <div style="width: -moz-available;width: -webkit-fill-available;">
-                    {{ partial "next-sitzung.html" . }}
+            {{- if .IsHome -}}
+                <div class="col-xl-2 p-2 d-xl-flex">
+                    <div style="width: -moz-available;width: -webkit-fill-available;">
+                        {{ partial "next-sitzung.html" . }}
+                    </div>
+                </div>
+            {{- else -}}
+                <div class="col-xl-2 p-2 d-none d-xl-flex">
+                    {{ if .IsPage }}
+                    {{ partial "toc.html" .}}
                     {{ end }}
                 </div>
-            </div>
+                <div class="col-xl-2 p-2 d-xl-none">
+                    {{ if .IsPage }}
+                    {{ partial "toc_mobile.html" .}}
+                    {{ end }}
+                </div>
+            {{- end -}}
         </div>
     </div>
 

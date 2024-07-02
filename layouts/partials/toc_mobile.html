@@ -1,0 +1,42 @@
+<div class="fab-container">
+    <btn class="btn" style="border: var(--bs-border-color) 2px solid; background:var(--bs-border-color); z-index:2; position:absolute; bottom:0.5em; right:0.5em;" onclick="showToc()">
+        {{partial "svg.html" "icons/outline/align-justified.svg"}}
+    </btn>
+    <nav class="toc p-2 sticky-xl-top overflow-auto flex-column pe-4 fab-options" id="toc-options" id="knuts-table-of-contents-42">
+        
+        {{ if ne (len .Page.Fragments.Headings) 0 }}
+            <a class="link-body-emphasis fw-bold" href="#">{{ .Title | safeHTML }}</a>
+        {{ end }}
+        
+        <nav class="nav flex-column" style="padding: 0">
+            {{ range .Page.Fragments.Headings }}
+            {{/* render level 1 headings*/}}
+
+            {{ if ne .Title nil }}
+            <a class="nav-link ms-3 my-1 link-body-emphasis" href="#{{ .ID }}">{{ .Title | safeHTML }}</a>
+            {{ end }}
+
+            {{ range .Headings }}
+            {{/* render level 2 headings*/}}
+
+            {{ if eq .Level 0 }}
+            {{ continue }}
+            {{ end }}
+
+            <a class="nav-link link-body-emphasis" href="#{{ .ID }}">{{ .Title | safeHTML }}</a>
+
+            {{ with .Headings }}
+            <nav class="nav flex-column">
+                {{ range .}}
+                {{/* render level 3 headings*/}}
+                <a class="nav-link ms-3 text-dark-emphasis small " href="#{{ .ID }}">{{ .Title | safeHTML }}</a> 
+                {{ end }}
+            </nav>
+            {{ end }}
+
+            {{ end }}
+
+            {{ end }}
+        </nav>
+    </nav>
+</div>

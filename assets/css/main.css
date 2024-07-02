@@ -111,3 +111,22 @@ tbody, td, tfoot, th, thead, tr{
 .nav-item {
     list-style-type: none;
 }
+
+.fab-container {
+    position: fixed;
+    bottom: 0em;
+    right: 0em;
+    height: 100%;
+}
+
+.fab-options {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translate(-105.5%, 0);
+    bottom: 0;
+    width: 90vw;
+    height: 100%;
+    z-index: 1;
+    background: var(--bs-secondary-bg);
+}
