@@ -44,14 +44,28 @@
             {{ T "theme.tags.draft"}}
         </span>
     {{ end }}
+
+    {{ $showHiddenBadge := false}}
     
-    {{ if .Params.hidden }}
+    {{- if isset .Params "hiddenuntil" -}}
+        {{- $hiddenUntil := time.AsTime .Params.hiddenuntil -}}
+        {{- $date := time.Now -}}
+        {{- if not (gt $date.Unix $hiddenUntil.Unix) -}}
+            {{- $showHiddenBadge = true -}}
+        {{- end -}}
+    {{- end -}}
+    
+    {{- if .Params.hidden -}}
+        {{- $showHiddenBadge = true -}}
+    {{- end -}}
+    
+    {{- if $showHiddenBadge -}}
         <span class="badge text-bg-danger me-1 mb-2 d-inline-flex align-items-center gap-1">
-            {{ partial "svg.html" "icons/outline/ghost.svg" }}
+            {{- partial "svg.html" "icons/outline/ghost.svg" -}}
             
             {{ T "theme.tags.hidden"}}
         </span>
-    {{ end }}
+    {{- end -}}
 
     <p>
         {{ .Content }}
