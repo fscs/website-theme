@@ -1,0 +1,8 @@
+<h{{ .Level }} class="heading" id="{{ .Anchor }}">
+<span class="d-inline-flex align-items-center gap-1">
+    {{ .Text | safeHTML }}
+    <a class="d-inline-flex align-items-center" href="#{{ .Anchor }}">
+    {{ partial "svg.html" "icons/outline/link.svg" }}
+    </a>
+</span>
+</h{{ .Level }}>

@@ -130,3 +130,11 @@ tbody, td, tfoot, th, thead, tr{
     z-index: 1;
     background: var(--bs-secondary-bg);
 }
+
+.heading > span > a {
+    visibility: hidden;
+}
+
+.heading:hover > span > a {
+    visibility: visible;
+}
