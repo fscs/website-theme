@@ -1,7 +1,12 @@
 {{- $showPrivate := site.Params.showPrivate -}}
+{{- $showHidden := site.Params.showHidden -}}
 
-{{- if not $showPrivate -}}
+{{- if or $showPrivate $showHidden -}}
     <a class="btn d-flex align-items-center" href="/auth/logout/" aria-label="Logout">
         {{ partial "svg.html" "icons/outline/logout.svg"}}
+    </a>
+{{- else -}}
+    <a class="btn d-flex align-items-center" href="/auth/login/" aria-label="Login">
+        {{ partial "svg.html" "icons/outline/login.svg"}}
     </a>
 {{- end -}}
