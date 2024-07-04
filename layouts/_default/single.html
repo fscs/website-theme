@@ -18,7 +18,7 @@
     {{ end }}
 {{ end }}
 
-<article {{ $pagefindBody | safeHTMLAttr }} class="rounded m-2 py-2 px-3 shadow" style="background-color: var(--bs-body-bg);"
+<article {{ $pagefindBody | safeHTMLAttr }} class="rounded m-2 py-2 px-3 shadow text-break" style="background-color: var(--bs-body-bg);"
     id="mainContent">
     {{ range .Params.categories }}
     <meta data-pagefind-filter="{{ T " theme.search.category" }}[content]" content="{{ . }}">
