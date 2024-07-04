@@ -3,20 +3,32 @@
 {{ $dateMachine := .Lastmod | time.Format "2006-01-02T15:04:05-07:00" }}
 {{ $dateHuman := .Lastmod | time.Format "02.01.2006" }}
 
-{{ $pagefindBody := "" }}
 {{ $pagefindBody := "data-pagefind-body" }}
 
-{{ if and (isset .Params "hidden") .Params.hidden }}
-    {{ $pagefindBody := "" }}
-{{ end }}
+{{- $isHidden := false -}}
 
-{{ if isset .Params "hiddenuntil"}}
-    {{ $hiddenUntil := time.AsTime .Params.hiddenuntil }}
-    {{ $date := time.Now }}
-    {{ if not (gt $date.Unix $hiddenUntil.Unix) }}
-        {{ $pagefindBody := "" }}
-    {{ end }}
-{{ end }}
+{{/*hidden if hiddenUntil hasnt been met yet*/}}
+{{- if isset .Params "hiddenuntil" -}}
+    {{- $hiddenUntil := time.AsTime .Params.hiddenuntil -}}
+    {{- $date := time.Now -}}
+    {{- if not (gt $date.Unix $hiddenUntil.Unix) -}}
+        {{- $isHidden = true }}
+    {{- end -}}
+{{- end -}}
+
+{{/*hidden if hidden is explicitly set*/}}
+{{- if (and (isset .Params "hidden") .Params.hidden) -}}
+    {{- $isHidden = true }}
+{{- end -}}
+
+{{/*if either showHidden or showPrivate is set, just dont give a fuck about the other conditions*/}}
+{{- if or site.Params.showHidden site.Params.showPrivate -}}
+    {{- $isHidden = false }}
+{{- end -}}
+
+{{- if $isHidden -}} 
+    {{ $pagefindBody = "" }}
+{{- end -}}
 
 <article {{ $pagefindBody | safeHTMLAttr }} class="rounded m-2 py-2 px-3 shadow text-break" style="background-color: var(--bs-body-bg);"
     id="mainContent">

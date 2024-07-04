@@ -1,7 +1,6 @@
 ---
 title: Im invisible!
-params:
-  hidden: true
+hidden: true
 ---
 
 wer das liest ist doof

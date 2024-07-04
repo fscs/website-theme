@@ -1,17 +1,35 @@
 {{ define "main" }}
 {{ partial "calendar.html" .}}
 
-{{ $pageCollection := where ( where .Site.RegularPages "Section" "in" .Site.Params.homepageList ) ".Params.hidden" "!=" true }}
+{{ $pageCollection := where .Site.RegularPages "Section" "in" .Site.Params.homepageList }}
 {{ $paginator := .Paginate $pageCollection}}
 
 {{ range $paginator.Pages }}
-    {{ if isset .Params "hiddenuntil"}}
-        {{ $hiddenUntil := time.AsTime .Params.hiddenuntil }}
-        {{ $date := time.Now }}
-        {{ if not (gt $date.Unix $hiddenUntil.Unix) }}
-            {{ continue }}
-        {{ end }}
-    {{ end }}
+    {{- $isHidden := false -}}
+
+    {{/*hidden if hiddenUntil hasnt been met yet*/}}
+    {{- if isset .Params "hiddenuntil" -}}
+        {{- $hiddenUntil := time.AsTime .Params.hiddenuntil -}}
+        {{- $date := time.Now -}}
+        {{- if not (gt $date.Unix $hiddenUntil.Unix) -}}
+            {{- $isHidden = true }}
+        {{- end -}}
+    {{- end -}}
+
+    {{/*hidden if hidden is explicitly set*/}}
+    {{- if (and (isset .Params "hidden") .Params.hidden) -}}
+        {{- $isHidden = true }}
+    {{- end -}}
+
+    {{/*if either showHidden or showPrivate is set, just dont give a fuck about the other conditions*/}}
+    {{- if or site.Params.showHidden site.Params.showPrivate -}}
+        {{- $isHidden = false }}
+    {{- end -}}
+
+    {{- if $isHidden -}} 
+        {{- continue -}}
+    {{- end -}}
+    
     {{ partial "list/list_element.html" . }}
 {{ end }}
 
