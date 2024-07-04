@@ -1,0 +1,6 @@
+[params]
+showPrivate = true
+
+[[module.imports]]
+path = "knut"
+ignoreConfig = true

@@ -1,6 +1,6 @@
-{{- $showPrivate := getenv "HUGO_SHOW_PRIVATE" | strings.CountRunes | eq 0 -}}
+{{- $showPrivate := site.Params.showPrivate -}}
 
-{{- if not $showPrivate -}}
+{{- if $showPrivate -}}
     <details>
         <summary>{{ T "theme.privatecontentwarning"}}</summary>
         {{- .Inner | markdownify -}}
