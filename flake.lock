@@ -41,11 +41,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1719436386,
-        "narHash": "sha256-NBGYaic5FLRg8AWSj6yr4g2IlMPUxNCVjRK6+RNuQBc=",
+        "lastModified": 1720087678,
+        "narHash": "sha256-uOhYJU3ldDKXYV+mFaXcPtyjq/UIMh/6SCuoVNU9rxM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c66e984bda09e7230ea7b364e677c5ba4f0d36d0",
+        "rev": "1afc5440469f94e7ed26e8648820971b102afdc3",
         "type": "github"
       },
       "original": {
@@ -99,11 +99,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1719497258,
-        "narHash": "sha256-TvYBQ6XJfy7RlmsaIJLKt6mcQW8L7WrFAow1CPVTtTM=",
+        "lastModified": 1720187638,
+        "narHash": "sha256-bFGZpVewDGEXuCKPVY2efQigzAQucXPQoA9riXkRWJI=",
         "ref": "refs/heads/main",
-        "rev": "5b54679b9fa480b24bac81ed61c60dfa1b86c43f",
-        "revCount": 135,
+        "rev": "c4d322d4693b489fb7f7ed41b64c4e52524c4967",
+        "revCount": 150,
         "type": "git",
         "url": "ssh://git@github.com/fscs/website-server.git"
       },
