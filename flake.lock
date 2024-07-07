@@ -39,13 +39,30 @@
         "type": "github"
       }
     },
+    "icons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710444208,
+        "narHash": "sha256-dHMXORjkIvoK1CgfdifRPl1iyDJ+t5WFyhCFk5QhZCY=",
+        "owner": "tabler",
+        "repo": "tabler-icons",
+        "rev": "f12135fe425d90190602addc96a3858f18635c20",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tabler",
+        "ref": "v3.1.0",
+        "repo": "tabler-icons",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1720087678,
-        "narHash": "sha256-uOhYJU3ldDKXYV+mFaXcPtyjq/UIMh/6SCuoVNU9rxM=",
+        "lastModified": 1720338227,
+        "narHash": "sha256-PlL/yXNX/C87S2N8lF/HfOJhHForf/l7E6lVWZ4jMrw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1afc5440469f94e7ed26e8648820971b102afdc3",
+        "rev": "b60793b86201040d9dee019a05089a9150d08b5b",
         "type": "github"
       },
       "original": {
@@ -58,6 +75,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "icons": "icons",
         "nixpkgs": "nixpkgs",
         "server": "server"
       }
@@ -99,11 +117,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1720187638,
-        "narHash": "sha256-bFGZpVewDGEXuCKPVY2efQigzAQucXPQoA9riXkRWJI=",
+        "lastModified": 1720193310,
+        "narHash": "sha256-pQiB81yiWG8wpFnn9YZoGVRNVEWJSpvYd/lalyYtN8w=",
         "ref": "refs/heads/main",
-        "rev": "c4d322d4693b489fb7f7ed41b64c4e52524c4967",
-        "revCount": 150,
+        "rev": "9950dadea497a0eebfed0da076dd4a0810fcb6b7",
+        "revCount": 151,
         "type": "git",
         "url": "ssh://git@github.com/fscs/website-server.git"
       },
