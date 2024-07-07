@@ -40,7 +40,7 @@
 
     <span 
         class="badge text-bg-secondary me-1 mb-2 d-inline-flex align-items-center gap-1" 
-        data-bs-toggle="tooltip"
+        data-bs-tooltip
         data-bs-placement="bottom" 
         title="{{ T "theme.tags.lastmod" }}" 
         aria-label="{{ T "theme.tags.lastmod" }}">
@@ -50,7 +50,12 @@
     </span>
 
     {{ if .Draft }}
-        <span class="badge text-bg-info me-1 mb-2 d-inline-flex align-items-center gap-1">
+        <span 
+            class="badge text-bg-info me-1 mb-2 d-inline-flex align-items-center gap-1"
+            data-bs-tooltip
+            data-bs-placement="bottom" 
+            title="{{ T "theme.tags.draft" }}" 
+            aria-label="{{ T "theme.tags.draft" }}">
             {{ partial "svg.html" "icons/outline/edit.svg" }}
             
             {{ T "theme.tags.draft"}}
@@ -72,7 +77,12 @@
     {{- end -}}
     
     {{- if $showHiddenBadge -}}
-        <span class="badge text-bg-danger me-1 mb-2 d-inline-flex align-items-center gap-1">
+        <span 
+            class="badge text-bg-danger me-1 mb-2 d-inline-flex align-items-center gap-1"
+            data-bs-tooltip
+            data-bs-placement="bottom" 
+            title="{{ T "theme.tags.hidden" }}" 
+            aria-label="{{ T "theme.tags.hidden" }}">
             {{- partial "svg.html" "icons/outline/ghost.svg" -}}
             
             {{ T "theme.tags.hidden"}}
