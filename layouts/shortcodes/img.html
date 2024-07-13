@@ -28,13 +28,14 @@
     
     <img src="{{ $theImage.RelPermalink }}" style="{{ $width | safeCSS }}" />
 {{- else -}}
-    {{- with .Get 0 -}}
-        {{- with resources.Get . -}}
-            <img src="{{ .RelPermalink }}" style="width: -moz-available; width: -webkit-fill-available" />
-        {{- else -}}
-            {{- errorf "the provided image could not be found %s" (.Get 0) -}}
-        {{- end -}}
-    {{- else -}}
+    {{- $src := .Get 0 -}}
+    {{- if not $src -}}
         {{- errorf "img shortcode needs a path to an image" -}}
+    {{- end -}}
+    
+    {{- with resources.Get $src -}}
+        <img src="{{ .RelPermalink }}" style="width: -moz-available; width: -webkit-fill-available" />
+    {{- else -}}
+        {{- errorf "the provided image could not be found %s" $src -}}
     {{- end -}}
 {{- end -}}
