@@ -19,7 +19,7 @@
 
     {{- $theImage := resources.Get $src -}}
     {{- if not $theImage -}}
-        {{- errorf "the provided image could not be found" -}}
+        {{- errorf "the provided image could not be found %s" $src -}}
     {{- end -}}
 
     {{- if $process -}}
@@ -32,7 +32,7 @@
         {{- with resources.Get . -}}
             <img src="{{ .RelPermalink }}" style="width: -moz-available; width: -webkit-fill-available" />
         {{- else -}}
-            {{- errorf "the provided image could not be found" -}}
+            {{- errorf "the provided image could not be found %s" (.Get 0) -}}
         {{- end -}}
     {{- else -}}
         {{- errorf "img shortcode needs a path to an image" -}}
