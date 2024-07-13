@@ -1,7 +1,40 @@
-{{ with .Get 0}}
-    {{ with resources.Get . }}
-        <img src="{{ .RelPermalink }}" style="width: -moz-available; width: -webkit-fill-available" />
-    {{ end }}
-{{ else }}
-    {{ errorf "img shortcode needs a path to an image"}}
-{{ end }}
+{{- if .IsNamedParams -}}
+    {{- $src := .Get "src" -}}
+    {{- if not $src -}}
+        {{- errorf "img shortcode needs the 'src' parameter" -}}
+    {{- end -}}
+    
+    {{- $width := .Get "width" -}}
+    {{- if $width -}}
+        {{- $width = printf "width: %s" $width -}}
+    {{- else -}}
+        {{- $width = "width: -moz-available; width: -webkit-fill-available" -}}
+    {{- end -}}
+
+    {{- if .Get "height" -}}
+        {{- errorf "height cannot be specified. if you really need this use 'process' in combination with 'width'" -}}
+    {{- end -}}
+
+    {{- $process := .Get "process" -}}
+
+    {{- $theImage := resources.Get $src -}}
+    {{- if not $theImage -}}
+        {{- errorf "the provided image could not be found" -}}
+    {{- end -}}
+
+    {{- if $process -}}
+        {{- $theImage = $theImage.Process $process -}}
+    {{- end -}}
+    
+    <img src="{{ $theImage.RelPermalink }}" style="{{ $width | safeCSS }}" />
+{{- else -}}
+    {{- with .Get 0 -}}
+        {{- with resources.Get . -}}
+            <img src="{{ .RelPermalink }}" style="width: -moz-available; width: -webkit-fill-available" />
+        {{- else -}}
+            {{- errorf "the provided image could not be found" -}}
+        {{- end -}}
+    {{- else -}}
+        {{- errorf "img shortcode needs a path to an image" -}}
+    {{- end -}}
+{{- end -}}
