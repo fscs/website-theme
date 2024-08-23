@@ -3,15 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
+    flake-utils.url = "github:numtide/flake-utils";
 
     server = {
-      type = "git";
-      url = "ssh://git@github.com/fscs/website-server.git";
+      url = "github:fscs/website-server";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
 
     # theme dependencies
@@ -24,6 +20,11 @@
       url = "github:twbs/bootstrap/v5.3.3";
       flake = false;
     };
+
+    hugo-jslibs-dist = {
+      url = "github:gohugoio/hugo-mod-jslibs-dist";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -33,6 +34,7 @@
     icons,
     server,
     bootstrap,
+    hugo-jslibs-dist,
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
@@ -48,7 +50,8 @@
             ];
 
             buildPhase = ''
-              mkdir -p assets/js/ assets/scss/
+              mkdir -p assets/js/ assets/scss/ assets/@popperjs
+              ln -s ${hugo-jslibs-dist}/popperjs/package/dist/cjs/popper.js assets/@popperjs/core.js
               ln -s ${icons}/icons assets/icons
               ln -s ${bootstrap}/js assets/js/bootstrap
               ln -s ${bootstrap}/scss assets/scss/bootstrap

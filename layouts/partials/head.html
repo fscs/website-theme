@@ -14,7 +14,7 @@
 <script type="text/javascript" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{- end -}}
 
-{{/* Load Bootstrap JS. */}}
+{{/* load Bootstrap JS. */}}
 {{- $opts := dict "minify" "true" "target" "es2018" -}}
 {{- $bsJs := resources.Get "bootstrap.js" | js.Build $opts | fingerprint -}}
 <script type="module" src="{{ $bsJs.RelPermalink }}" integrity="{{ $bsJs.Data.Integrity }}" defer></script>
@@ -27,6 +27,6 @@
 
 {{/* build scss */}}
 {{- range resources.Match "scss/*.scss" -}}
-{{- $css := . | resources.ToCSS | resources.Minify | fingerprint -}}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- $scss := . | resources.ToCSS | resources.Minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $scss.RelPermalink }}" integrity="{{ $scss.Data.Integrity }}">
 {{- end -}}
