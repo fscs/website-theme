@@ -2,7 +2,7 @@
 import Button from "js/bootstrap/src/button";
 // import Carousel from "js/bootstrap/src/carousel";
 import Collapse from "js/bootstrap/src/collapse";
-// import Dropdown from "js/bootstrap/src/dropdown";
+ import Dropdown from "js/bootstrap/src/dropdown";
 import Modal from "js/bootstrap/src/modal";
 import Offcanvas from "js/bootstrap/src/offcanvas";
 // import Popover from "js/bootstrap/src/popover";

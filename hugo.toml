@@ -3,13 +3,19 @@
 [module.hugoVersion]
 extended = true
 
-# force mount our assets and layouts. dont know why we have to do this, but we do
+# we have to explicitly mount these, otherwise they just disappear. dont really know why
 [[module.mounts]]
 source = "assets"
 target = "assets"
 [[module.mounts]]
 source = "layouts"
 target = "layouts"
+[[module.mounts]]
+source = "i18n"
+target = "i18n"
+[[module.mounts]]
+source = "static"
+target = "static"
 
 # include our icons
 [[module.imports]]
