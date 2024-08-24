@@ -2,21 +2,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 {{ hugo.Generator }}
 <title>{{ .Title}} - {{ .Site.Title }}</title>
-<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 {{ if not (and (isset .Params "hidden") .Params.hidden) -}}
-    {{ with .OutputFormats.Get "rss" -}}
+    {{- with .OutputFormats.Get "rss" -}}
         {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
     {{- end }}
-{{ end }}
+{{- end -}}
 
-{{/* minify javascript */}}
+{{/* build javascript */}}
 {{- range resources.Match "js/*.js" -}}
 {{- $js := . | resources.Minify | fingerprint -}}
 <script type="text/javascript" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{- end -}}
 
-{{/* minify css */}}
+{{/* load Bootstrap JS. */}}
+{{- $opts := dict "minify" "true" "target" "es2018" -}}
+{{- $bsJs := resources.Get "bootstrap.js" | js.Build $opts | fingerprint -}}
+<script type="module" src="{{ $bsJs.RelPermalink }}" integrity="{{ $bsJs.Data.Integrity }}" defer></script>
+
+{{/* build css */}}
 {{- range resources.Match "css/*.css" -}}
 {{- $css := . | resources.Minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- end -}}
+
+{{/* build scss */}}
+{{- range resources.Match "scss/*.scss" -}}
+{{- $scss := . | resources.ToCSS | resources.Minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $scss.RelPermalink }}" integrity="{{ $scss.Data.Integrity }}">
 {{- end -}}

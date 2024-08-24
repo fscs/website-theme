@@ -6,6 +6,7 @@ db/
 .hugo_build.lock
 public/
 resources/
+jsconfig.json
 
 result
 
