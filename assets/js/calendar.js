@@ -44,7 +44,7 @@ async function generateCalendarCard(event) {
     clone.content.getElementById("clock").innerHTML =
         start_date.toLocaleTimeString("de-DE", {
             hour: "2-digit",
-            minute: "2-digit"
+            minute: "2-digit",
         });
     clone.content
         .getElementById("open-calendar")
@@ -66,15 +66,15 @@ async function generateCalendarCard(event) {
             year: "numeric",
             month: "2-digit",
             day: "2-digit",
-        })
+        }),
     );
 
     clone.content.getElementById("open-calendar").setAttribute(
         "data-bs-cal-time",
         start_date.toLocaleTimeString("de-DE", {
             hour: "2-digit",
-            minute: "2-digit"
-        })
+            minute: "2-digit",
+        }),
     );
     clone.content.getElementById("location").innerHTML = event.location;
 
@@ -83,29 +83,26 @@ async function generateCalendarCard(event) {
 
 function init_cal_modal(id) {
     var calendarModal = document.getElementById(id);
-    calendarModal.addEventListener("show.bs.modal", async function (event) {
+    
+    calendarModal.addEventListener("show.bs.modal", async function(event) {
         var button = event.relatedTarget;
         var title = button.getAttribute("data-bs-cal-title");
         var date = button.getAttribute("data-bs-cal-date");
         var time = button.getAttribute("data-bs-cal-time");
         var location = button.getAttribute("data-bs-cal-location");
-        if (title === "Sitzung") {
-            var description = await get_next_tops();
-        } else {
-            var description = button.getAttribute("data-bs-cal-desc");
-        }
+        var description = button.getAttribute("data-bs-cal-desc");
+        
         if (description === "null") {
             description = "Keine Beschreibung verfügbar";
         }
+        
         var modalTitle = calendarModal.querySelector(".modal-title");
         var modalDate = calendarModal.querySelector(".modal-calendar-date");
         var modalTime = calendarModal.querySelector(".modal-calendar-time");
-        var modalLocation = calendarModal.querySelector(
-            ".modal-calendar-location"
-        );
+        var modalLocation = calendarModal.querySelector(".modal-calendar-location");
 
         var modalDescription = calendarModal.querySelector(
-            ".modal-calendar-description"
+            ".modal-calendar-description",
         );
 
         modalTitle.textContent = title;

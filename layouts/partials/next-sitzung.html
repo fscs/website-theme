@@ -1,6 +1,42 @@
-<div class="shadow overflow-visible" id="next-sitzung-announcement">
-</div>
+<template id="sitzung-template">
+    <div class="rounded shadow overflow-visible" id="next-sitzung-announcement">
+        <h3 id="title"></h3>
+        
+        <span class="d-inline-flex align-items-center gap-1">
+            {{partial "svg.html" "icons/outline/calendar-month.svg"}}
+            <span id="date"></span>
+        </span>
+        <br>
+        
+        <span class="d-inline-flex align-items-center gap-1">
+            {{partial "svg.html" "icons/outline/clock.svg"}}
+            <span id="clock"></span>
+        </span>
+        <br>
+        
+        <span class="d-inline-flex align-items-center gap-1">
+            {{partial "svg.html" "icons/filled/map-pin.svg"}}
+            <span style="text-overflow: ellipsis; white-space: nowrap; max-width: 300px; overflow: hidden;" id="location"></span>
+        </span>
+        <br>
+
+        <h4>Tops</h4>
+
+        <ul style='list-style:none; padding-left:.5em' id="tops">
+            <li>Top 0: Regularia</li>
+            <li>Top 1: Berichte</li>
+        </li>
+    </div>
+</template>
+
+<template id="sitzung-template-no-sitzung">
+    <div class="rounded shadow overflow-visible" id="next-sitzung-announcement">
+        <h4>Keine Sitzung angekündigt<h4>
+    </div>
+</template>
+
+<div id="sitzung-announcement"></div>
 
 <script>
-    build_next_sitzung_announcement();
+    init_sitzung_announcement();
 </script>

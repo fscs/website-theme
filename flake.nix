@@ -114,8 +114,8 @@
                 --port 8080 \
                 --database-url $DATABASE_URL \
                 --content-dir ${demoSite}/static \
-                --private-content-dir ${default}/static_auth \
-                --hidden-content-dir ${default}/static_hidden
+                --private-content-dir ${demoSite}/static_auth \
+                --hidden-content-dir ${demoSite}/static_hidden
 
             echo Stopping the Database
             ${pkgs.postgresql}/bin/pg_ctl -D "$DATA_DIR" stop
