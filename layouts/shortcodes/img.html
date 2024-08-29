@@ -17,7 +17,7 @@
 
     {{- $process := .Get "process" -}}
 
-    {{- $theImage := resources.Get $src -}}
+    {{- $theImage := resources.Get $src | fingerprint -}}
     {{- if not $theImage -}}
         {{- errorf "the provided image could not be found %s" $src -}}
     {{- end -}}
@@ -33,7 +33,7 @@
         {{- errorf "img shortcode needs a path to an image" -}}
     {{- end -}}
     
-    {{- with resources.Get $src -}}
+    {{- with resources.Get $src | fingerprint -}}
         <img src="{{ .RelPermalink }}" style="width: -moz-available; width: -webkit-fill-available" />
     {{- else -}}
         {{- errorf "the provided image could not be found %s" $src -}}
