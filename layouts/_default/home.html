@@ -1,5 +1,7 @@
 {{ define "main" }}
-{{ partial "calendar.html" .}}
+    {{ if or (not (isset site.Params "enablecalendar")) site.Params.enableCalendar}}
+        {{ partial "calendar.html" .}}
+    {{ end }}
 
 {{ $pageCollection := where .Site.RegularPages "Section" "in" .Site.Params.homepageList }}
 {{ $paginator := .Paginate $pageCollection}}

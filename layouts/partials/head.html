@@ -8,9 +8,22 @@
     {{- end }}
 {{- end -}}
 
+{{ $jsExcludeList := slice}}
+
+{{ if and (isset site.Params "enablecalendar") (not site.Params.enableCalendar) }}
+    {{ $jsExcludeList = $jsExcludeList | append "/js/calendar.js"}} 
+{{ end }}
+
+{{ if and (isset site.Params "enablesitzung") (not site.Params.enableCalendar) }}
+    {{ $jsExcludeList = $jsExcludeList | append "/js/sitzung.js"}} 
+{{ end }}
+
 {{/* build javascript */}}
 {{- range resources.Match "js/*.js" -}}
-{{- $js := . | resources.Minify | fingerprint -}}
+    {{- $js := . | resources.Minify | fingerprint -}}
+        {{ if in $jsExcludeList .Name }}
+            {{ continue }}
+        {{ end }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{- end -}}
 
