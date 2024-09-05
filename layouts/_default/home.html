@@ -1,7 +1,15 @@
 {{ define "main" }}
-    {{ if or (not (isset site.Params "enablecalendar")) site.Params.enableCalendar}}
-        {{ partial "calendar.html" .}}
-    {{ end }}
+{{ if or (not (isset site.Params "enablecalendar")) site.Params.enableCalendar}}
+    {{ partial "calendar.html" .}}
+{{ end }}
+
+{{ if or (not (isset site.Params "enablesitzung")) site.Params.enableSitzung }}
+<div class="py-2 m-2 d-sm-flex d-xl-none">
+    <div style="width: -moz-available;width: -webkit-fill-available;">
+        <div class="sitzung-announcement"></div>
+    </div>
+</div>
+{{ end }}
 
 {{ $pageCollection := where .Site.RegularPages "Section" "in" .Site.Params.homepageList }}
 {{ $paginator := .Paginate $pageCollection}}

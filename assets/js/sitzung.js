@@ -109,6 +109,11 @@ function init_sitzung_announcement() {
     html = "";
     sitzungPromise.then(async (sitzung) => {
         let announcement = await build_announcement(sitzung);
-        document.getElementById("sitzung-announcement").appendChild(announcement);
+        let elements = document.getElementsByClassName("sitzung-announcement");
+
+        for (var i = 0; i < elements.length; i++) {
+            const append = document.importNode(announcement, true);
+            elements[i].appendChild(append);
+        }
     });
 }
