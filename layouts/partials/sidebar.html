@@ -11,7 +11,7 @@
         {{ $page := .Page }}
         {{ range .Site.Menus.main }}
 
-        {{ $class := "nav-link sidebar-item" }}
+        {{ $class := "nav-link sidebar-item d-inline-flex align-items-center gap-1" }}
         {{ $ariaCurrent := "false" }}
 
         {{ if or ($page.IsMenuCurrent .Menu . ) ($page.HasMenuCurrent .Menu .)}}
