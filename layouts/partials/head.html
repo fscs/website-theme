@@ -40,6 +40,6 @@
 
 {{/* build scss */}}
 {{- range resources.Match "scss/*.scss" -}}
-{{- $scss := . | resources.ToCSS | resources.Minify | fingerprint -}}
+{{- $scss := . | css.Sass | resources.Minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $scss.RelPermalink }}" integrity="{{ $scss.Data.Integrity }}">
 {{- end -}}
