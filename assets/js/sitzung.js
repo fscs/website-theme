@@ -1,18 +1,12 @@
-async function get_from_api() {
+async function get_next_sitzung() {
     let now = new Date();
-    let response = await fetch("/api/sitzungen/first-after/?timestamp=" + now.toISOString());
-    return response;
+    let response = await fetch(
+        "/api/sitzungen/first-after/?timestamp=" + now.toISOString(),
+    );
+    return await response.json();
 }
 
-async function build_announcement(sitzung_raw) {
-    if (sitzung_raw.status == 404) {
-        let template = document.getElementById("sitzung-template-no-sitzung");
-        let clone = document.importNode(template, true);
-        return clone.content;
-    }
-
-    let sitzung = await sitzung_raw.json();
-
+function build_announcement(sitzung) {
     let template = document.getElementById("sitzung-template");
     let clone = document.importNode(template, true);
 
@@ -44,9 +38,6 @@ async function build_announcement(sitzung_raw) {
 
     // fetch tops and sort them by weight
     let tops = sitzung.tops;
-    tops.sort((a, b) => {
-        return a.weight - b.weight;
-    });
 
     let dateOptions = {
         year: "numeric",
@@ -78,11 +69,11 @@ async function build_announcement(sitzung_raw) {
     let topList = clone.content.getElementById("tops");
 
     let normalTops = tops.filter((top) => {
-        return top.top_type != "sonstige";
+        return top.kind != "sonstige";
     });
 
     let sonstigeTops = tops.filter((top) => {
-        return top.top_type == "sonstige";
+        return top.kind == "sonstige";
     });
 
     for (let i = 0; i < normalTops.length; i++) {
@@ -103,15 +94,26 @@ async function build_announcement(sitzung_raw) {
 }
 
 function init_sitzung_announcement() {
-    let sitzungPromise = get_from_api();
-    html = "";
-    sitzungPromise.then(async (sitzung) => {
-        let announcement = await build_announcement(sitzung);
-        let elements = document.getElementsByClassName("sitzung-announcement");
+    let sitzungPromise = get_next_sitzung();
+    sitzungPromise
+        .then((sitzung) => {
+            let announcement = build_announcement(sitzung);
+            let elements = document.getElementsByClassName("sitzung-announcement");
 
-        for (var i = 0; i < elements.length; i++) {
-            const append = document.importNode(announcement, true);
-            elements[i].appendChild(append);
-        }
-    });
+            for (var i = 0; i < elements.length; i++) {
+                const append = document.importNode(announcement, true);
+                elements[i].appendChild(append);
+            }
+        })
+        .catch(() => {
+            let template = document.getElementById("sitzung-template-no-sitzung");
+            console.log(template.innerHTML)
+
+            let elements = document.getElementsByClassName("sitzung-announcement");
+
+            for (var i = 0; i < elements.length; i++) {
+                const append = document.importNode(template, true);
+                elements[i].appendChild(append.content);
+            }
+        });
 }
