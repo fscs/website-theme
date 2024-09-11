@@ -1,51 +1,49 @@
-async function get_next_tops() {
-    let response = await fetch("/api/topmanager/current_tops/");
-    return await response.json();
+async function get_from_api() {
+    let now = new Date();
+    let response = await fetch("/api/sitzungen/first-after/?timestamp=" + now.toISOString());
+    return response;
 }
 
-async function get_next_sitzung() {
-    let response = await fetch("/api/topmanager/next_sitzung/");
-    return await response.json();
-}
-
-async function build_announcement(sitzung) {
-    if (sitzung == null) {
+async function build_announcement(sitzung_raw) {
+    if (sitzung_raw.status == 404) {
         let template = document.getElementById("sitzung-template-no-sitzung");
         let clone = document.importNode(template, true);
         return clone.content;
     }
 
+    let sitzung = await sitzung_raw.json();
+
     let template = document.getElementById("sitzung-template");
     let clone = document.importNode(template, true);
 
-    let date = new Date(sitzung.datum);
+    let date = new Date(sitzung.datetime);
     let location = sitzung.location || "TBA";
-    let type = sitzung.sitzung_type;
+    let type = sitzung.kind;
 
     let sitzungTitle;
     switch (type) {
-        case "Normal":
+        case "normal":
             sitzungTitle = "Sitzung";
             break;
-        case "VV":
+        case "vv":
             sitzungTitle = "Voll-Versammlung";
             break;
-        case "WahlVV":
+        case "wahlvv":
             sitzungTitle = "Wahl VV";
             break;
-        case "Ersatz":
+        case "ersatz":
             sitzungTitle = "Ersatz Sitzung";
             break;
-        case "Konsti":
+        case "konsti":
             sitzungTitle = "Konstituierende Sitzung";
             break;
-        case "Dringlichkeit":
+        case "dringlichkeit":
             sitzungTitle = "Dringlichkeits Sitzung";
             break;
     }
 
     // fetch tops and sort them by weight
-    let tops = await get_next_tops();
+    let tops = sitzung.tops;
     tops.sort((a, b) => {
         return a.weight - b.weight;
     });
@@ -105,7 +103,7 @@ async function build_announcement(sitzung) {
 }
 
 function init_sitzung_announcement() {
-    let sitzungPromise = get_next_sitzung();
+    let sitzungPromise = get_from_api();
     html = "";
     sitzungPromise.then(async (sitzung) => {
         let announcement = await build_announcement(sitzung);
