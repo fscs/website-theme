@@ -107,7 +107,6 @@ function init_sitzung_announcement() {
         })
         .catch(() => {
             let template = document.getElementById("sitzung-template-no-sitzung");
-            console.log(template.innerHTML)
 
             let elements = document.getElementsByClassName("sitzung-announcement");
 
