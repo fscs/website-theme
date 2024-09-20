@@ -27,19 +27,22 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    flake-utils,
-    icons,
-    server,
-    bootstrap,
-    hugo-jslibs-dist,
-  }:
+  outputs =
+    { self
+    , nixpkgs
+    , flake-utils
+    , icons
+    , server
+    , bootstrap
+    , hugo-jslibs-dist
+    ,
+    }:
     flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {inherit system;};
-      in rec {
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      rec {
         packages = rec {
           default = pkgs.stdenv.mkDerivation {
             name = "fscs-website-theme";
@@ -115,7 +118,11 @@
                 --database-url $DATABASE_URL \
                 --content-dir ${demoSite}/static \
                 --private-content-dir ${demoSite}/static_auth \
-                --hidden-content-dir ${demoSite}/static_hidden
+                --hidden-content-dir ${demoSite}/static_hidden \
+                --auth-url https://auth.inphima.de/application/o/authorize/ \
+                --user-info https://auth.inphima.de/application/o/userinfo/ \
+                --token-url https://auth.inphima.de/application/o/token/
+
 
             echo Stopping the Database
             ${pkgs.postgresql}/bin/pg_ctl -D "$DATA_DIR" stop
