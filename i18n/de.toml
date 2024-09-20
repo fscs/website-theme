@@ -2,6 +2,7 @@
 imprint = "Impressum"
 conprint = "Kontakt"
 languageSelectorLabel = "Ausgewählte Sprache"
+doorstateLabel = "Türstatus"
 toPostLabel = "Weiterlesen"
 notauthorized = "Es scheint als hättest du keine Rechte um diese Sektion zu sehen."
 authbutton  = "Einloggen"

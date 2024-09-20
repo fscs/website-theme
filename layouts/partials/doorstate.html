@@ -1,3 +1,9 @@
-<div id="doorstate" class="d-flex align-items-center m-2">
-</div>
+<template id="doorstate_open">
+    {{ partial "svg.html" "icons/outline/lock-open-2.svg"}}
+</template>
+<template id="doorstate_closed">
+    {{ partial "svg.html" "icons/outline/lock.svg"}}
+</template>
+
+<div id="doorstate" title="{{ T "theme.doorstateLabel" }}" aria-label="Doorstate" data-bs-tooltip="" data-bs-placement="bottom" data-bs-original-title="Doorstate" class="d-flex align-items-center m-2"> </div>
 <script> init_doorstate() </script>
