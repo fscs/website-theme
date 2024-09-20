@@ -27,7 +27,7 @@
                 </main>
             </div>
             {{- if .IsHome -}}
-                <div class="col-xl-2 p-2 d-sm-none d-xl-flex">
+                <div class="col-xl-2 p-2 d-none d-xl-flex">
                     <div style="width: -moz-available;width: -webkit-fill-available;">
                         {{ if or (not (isset site.Params "enablesitzung")) site.Params.enableSitzung }}
                             <div class="sitzung-announcement"></div>
