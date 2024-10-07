@@ -56,9 +56,6 @@ async function generateCalendarCard(event) {
     clone.content
         .getElementById("open-calendar")
         .setAttribute("data-bs-cal-desc", event.description);
-    clone.content
-        .getElementById("open-calendar")
-        .setAttribute("data-bs-cal-desc", event.description);
 
     clone.content.getElementById("open-calendar").setAttribute(
         "data-bs-cal-date",
@@ -109,6 +106,6 @@ function init_cal_modal(id) {
         modalDate.textContent = date;
         modalTime.textContent = time;
         modalLocation.textContent = location;
-        modalDescription.innerHTML = description;
+        modalDescription.textContent = description;
     });
 }

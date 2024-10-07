@@ -40,15 +40,19 @@
             </div>
             <div class="modal-body">
                 <h2 class="modal-title" id="modal-calendar-title">Title</h2>
-                <span class="text-secondary d-flex align-items-center">
+                <span class="text-secondary d-flex align-items-center gap-1">
                     {{partial "svg.html" "icons/outline/calendar-month.svg"}}
                     <span class="modal-calendar-date">Date</span>
                 </span>
-                <span class="text-secondary d-flex align-items-center">
+                <span class="text-secondary d-flex align-items-center gap-1">
+                    {{partial "svg.html" "icons/outline/clock.svg"}}
+                    <span class="modal-calendar-time">time</span>
+                </span>
+                <span class="text-secondary d-flex align-items-center gap-1">
                     {{partial "svg.html" "icons/filled/map-pin.svg"}}
                     <span class="modal-calendar-location">Location</span>
                 </span>
-                <span class="text-secondary d-flex align-items-center">
+                <span class="text-secondary d-flex align-items-center gap-1">
                     <span class="modal-calendar-description">Desc</span>
                 </span>
             </div>
