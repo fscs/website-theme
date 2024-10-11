@@ -1,7 +1,9 @@
 async function get_next_sitzung() {
-    let now = new Date();
+    let time = new Date();
+    time.setTime(time.getTime() - 2 * 60 * 60 * 1000);
+
     let response = await fetch(
-        "/api/sitzungen/first-after/?timestamp=" + now.toISOString(),
+        "/api/sitzungen/first-after/?timestamp=" + time.toISOString(),
     );
     return await response.json();
 }
