@@ -79,20 +79,18 @@
               mkdir themes
               ln -s ${default} themes/knut
 
-              hugo -e nix -d site
-              hugo -e nix-hidden -d site_hidden
-              hugo -e nix-private -d site_auth
+              hugo -e nix -d public
+              hugo -e nix-hidden -d hidden
+              hugo -e nix-private -d protected
 
-              pagefind --site site
-              pagefind --site site_hidden
-              pagefind --site site_auth
+              pagefind --site public
+              pagefind --site hidden
+              pagefind --site protected
             '';
 
             installPhase = ''
               mkdir $out
-              cp -r site $out/static
-              cp -r site_hidden $out/static_hidden
-              cp -r site_auth $out/static_auth
+              cp -r public hidden protected $out
             '';
           };
 
@@ -112,13 +110,11 @@
             ${pkgs.postgresql}/bin/pg_ctl -D $DATA_DIR -o "-k $SOCKET_DIR -h \"\"" start
 
             echo Starting the server
-            ${server.defaultPackage.${system}}/bin/fscs-website-backend \
+            ${server.packages.${system}.default}/bin/fscs-website-backend \
                 --host 0.0.0.0 \
                 --port 8080 \
                 --database-url $DATABASE_URL \
-                --content-dir ${demoSite}/static \
-                --private-content-dir ${demoSite}/static_auth \
-                --hidden-content-dir ${demoSite}/static_hidden \
+                --content-dir ${demoSite} \
                 --auth-url https://auth.inphima.de/application/o/authorize/ \
                 --user-info https://auth.inphima.de/application/o/userinfo/ \
                 --token-url https://auth.inphima.de/application/o/token/
