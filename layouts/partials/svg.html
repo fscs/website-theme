@@ -20,4 +20,5 @@
     ($svg.Content | 
     replaceRE " width=\"[1-9a-zA-Z]*\"" (printf " width=\"%s\"" $width) | 
     replaceRE " height=\"[1-9a-zA-Z]*\"" (printf " height=\"%s\"" $height) | 
+    replaceRE "<svg" "<svg aria-hidden=\"true\"" | 
     safeHTML ) }}
