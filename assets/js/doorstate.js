@@ -1,5 +1,5 @@
 async function get_doorstate() {
-    let response = await fetch("/api/doorstate/");
+    let response = await fetch("/api/doorstate");
     let json = await response.json();
     return json.is_open;
 }
