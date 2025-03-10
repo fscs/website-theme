@@ -1,9 +1,9 @@
-async function get_next_sitzung() {
+async function get_next_sitzungen() {
     let time = new Date();
     time.setTime(time.getTime() - 2 * 60 * 60 * 1000);
 
     let response = await fetch(
-        "/api/sitzungen/first-after?timestamp=" + time.toISOString(),
+        "/api/sitzungen/after?timestamp=" + time.toISOString(),
     );
     return await response.json();
 }
@@ -96,15 +96,16 @@ function build_announcement(sitzung) {
 }
 
 function init_sitzung_announcement() {
-    let sitzungPromise = get_next_sitzung();
-    sitzungPromise
-        .then((sitzung) => {
-            let announcement = build_announcement(sitzung);
-            let elements = document.getElementsByClassName("sitzung-announcement");
-
-            for (var i = 0; i < elements.length; i++) {
-                const append = document.importNode(announcement, true);
-                elements[i].appendChild(append);
+    let sitzungenPromise = get_next_sitzungen();
+    sitzungenPromise
+        .then((sitzungen) => {
+            for (let sitzung of sitzungen) {
+                let announcement = build_announcement(sitzung);
+                let elements = document.getElementsByClassName("sitzung-announcement");
+                for (var i = 0; i < elements.length; i++) {
+                    const append = document.importNode(announcement, true);
+                    elements[i].appendChild(append);
+                }
             }
         })
         .catch(() => {
