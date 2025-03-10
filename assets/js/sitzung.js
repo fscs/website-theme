@@ -13,6 +13,7 @@ function build_announcement(sitzung) {
     let clone = document.importNode(template, true);
 
     let date = new Date(sitzung.datetime);
+    console.log(sitzung.datetime);
     let location = sitzung.location || "TBA";
     let type = sitzung.kind;
 
@@ -99,7 +100,9 @@ function init_sitzung_announcement() {
     let sitzungenPromise = get_next_sitzungen();
     sitzungenPromise
         .then((sitzungen) => {
+            console.log(sitzungen);
             for (let sitzung of sitzungen) {
+            console.log(sitzung);
                 let announcement = build_announcement(sitzung);
                 let elements = document.getElementsByClassName("sitzung-announcement");
                 for (var i = 0; i < elements.length; i++) {
