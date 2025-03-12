@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://fscs.hhu.de/"
 copyright = 'Copyright © {year} Fachschaft Informatik'
 pluralizeListTitles = false
 enableEmoji = true
@@ -7,6 +7,9 @@ defaultContentLanguage = "de"
 defaultContentLanguageInSubdir = true
 
 enableRobotsTxt = true
+
+[outputs]
+home = ["html", "sveltia"]
 
 [params]
 impressumURL = "/impressum"

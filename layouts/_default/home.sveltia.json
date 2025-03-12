@@ -1,0 +1,8 @@
+{{- $cfg := dict -}}
+
+{{- $cfg = merge $cfg (dict "site_url" site.BaseURL)}}
+
+{{- $cfg = merge $cfg (dict "logo_url" (resources.Get "images/logo.png" | fingerprint ).Permalink)}}
+
+{{- $cfg := merge $cfg site.Params.cms -}}
+{{- jsonify $cfg -}}
