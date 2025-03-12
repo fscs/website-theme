@@ -1,2 +1,3 @@
 [cms]
-site_url = "https://fscs.hhu.de"
+media_folder: "assets/images/"
+public_folder: "assets/images/"

@@ -1,0 +1,33 @@
+backend:
+  name: gitlab
+  repo: fscs/raete/website
+  base_url: https://git.hhu.de
+  branch: main
+  use_graphql: true
+  graphql_api_root: https://git.hhu.de/api/graphql
+  auth_type: pkce
+  app_id: 78884d12d643ccb9a9f087ead0f516dfe0f658c9b6ef34a7472cdeb947ff09b1
+  api_root: https://git.hhu.de/api/v4
+  auth_endpoint: oauth/authorize
+
+media_folder: assets/images
+collections:
+  - name: "protokolle"
+    label: "Protokolle"
+    label_singular: 'Protokoll'
+    folder: "content/de/protokolle"
+    format: 'frontmatter'
+    nested:
+      depth: 2
+      summary: '{{title}}'
+    create: true
+    slug: "{{year}}/{{month}}-{{day}}-{{type}}"
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD"}
+      - {label: "Summary", name: "summary", widget: "text", required: false}
+      - {label: "Lastmod", name: "lastmod", widget: "datetime", date_format: "YYYY-MM-DD", required: false}
+      - {label: "Hidden", name: "hidden", widget: "boolean", default: true}
+      - {label: "HiddenUntil", name: "hiddenUntil", widget: "datetime", required: false}
+      - {label: "Draft", name: "draft", widget: "boolean", default: true}
+      - {label: "Body", name: "body", widget: "markdown"}
