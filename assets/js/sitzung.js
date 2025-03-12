@@ -100,9 +100,15 @@ function init_sitzung_announcement() {
     let sitzungenPromise = get_next_sitzungen();
     sitzungenPromise
         .then((sitzungen) => {
-            console.log(sitzungen);
+            if(sitzungen.length == 0) {
+                let template = document.getElementById("sitzung-template-no-sitzung");
+                let elements = document.getElementsByClassName("sitzung-announcement");
+                for (var i = 0; i < elements.length; i++) {
+                    const append = document.importNode(template, true);
+                    elements[i].appendChild(append.content);
+                }
+            }
             for (let sitzung of sitzungen) {
-            console.log(sitzung);
                 let announcement = build_announcement(sitzung);
                 let elements = document.getElementsByClassName("sitzung-announcement");
                 for (var i = 0; i < elements.length; i++) {
