@@ -115,6 +115,7 @@ async function searchPage(query, resultID, resultLimit) {
 
     for (let i = 0; i < results.length; i++) {
         const thisresult = results[i];
+        var div = document.createElement("div");
         var a = document.createElement("a");
         a.href = thisresult.url;
         a.innerHTML = thisresult.meta.title;
@@ -122,8 +123,12 @@ async function searchPage(query, resultID, resultLimit) {
         var content = document.createElement("p");
         content.innerHTML = thisresult.excerpt;
 
-        search_results_content.appendChild(a);
-        search_results_content.appendChild(content);
+        div.classList.add("card");
+        div.classList.add("search-result");
+
+        div.appendChild(a);
+        div.appendChild(content);
+        search_results_content.appendChild(div);
     }
 
     if (document.getElementById("fullSearchLoading") !== null) {
