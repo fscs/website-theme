@@ -1,7 +1,21 @@
 home = "Startseite"
-students = "Studierende"
-examregulations="POs"
-nkt="Nachklausur-tutorium"
-subscripts="Protokolle"
-aboutus="Über Uns"
-news = "News"
+examarchive = "Klausur Archiv"
+transcripts = "Protokolle"
+# First Semester
+firstsemester = "Erstsemester"
+esag = "ESAG"
+getting-started = "Einstieg"
+links = "Wichtige Links"
+social-media = "Social Media"
+ersti-faq = "FAQ"
+# Career
+jobs = "Stellenanzeigen"
+industryevents = "Branchenevents"
+jobshead ="Karriere"
+# FAQ
+faq = "FAQ"
+erstisticks = "Erstisticks"
+abschlussarbeit = "Abschlussarbeit"
+events = "Veranstaltungen"
+# About Us
+aboutus = "Über Uns"

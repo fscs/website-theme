@@ -1,0 +1,73 @@
+collection:
+  create: true
+  format: yaml-frontmatter
+output:
+  omit_empty_optional_fields: true
+allPagesCollection:
+  name: allpages
+  label: All Pages
+  folder: content
+fields:
+  - { label: Title, name: title, widget: string, i18n: true }
+  - {
+      label: Categories,
+      label_singular: Category,
+      name: categories,
+      widget: list,
+      preview: false,
+      i18n: duplicate,
+      collapsed: true,
+      required: false,
+      field: { label: Category, name: category, widget: string },
+    }
+  - {
+      label: Date,
+      name: date,
+      widget: datetime,
+      date_format: YYYY-MM-DD,
+      preview: false,
+      time_format: false,
+      i18n: true,
+    }
+  - {
+      label: Summary,
+      name: summary,
+      widget: text,
+      required: false,
+      preview: false,
+      i18n: true,
+    }
+  - {
+      label: Last Modified,
+      name: lastmod,
+      widget: datetime,
+      required: false,
+      preview: false,
+      time_format: false,
+      i18n: true,
+    }
+  - {
+      label: Hidden,
+      name: hidden,
+      widget: boolean,
+      default: false,
+      preview: false,
+      i18n: duplicate,
+    }
+  - {
+      label: Hidden Until,
+      name: hiddenUntil,
+      widget: datetime,
+      required: false,
+      preview: false,
+      i18n: duplicate,
+    }
+  - {
+      label: Draft,
+      name: draft,
+      widget: boolean,
+      default: false,
+      preview: false,
+      i18n: duplicate,
+    }
+  - { label: Body, name: body, widget: markdown, i18n: true, modes: ["raw"] }

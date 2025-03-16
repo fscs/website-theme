@@ -1,0 +1,7 @@
+[cms]
+media_folder = "assets/images/"
+public_folder = "assets/images/"
+
+[cms.backend]
+name = "github"
+repo = "fscs/website-theme"

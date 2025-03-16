@@ -1,0 +1,64 @@
+{{- $cfg := dict -}}
+
+{{- $cfg = merge $cfg (dict "site_url" site.BaseURL)}}
+
+{{- $cfg = merge $cfg (dict "logo_url" (resources.Get "images/logo.png" | fingerprint ).Permalink)}}
+
+{{- $defaults := resources.Get "data/sveltia.defaults.yml" | unmarshal -}}
+
+{{- $cfg = merge $cfg (dict "output" $defaults.output)}}
+
+{{- if hugo.IsMultilingual -}}
+    {{- $i18n := dict -}}
+    {{- $locales := slice -}}
+
+    {{- $i18n = merge $i18n (dict "default_locale" site.Sites.Default.Language.Lang) -}}
+    {{- $i18n = merge $i18n (dict "structure" "multiple_files") -}}
+    {{- $i18n = merge $i18n (dict "save_all_locales" false) -}}
+    {{- $i18n = merge $i18n (dict "initial_locales" (slice site.Sites.Default.Language.Lang)) -}}
+
+    {{- range site.Languages -}}
+        {{- $locales = append .Lang $locales -}}
+    {{- end -}}
+
+    {{- $i18n = merge $i18n (dict "locales" $locales) -}}
+
+    {{- $cfg = merge $cfg (dict "i18n" $i18n) -}}
+{{- end -}}
+
+{{- $allPages := merge $defaults.collection $defaults.allPagesCollection -}}
+{{- $allPages = merge $allPages (dict "i18n" hugo.IsMultilingual ) -}}
+{{- $allPages = merge $allPages (dict "fields" $defaults.fields) -}}
+
+{{- $collections := slice -}}
+{{- $collections := append $allPages $collections -}}
+
+{{- range site.Menus.main -}}
+    {{- if .Params.disableCms -}}
+        {{- continue -}} 
+    {{- end -}}
+
+    {{- $collection := $defaults.collection -}}
+    
+    {{- $collection = merge $collection (dict "name" .Identifier) -}}
+    {{- $collection = merge $collection (dict "label" (or (T .Identifier) .Name) ) -}}
+
+    {{- $collection = merge $collection (dict "i18n" hugo.IsMultilingual ) -}}
+
+    {{- $collection = merge $collection (dict "folder" (path.Join "content" .PageRef ) ) -}}
+
+    {{- $collection = merge $collection (dict "media_folder" (path.Join "{{media_folder}}" .Identifier)) -}}
+    {{- $collection = merge $collection (dict "public_folder" (path.Join "{{public_folder}}" .Identifier)) -}}
+
+    {{- $collection = merge $collection (dict "fields" $defaults.fields) -}}
+
+    {{- $collection := merge $collection (or .Params.cms (dict)) -}}
+
+    {{- $collections = append $collection $collections -}}
+{{- end -}}
+
+{{- $cfg = merge $cfg (dict "collections" $collections)}}
+
+{{- $cfg := merge $cfg (or site.Params.cms (dict)) -}}
+
+{{- jsonify $cfg -}}

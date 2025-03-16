@@ -1,45 +1,135 @@
-#
+# Diese Datei definiert das deutsche Menü der Website.
+# Die Einträge sind nach der Reihenfolge zu sortieren nach der sie auch auf der Website
+# auftauchen sollen und Oberpunkte sind mit einem Kommentar zu markieren.
+# ES IST EXTREM WICHTIG DAS SIE MIT DER DEUTSCHEN VERSION ÜBEREINSTIMMT
+
 [[main]]
 identifier = "home"
 weight = 1
 pageRef = "/"
-params = { icon = "icons/outline/home.svg" }
 
-#
-[[main]]
-identifier = "students"
-weight = 3
-pageRef = "/studierende"
-params = { icon = "icons/outline/school.svg" }
+[main.params]
+icon = "icons/outline/home.svg"
+disableCms = true
 
-[[main]]
-identifier = "examregulations"
-weight = 1
-parent = "students"
-pageRef = "/studierende/pos"
+#--------------------------------------------------------------------------------------------------
+# Klausurarchiv
+#--------------------------------------------------------------------------------------------------
 
 [[main]]
-identifier = "nkt"
+identifier = "examarchive"
 weight = 2
-parent = "students"
-pageRef = "/studierende/nkt"
+pageRef = "/klausurarchiv"
 
+[main.params]
+icon = "icons/outline/school.svg"
+disableCms = true
+
+#--------------------------------------------------------------------------------------------------
+# Protokolle
+#--------------------------------------------------------------------------------------------------
 [[main]]
-identifier = "news"
+identifier = "transcripts"
 weight = 3
-parent = "students"
-pageRef = "/studierende/news"
-
-#
-[[main]]
-identifier = "subscripts"
-weight = 4
 pageRef = "/protokolle"
-params = { icon = "icons/outline/script.svg" }
 
-#
+[main.params]
+icon = "icons/outline/script.svg"
+cms = { folder = "demo/content/protokolle" }
+
+#--------------------------------------------------------------------------------------------------
+# Erstsemester 
+#--------------------------------------------------------------------------------------------------
+[[main]]
+identifier = "firstsemester"
+weight = 4
+pageRef = "/studienanfaenger"
+
+[main.params]
+icon = "icons/outline/checkup-list.svg"
+cms = { folder = "demo/content/studienanfaenger" }
+
+[[main]]
+identifier = "getting-started"
+weight = 1
+parent = "firstsemester"
+pageRef = "/studienanfaenger/getting-started"
+
+[[main]]
+identifier = "esag"
+weight = 2
+parent = "firstsemester"
+pageRef = "/studienanfaenger/esag"
+
+[[main]]
+identifier = "links"
+weight = 3
+parent = "firstsemester"
+pageRef = "/studienanfaenger/wichtige-links"
+
+[[main]]
+identifier = "social-media"
+weight = 4
+parent = "firstsemester"
+pageRef = "/studienanfaenger/social-media"
+
+[[main]]
+identifier = "ersti-faq"
+weight = 5
+parent = "firstsemester"
+pageRef = "/studienanfaenger/faq"
+
+
+#--------------------------------------------------------------------------------------------------
+# Veranstaltungen
+#--------------------------------------------------------------------------------------------------
+
+[[main]]
+identifier = "events"
+weight = 6
+pageRef = "/veranstaltungen"
+parent = "faq"
+
+[[main]]
+identifier = "industryevents"
+weight = 1
+pageRef = "/veranstaltungen/branchenevents"
+parent = "jobshead"
+
+#--------------------------------------------------------------------------------------------------
+# FAQ
+#--------------------------------------------------------------------------------------------------
+
+[[main]]
+identifier = "faq"
+weight = 7
+pageRef = "/faq"
+
+[main.params]
+icon = "icons/outline/message.svg"
+cms = { folder = "demo/content/faq" }
+
+[[main]]
+identifier = "erstisticks"
+weight = 1
+parent = "faq"
+pageRef = "/faq/erstisticks"
+
+[[main]]
+identifier = "abschlussarbeit"
+weight = 2
+parent = "faq"
+pageRef = "/faq/abschlussarbeit"
+
+#--------------------------------------------------------------------------------------------------
+# About Us
+#--------------------------------------------------------------------------------------------------
+
 [[main]]
 identifier = "aboutus"
-weight = 100
-pageRef = "/about"
-params = { icon = "icons/outline/question-mark.svg" }
+weight = 1337
+pageRef = "/aboutus"
+
+[main.params]
+icon = "icons/outline/question-mark.svg"
+cms = { folder = "demo/content/aboutus" }

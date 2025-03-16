@@ -1,7 +1,21 @@
 home = "Home"
-students = "Students"
-examregulations="Exam Regulations"
-nkt="Exam Tutorials"
-subscripts="Subscripts"
-aboutus="About Us"
-news = "News"
+examarchive = "Exam Archive"
+transcripts = "Transcripts"
+# First Semester
+firstsemester = "First Semesters"
+esag = "ESAG"
+getting-started = "Gettings Started"
+links = "Important Links"
+social-media = "Social Media"
+ersti-faq = "FAQ"
+# Career
+jobs = "Job Offers"
+industryevents = "Industry Events"
+jobshead ="Career"
+# FAQ
+faq = "FAQ"
+erstisticks = "Erstisticks"
+abschlussarbeit = "Finals"
+events = "Events"
+# About Us
+aboutus = "About Us"

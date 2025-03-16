@@ -1,4 +1,9 @@
 # modules
+[outputFormats.sveltia]
+baseName = "sveltia-config"
+mediaType = 'application/json'
+root = true
+
 [module]
 [module.hugoVersion]
 extended = true

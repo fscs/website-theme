@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://fscs.hhu.de/"
 copyright = 'Copyright © {year} Fachschaft Informatik'
 pluralizeListTitles = false
 enableEmoji = true
@@ -7,6 +7,9 @@ defaultContentLanguage = "de"
 defaultContentLanguageInSubdir = true
 
 enableRobotsTxt = true
+
+[outputs]
+home = ["html", "sveltia"]
 
 [params]
 impressumURL = "/impressum"
@@ -23,6 +26,7 @@ news = "icons/outline/coin-euro.svg"
 
 [markup.goldmark.renderer]
 unsafe = true
+hardWraps = true
 
 [params.socials.instagram]
 url = "https://www.instagram.com/hhufscs/"
@@ -36,14 +40,12 @@ icon = "icons/outline/brand-github.svg"
 [languages.de]
 languageName = "Deutsch"
 title = "Fachschaft Informatik"
-contentDir = "content/de"
 languageCode = "de"
 languageDirection = "ltr"
 
 [languages.en]
 languageName = "English"
 title = "Fachschaft Informatik"
-contentDir = "content/en"
 languageCode = "en"
 languageDirection = "ltr"
 
