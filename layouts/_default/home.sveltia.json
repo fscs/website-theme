@@ -47,8 +47,8 @@
 
     {{- $collection = merge $collection (dict "folder" (path.Join "content" .PageRef ) ) -}}
 
-    {{- $collection = merge $collection (dict "media_folder" (path.Join "{{media_folder}}" .Identifier)) -}}
-    {{- $collection = merge $collection (dict "public_folder" (path.Join "{{public_folder}}" .Identifier)) -}}
+    {{- $collection = merge $collection (dict "media_folder" (path.Join "{{media_folder}}" .PageRef)) -}}
+    {{- $collection = merge $collection (dict "public_folder" (path.Join "{{public_folder}}" .PageRef)) -}}
 
     {{- $collection = merge $collection (dict "fields" $defaults.fields) -}}
 
