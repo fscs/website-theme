@@ -70,4 +70,4 @@ fields:
       preview: false,
       i18n: duplicate,
     }
-  - { label: Body, name: body, widget: markdown, i18n: true, modes: ["raw"] }
+  - { label: Body, name: body, widget: markdown, i18n: true, modes: ["raw", "rich_text"] }
