@@ -11,6 +11,11 @@ enableRobotsTxt = true
 [outputs]
 home = ["html", "sveltia"]
 
+[outputFormats.sveltia]
+baseName = "sveltia-config"
+mediaType = 'application/json'
+root = true
+
 [params]
 impressumURL = "/impressum"
 contactURL = "/kontakt"
