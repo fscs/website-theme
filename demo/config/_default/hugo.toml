@@ -1,4 +1,3 @@
-baseURL = "https://fscs.hhu.de/"
 copyright = 'Copyright © {year} Fachschaft Informatik'
 pluralizeListTitles = false
 enableEmoji = true

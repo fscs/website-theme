@@ -1,6 +1,6 @@
 ---
 title: Branchen-Events
-layout: single-calendar
+layout: all_sitzungen
 ---
 
 An dieser Stelle sammeln wir Termine von Veranstaltungen aus der Informatik-Branche in der Umgebung von Düsseldorf,
