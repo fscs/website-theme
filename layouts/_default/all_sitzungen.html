@@ -1,7 +1,7 @@
 {{ define "main" }}
 <h1 data-pagefind-meta="title">{{ .Title }}</h1>
 <template id="calendar-card-template">
-    <a id="open-calendar" class="text-decoration-none" data-bs-target="#modal-calendar-branchen" type="button"
+    <a id="open-calendar" class="text-decoration-none" data-bs-target="#modal-sitzungen-all" type="button"
         data-bs-toggle="modal" data-bs-cal-title="Test" data-bs-cal-location="Test" data-bs-cal-date="Test"
         data-bs-cal-desc="Desc" data-bs-cal-time="Time">
         <div class="card shadow overflow-visible calendar"
@@ -30,7 +30,7 @@
 </template>
 
 
-<div id="modal-calendar-branchen" class="modal fade" tabindex="-1">
+<div id="modal-sitzungen-all" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -66,10 +66,7 @@
 <div class="m-2 overflow-auto">
     <div>
         <h1 class="fs-4">Filter</h1>
-        <div class="d-flex flex-wrap gap-2">
-            <button class="btn btn-outline-primary" onclick="build_all_sitzungen()">Alle</button>
-            <button class="btn btn-outline-primary" onclick="build_all_sitzungen('normal')">Sitzungen</button>
-            <button class="btn btn-outline-primary" onclick="build_all_sitzungen('vv')">Vollversammlungen</button>
+        <div class="d-flex flex-wrap gap-2" id="sitzungs-filter">
         </div>
         <hr>
     </div>
@@ -78,7 +75,8 @@
     </div>
 </div>
 <script>
-    init_cal_modal("modal-calendar-branchen")
-    build_calendar("/api/calendar/events/", true);
+    init_cal_modal("modal-sitzungen-all")
+    build_all_sitzungen();
+    build_sitzungs_filter();
 </script>
 {{end}}

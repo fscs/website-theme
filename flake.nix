@@ -28,14 +28,14 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , flake-utils
-    , icons
-    , server
-    , bootstrap
-    , hugo-jslibs-dist
-    ,
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      icons,
+      server,
+      bootstrap,
+      hugo-jslibs-dist,
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -117,7 +117,8 @@
                 --content-dir ${demoSite} \
                 --auth-url https://auth.inphima.de/application/o/authorize/ \
                 --user-info https://auth.inphima.de/application/o/userinfo/ \
-                --token-url https://auth.inphima.de/application/o/token/
+                --token-url https://auth.inphima.de/application/o/token/    \
+                --calendar events=https://nextcloud.inphima.de/remote.php/dav/public-calendars/CAx5MEp7cGrQ6cEe?export
 
 
             echo Stopping the Database
