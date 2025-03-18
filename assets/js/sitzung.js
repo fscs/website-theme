@@ -13,7 +13,6 @@ function build_announcement(sitzung) {
     let clone = document.importNode(template, true);
 
     let date = new Date(sitzung.datetime);
-    console.log(sitzung.datetime);
     let location = sitzung.location || "TBA";
     let type = sitzung.kind;
 
