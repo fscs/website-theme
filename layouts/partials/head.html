@@ -18,6 +18,10 @@
     {{ $jsExcludeList = $jsExcludeList | append "/js/sitzung.js"}} 
 {{ end }}
 
+{{ if and (isset site.Params "enabledoorstate") (not site.Params.enableDoorState) }}
+    {{ $jsExcludeList = $jsExcludeList | append "/js/doorstate.js"}} 
+{{ end }}
+
 {{/* build javascript */}}
 {{- range resources.Match "js/*.js" -}}
     {{- $js := . | resources.Minify | fingerprint -}}
