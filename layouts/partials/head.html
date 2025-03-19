@@ -11,15 +11,15 @@
 {{ $jsExcludeList := slice}}
 
 {{ if and (isset site.Params "enablecalendar") (not site.Params.enableCalendar) }}
-    {{ $jsExcludeList = $jsExcludeList | append "/js/calendar.js"}} 
+    {{ $jsExcludeList = $jsExcludeList | append "/js/calendar.js" }} 
 {{ end }}
 
-{{ if and (isset site.Params "enablesitzung") (not site.Params.enableCalendar) }}
-    {{ $jsExcludeList = $jsExcludeList | append "/js/sitzung.js"}} 
+{{ if and (isset site.Params "enablesitzung") (not site.Params.enableSitzung) }}
+    {{ $jsExcludeList = $jsExcludeList | append "/js/sitzung.js" }} 
 {{ end }}
 
 {{ if and (isset site.Params "enabledoorstate") (not site.Params.enableDoorState) }}
-    {{ $jsExcludeList = $jsExcludeList | append "/js/doorstate.js"}} 
+    {{ $jsExcludeList = $jsExcludeList | append "/js/doorstate.js" }} 
 {{ end }}
 
 {{/* build javascript */}}
