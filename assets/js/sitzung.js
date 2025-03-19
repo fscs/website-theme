@@ -2,6 +2,21 @@ async function build_all_sitzungen(sitzungKind) {
   let data = await fetch("/api/sitzungen/after?timestamp=1970-01-01T00:00:00Z");
   let sitzungen = data.json();
 
+  var buttons = document
+    .getElementById("sitzungs-filter")
+    .getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("active");
+  }
+
+  if (!sitzungKind) {
+    var button = document.getElementById("filter-all");
+  } else {
+    var button = document.getElementById("filter-" + sitzungKind);
+  }
+  button.classList.add("active");
+
   /**
    * Fetches the calendar data from the server and generates the calendar cards.
    * The calendar cards are then appended to the calendar-body.
@@ -103,11 +118,13 @@ async function build_sitzungs_filter() {
     button.onclick = function () {
       build_all_sitzungen();
     };
+    button.id = "filter-all";
     filter.appendChild(button);
     for (let [key, value] of types) {
       let button = document.createElement("button");
       button.classList.add("btn");
       button.classList.add("btn-outline-primary");
+      button.id = "filter-" + key;
       button.innerHTML = value;
       button.onclick = function () {
         build_all_sitzungen(key);
