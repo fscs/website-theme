@@ -76,7 +76,8 @@
 </div>
 <script>
     init_cal_modal("modal-sitzungen-all")
-    build_all_sitzungen();
-    build_sitzungs_filter();
+    build_sitzungs_filter().then(() => {
+        build_all_sitzungen();
+    });
 </script>
 {{end}}
