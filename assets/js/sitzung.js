@@ -150,6 +150,7 @@ function build_announcement(sitzung) {
 
   let date = new Date(sitzung.datetime);
   let location = sitzung.location || "TBA";
+  let antragsfrist = new Date(sitzung.antragsfrist);
   let type = sitzung.kind;
 
   let sitzungTitle;
@@ -188,6 +189,13 @@ function build_announcement(sitzung) {
     minute: "2-digit",
   };
 
+  let dateAndTimeOptions = {
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+
   // fill in title, date, time, and location
   clone.content.getElementById("title").innerHTML = sitzungTitle;
 
@@ -202,6 +210,13 @@ function build_announcement(sitzung) {
   );
 
   clone.content.getElementById("location").innerHTML = location;
+
+  clone.content.getElementById("antragsfrist").innerHTML =
+    "Frist: " +
+    antragsfrist
+      .toLocaleDateString("de-DE", dateAndTimeOptions)
+      .replace(",", "") +
+    " Uhr";
 
   // fill in the top list
   let topList = clone.content.getElementById("tops");
