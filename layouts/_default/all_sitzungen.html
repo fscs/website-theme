@@ -64,20 +64,23 @@
 
 
 <div class="m-2 overflow-auto">
-    <div>
-        <h1 class="fs-4">Filter</h1>
-        <div class="d-flex flex-wrap gap-2" id="sitzungs-filter">
+    <h1 class="fs-4">Filter</h1>
+    <div class="row">
+        <div class="col-lg d-flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2" id="sitzungs-filter">
+            </div>
         </div>
-        <hr>
+
+        <div class="col-sm d-flex flex-wrap gap-2" id="legislatur-filter">
+        </div>
     </div>
+    <hr>
     <div class="d-flex flex-wrap gap-2 pb-3" id="calendar-body">
          
     </div>
 </div>
 <script>
     init_cal_modal("modal-sitzungen-all")
-    build_sitzungs_filter().then(() => {
-        build_all_sitzungen();
-    });
+    build_legislatur_filter()
 </script>
 {{end}}

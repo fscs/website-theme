@@ -1,5 +1,7 @@
+var legislaturId = 1;
+
 async function build_all_sitzungen(sitzungKind) {
-  let data = await fetch("/api/sitzungen/after?timestamp=1970-01-01T00:00:00Z");
+  let data = await fetch("/api/legislative/" + legislaturId + "/sitzungen");
   let sitzungen = data.json();
 
   var buttons = document
@@ -81,9 +83,39 @@ async function build_all_sitzungen(sitzungKind) {
   });
 }
 
+async function build_legislatur_filter() {
+  let data = await fetch("/api/legislative");
+  let legislativen = data.json();
+  legislativen.then(async (legislativen) => {
+    let filter = document.getElementById("legislatur-filter");
+    let dropdown = document.createElement("select");
+    dropdown.classList.add("form-select");
+    dropdown.id = "legislatur-filter-select";
+    dropdown.onchange = async function () {
+      legislaturId = dropdown.value;
+      await build_sitzungs_filter();
+      build_all_sitzungen();
+    };
+    for (let legislatur of legislativen) {
+      let option = document.createElement("option");
+      option.value = legislatur.id;
+      option.innerHTML = legislatur.name;
+      dropdown.appendChild(option);
+    }
+    filter.appendChild(dropdown);
+
+    legislaturId = dropdown.value;
+    await build_sitzungs_filter();
+    build_all_sitzungen();
+  });
+}
+
 async function build_sitzungs_filter() {
-  let data = await fetch("/api/sitzungen/after?timestamp=1970-01-01T00:00:00Z");
+  let data = await fetch("/api/legislative/" + legislaturId + "/sitzungen");
   let sitzungen = data.json();
+  let filter = document.getElementById("sitzungs-filter");
+  filter.innerHTML = "";
+
   sitzungen.then(async (sitzungen) => {
     let filter = document.getElementById("sitzungs-filter");
     let types = new Map();

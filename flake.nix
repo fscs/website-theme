@@ -118,7 +118,10 @@
                 --auth-url https://auth.inphima.de/application/o/authorize/ \
                 --user-info https://auth.inphima.de/application/o/userinfo/ \
                 --token-url https://auth.inphima.de/application/o/token/    \
-                --calendar events=https://nextcloud.inphima.de/remote.php/dav/public-calendars/CAx5MEp7cGrQ6cEe?export
+                --calendar events=https://nextcloud.inphima.de/remote.php/dav/public-calendars/CAx5MEp7cGrQ6cEe?export \
+                --oauth-source-name authentik \
+                --data-dir $PWD/uplaods/attachments
+
 
 
             echo Stopping the Database
