@@ -96,36 +96,38 @@
 
           runDemoSite = pkgs.writeScriptBin "run.sh" ''
             #!/usr/bin/env bash
-            DATA_DIR="$PWD/db/data"
+            POSTGRES_DATA_DIR="$PWD/db/data"
+            DATA_DIR="$PWD"
             SOCKET_DIR="$PWD/db/sockets"
             SOCKET_URL="$(echo $SOCKET_DIR | sed 's/\//%2f/g')"
             export DATABASE_URL="postgresql://$SOCKET_URL:5432/postgres"
 
-            mkdir -p "$DATA_DIR" "$SOCKET_DIR"
+            mkdir -p "$POSTGRES_DATA_DIR" "$SOCKET_DIR" "$DATA_DIR"
 
             echo Initializing the Database
-            ${pkgs.postgresql}/bin/initdb -D "$DATA_DIR" --locale=C.utf8
+            ${pkgs.postgresql_16}/bin/initdb -D "$POSTGRES_DATA_DIR" --locale=C.utf8
 
             echo Starting the Database
-            ${pkgs.postgresql}/bin/pg_ctl -D $DATA_DIR -o "-k $SOCKET_DIR -h \"\"" start
+            ${pkgs.postgresql_16}/bin/pg_ctl -D $POSTGRES_DATA_DIR -o "-k $SOCKET_DIR -h \"\"" start
+            trap "${pkgs.postgresql_16}/bin/pg_ctl -D $POSTGRES_DATA_DIR stop; exit" SIGINT
 
             echo Starting the server
             ${server.packages.${system}.default}/bin/fscs-website-backend \
                 --host 0.0.0.0 \
-                --port 8080 \
-                --database-url $DATABASE_URL \
                 --content-dir ${demoSite} \
+                --database-url $DATABASE_URL \
+                --data-dir $DATA_DIR \
+                --oauth-source-name authentik \
+                --group FS_Rat_Informatik=Admin \
                 --auth-url https://auth.inphima.de/application/o/authorize/ \
                 --user-info https://auth.inphima.de/application/o/userinfo/ \
                 --token-url https://auth.inphima.de/application/o/token/    \
                 --calendar events=https://nextcloud.inphima.de/remote.php/dav/public-calendars/CAx5MEp7cGrQ6cEe?export \
-                --oauth-source-name authentik \
-                --data-dir $PWD/uplaods/attachments
-
-
+                --data-dir $PWD \
+                $@
 
             echo Stopping the Database
-            ${pkgs.postgresql}/bin/pg_ctl -D "$DATA_DIR" stop
+            ${pkgs.pkgs.postgresql_16}/bin/pg_ctl -D "$DATA_DIR" stop
           '';
         };
 

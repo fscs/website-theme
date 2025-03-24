@@ -136,11 +136,25 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1742743666,
         "narHash": "sha256-BKtkfiWb0JY7IchiY32waJY0LCoW3olMhErCsDsuRpA=",
+||||||| parent of f0da30a (fix: update the test script)
+        "lastModified": 1741785118,
+        "narHash": "sha256-Pe98k+F9Jqvyy3zZbv/r8fgEcu+G2Vj8gdw50w1qwuM=",
+=======
+        "lastModified": 1742820192,
+        "narHash": "sha256-UkNjHZwSZ6dHJWUtU0hJa9I8zaLg97KHGnbx6SEGgFU=",
+>>>>>>> f0da30a (fix: update the test script)
         "owner": "fscs",
         "repo": "website-server",
+<<<<<<< HEAD
         "rev": "e0efcf24845fe6d90199d9a949ab8ac61326932b",
+||||||| parent of f0da30a (fix: update the test script)
+        "rev": "a1efc4fc8266e5f39848e4fceaaa1ad91b8dfd49",
+=======
+        "rev": "126113da4b48387ddb7e7bd12ae7e9dd2813f061",
+>>>>>>> f0da30a (fix: update the test script)
         "type": "github"
       },
       "original": {
