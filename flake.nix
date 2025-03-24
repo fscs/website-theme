@@ -96,13 +96,13 @@
 
           runDemoSite = pkgs.writeScriptBin "run.sh" ''
             #!/usr/bin/env bash
-            POSTGRES_DATA_DIR="$PWD/db/data"
-            DATA_DIR="$PWD"
-            SOCKET_DIR="$PWD/db/sockets"
+            DATA_DIR="$PWD/data"
+            POSTGRES_DATA_DIR="$DATA_DIR/db/data"
+            SOCKET_DIR="$DATA_DIR/db/sockets"
             SOCKET_URL="$(echo $SOCKET_DIR | sed 's/\//%2f/g')"
             export DATABASE_URL="postgresql://$SOCKET_URL:5432/postgres"
 
-            mkdir -p "$POSTGRES_DATA_DIR" "$SOCKET_DIR" "$DATA_DIR"
+            mkdir -p "$POSTGRES_DATA_DIR" "$SOCKET_DIR"
 
             echo Initializing the Database
             ${pkgs.postgresql_16}/bin/initdb -D "$POSTGRES_DATA_DIR" --locale=C.utf8
@@ -116,14 +116,13 @@
                 --host 0.0.0.0 \
                 --content-dir ${demoSite} \
                 --database-url $DATABASE_URL \
-                --data-dir $DATA_DIR \
                 --oauth-source-name authentik \
                 --group FS_Rat_Informatik=Admin \
                 --auth-url https://auth.inphima.de/application/o/authorize/ \
                 --user-info https://auth.inphima.de/application/o/userinfo/ \
                 --token-url https://auth.inphima.de/application/o/token/    \
                 --calendar events=https://nextcloud.inphima.de/remote.php/dav/public-calendars/CAx5MEp7cGrQ6cEe?export \
-                --data-dir $PWD \
+                --data-dir $DATA_DIR \
                 $@
 
             echo Stopping the Database
