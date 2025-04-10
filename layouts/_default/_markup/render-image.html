@@ -1,0 +1,5 @@
+<img src="{{ .Destination | safeURL }}"
+  {{- with .PlainText }} alt="{{ . }}"{{ end -}}
+  {{- with .Title }} title="{{ . }}"{{ end -}}
+  style="width: -moz-available; width: -webkit-fill-available"
+>
