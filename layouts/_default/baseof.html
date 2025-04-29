@@ -19,30 +19,34 @@
             {{ partial "sidebar.html" . }}
 
             <div class="col-xl-8">
-                <main data-bs-spy="scroll" data-bs-target="#knuts-table-of-contents-42"
-                    tabindex=0>
+                <main data-bs-spy="scroll" data-bs-target="#knuts-table-of-contents-42" tabindex=0>
                     <div class="vstack rounded h-100">
                         {{ block "main" .}} {{ end }}
                     </div>
                 </main>
             </div>
             {{- if .IsHome -}}
-                <div class="col-xl-2 p-2 d-none d-xl-flex">
-                    <div style="width: -moz-available;width: -webkit-fill-available;">
-                        {{ if or (not (isset site.Params "enablesitzung")) site.Params.enableSitzung }}
-                            <div class="sitzung-announcement"></div>
-                        {{ end }}
-                    </div>
-                </div>
-            {{- else -}}
-                <div class="col-xl-2 p-2 d-none d-xl-flex">
-                    {{ if .IsPage }}
-                    {{ partial "toc.html" .}}
+            <div class="col-xl-2 p-2 d-none d-xl-flex">
+                <div style="width: -moz-available;width: -webkit-fill-available;">
+                    {{ if or (not (isset site.Params "enablesitzung")) site.Params.enableSitzung }}
+                    <div class="sitzung-announcement"></div>
                     {{ end }}
                 </div>
+            </div>
+            {{- else -}}
+            <div class="col-xl-2 p-2 d-none d-xl-flex">
+                {{ if .IsPage }}
+                {{ partial "toc.html" .}}
+                {{ end }}
+            </div>
             {{- end -}}
         </div>
     </div>
+
+    <script>
+        maddrs = document.getElementsByClassName("maddr")
+        Array.prototype.forEach.call(maddrs, unscrambleMaddr)
+    </script>
 
     <footer class="text-center bg-dark mt-auto" style="bottom: 0px;">
         {{ partial "footer.html" . }}

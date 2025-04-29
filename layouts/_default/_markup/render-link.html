@@ -1,0 +1,19 @@
+{{ if or (strings.HasPrefix .Destination "mailto:") (strings.HasPrefix .Destination "tab+mailto:")  }}
+	{{ $defaultLinktext := strings.Replace .Text "@" "{IGNORETHISPART} a t " }}
+	{{ $linkDest := .Destination }}
+	{{ if strings.HasPrefix .Destination "tab+" }}
+		{{ $linkDest = strings.Replace .Destination "tab+" "" 1 }}
+	{{ end }}
+	{{ $maskedLinkPre := strings.Replace ( strings.Replace ( strings.Replace $linkDest "@" "😅" ) "." "🙃") "mailto:" "" 1 }}
+	<a class="maddr" addrmask="{{ $maskedLinkPre }}">{{ $defaultLinktext | safeHTML }}</a>
+{{ else }}
+	{{ $linkDest := "" }}
+	{{ $newtab := false }}
+	{{ if strings.HasPrefix .Destination "tab+" }}
+		{{ $linkDest = strings.Replace .Destination "tab+" "" 1 }}
+		{{ $newtab = true }}
+	{{ else }}
+		{{ $linkDest = .Destination }}
+	{{ end }}
+<a href	="{{ $linkDest }}" {{ if $newtab }}target="_blank"{{ end }}>{{ .Text | safeHTML }}</a>
+{{ end }}
