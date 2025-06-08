@@ -67,4 +67,8 @@ Fragen: keine
 Lan-Party (bisher immer an der Anzahl der Teilnehmer gescheitert)
 nochmal probieren 3 dagegen 5 enthaltung 23 dafür
 
+```antrag
+test
+```
+
 VV Geschlossen
