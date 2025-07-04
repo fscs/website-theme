@@ -4,7 +4,7 @@
 {{- if or $showPrivate $showHidden -}}
     <a 
         class="btn d-flex align-items-center" 
-        href="/auth/logout/" 
+        href="/auth/logout?path={{ .RelPermalink}}" 
         aria-label="Logout"
         data-bs-tooltip
         data-bs-placement="bottom" 
@@ -14,7 +14,7 @@
 {{- else -}}
     <a 
         class="btn d-flex align-items-center" 
-        href="/auth/login/" 
+        href="/auth/login?path={{ .RelPermalink}}" 
         aria-label="Logout"
         data-bs-tooltip
         data-bs-placement="bottom" 
