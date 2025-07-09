@@ -1,6 +1,7 @@
 [theme]
 imprint = "Imprint"
 conprint = "Contact"
+datenschutz = "Privacy Policy"
 languageSelectorLabel = "Selected Language"
 toPostLabel = "Continue Reading"
 notauthorized = "It seems you are not authorized to view this section."

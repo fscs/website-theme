@@ -18,6 +18,7 @@ root = true
 [params]
 impressumURL = "/impressum"
 contactURL = "/kontakt"
+datenschutzURL = "/datenschutz"
 homepageList = ["news", "protokolle"]
 
 [params.flags]

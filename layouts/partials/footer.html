@@ -8,6 +8,7 @@
             {{ end }}
     </ul>
     <p class="mb-2">{{ replace .Site.Copyright "{year}" now.Year }}</p>
-    <a href="{{ (.Site.GetPage .Site.Params.impressumURL ).RelPermalink}}" class="text-white">{{ T "theme.imprint" }}</a>
-    <a href="{{ (.Site.GetPage .Site.Params.contactURL ).RelPermalink}}" class="text-white">{{ T "theme.conprint" }}</a>
+    {{ if .Site.Params.impressumURL }} <a href="{{ (.Site.GetPage .Site.Params.impressumURL ).RelPermalink}}" class="text-white">{{ T "theme.imprint" }}</a> {{ end }}
+    {{ if .Site.Params.contactURL }} <a href="{{ (.Site.GetPage .Site.Params.contactURL ).RelPermalink}}" class="text-white">{{ T "theme.conprint" }}</a> {{ end }}
+    {{ if .Site.Params.datenschutzURL }} <a href="{{ (.Site.GetPage .Site.Params.datenschutzURL ).RelPermalink}}" class="text-white">{{ T "theme.datenschutz" }}</a> {{ end }}
 </div>
