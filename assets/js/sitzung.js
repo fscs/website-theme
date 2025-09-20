@@ -26,10 +26,9 @@ async function build_all_sitzungen(sitzungKind) {
 
   document.getElementById("calendar-body").innerHTML = "";
   sitzungen.then(async (sitzungen) => {
-    console.log(sitzungen);
     for (let sitzung of sitzungen) {
       //kind mapping
-      let type = sitzung.kind;
+      let type = sitzung.typ;
       if (sitzungKind && sitzungKind !== type) {
         continue;
       }
@@ -59,9 +58,9 @@ async function build_all_sitzungen(sitzungKind) {
 
       for (let top of sitzung.tops) {
         description += "<li>" + top.name;
-        if (top.anträge.length > 0) {
+        if (top.antraege.length > 0) {
           description += "<ul>";
-          for (let antrag of top.anträge) {
+          for (let antrag of top.antraege) {
             description += "<li>" + antrag.titel + "</li>";
           }
           description += "</ul>";
@@ -74,7 +73,7 @@ async function build_all_sitzungen(sitzungKind) {
       let event = {
         start: sitzung.datetime,
         summary: sitzungTitle,
-        location: sitzung.location,
+        location: sitzung.ort,
         description: description,
       };
       let card = await generateCalendarCard(event);
@@ -121,7 +120,7 @@ async function build_sitzungs_filter() {
     let types = new Map();
     for (let sitzung of sitzungen) {
       let sitzungTitle;
-      switch (sitzung.kind) {
+      switch (sitzung.typ) {
         case "normal":
           sitzungTitle = "Sitzung";
           break;
@@ -141,7 +140,7 @@ async function build_sitzungs_filter() {
           sitzungTitle = "Dringlichkeits Sitzung";
           break;
       }
-      types.set(sitzung.kind, sitzungTitle);
+      types.set(sitzung.typ, sitzungTitle);
     }
     let button = document.createElement("button");
     button.classList.add("btn");
@@ -181,9 +180,9 @@ function build_announcement(sitzung) {
   let clone = document.importNode(template, true);
 
   let date = new Date(sitzung.datetime);
-  let location = sitzung.location || "TBA";
+  let location = sitzung.ort || "TBA";
   let antragsfrist = new Date(sitzung.antragsfrist);
-  let type = sitzung.kind;
+  let type = sitzung.typ;
 
   let sitzungTitle;
   switch (type) {
@@ -254,11 +253,11 @@ function build_announcement(sitzung) {
   let topList = clone.content.getElementById("tops");
 
   let normalTops = tops.filter((top) => {
-    return top.kind != "sonstige";
+    return top.typ != "sonstige";
   });
 
   let sonstigeTops = tops.filter((top) => {
-    return top.kind == "sonstige";
+    return top.typ == "sonstige";
   });
 
   for (let i = 0; i < normalTops.length; i++) {
