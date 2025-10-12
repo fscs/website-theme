@@ -29,6 +29,7 @@ disableCms = true
 # Protokolle
 #--------------------------------------------------------------------------------------------------
 [[main]]
+name = "Protokolle"
 identifier = "transcripts"
 weight = 3
 pageRef = "/protokolle"

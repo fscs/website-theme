@@ -33,7 +33,18 @@
 {{- $collections := slice -}}
 {{- $collections := append $allPages $collections -}}
 
+{{- $menus := slice -}}
+
 {{- range site.Menus.main -}}
+    {{- $menus = append . $menus -}}
+
+    {{- range .Children -}}
+        {{- $menus = append . $menus -}}
+    {{- end -}}
+{{- end -}}
+
+
+{{- range $menus -}}
     {{- if .Params.disableCms -}}
         {{- continue -}} 
     {{- end -}}
@@ -41,7 +52,7 @@
     {{- $collection := $defaults.collection -}}
     
     {{- $collection = merge $collection (dict "name" .Identifier) -}}
-    {{- $collection = merge $collection (dict "label" (or (T .Identifier) .Name) ) -}}
+    {{- $collection = merge $collection (dict "label" .Name) -}}
 
     {{- $collection = merge $collection (dict "i18n" hugo.IsMultilingual ) -}}
 

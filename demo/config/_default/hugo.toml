@@ -14,6 +14,7 @@ home = ["html", "sveltia"]
 baseName = "sveltia-config"
 mediaType = 'application/json'
 root = true
+notAlternative = true
 
 [params]
 impressumURL = "/impressum"
