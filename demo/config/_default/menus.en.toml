@@ -36,7 +36,10 @@ pageRef = "/protokolle"
 
 [main.params]
 icon = "icons/outline/script.svg"
-cms = { folder = "demo/content/protokolle" }
+
+[main.params.cms]
+folder = "demo/content/protokolle"
+slug = "{{year}}-{{month}}-{{day}}-protokoll"
 
 #--------------------------------------------------------------------------------------------------
 # Erstsemester 
