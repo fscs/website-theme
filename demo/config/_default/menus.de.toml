@@ -36,7 +36,7 @@ pageRef = "/protokolle"
 
 [main.params]
 icon = "icons/outline/script.svg"
-cms = { folder = "demo/content/protokolle", slug = "{{year}}/{{month}}-{{day}}-protokoll" }
+cms = { folder = "demo/content/protokolle", slug = "{{year}}-{{month}}-{{day}}-protokoll" }
 
 #--------------------------------------------------------------------------------------------------
 # Erstsemester 
@@ -48,7 +48,9 @@ pageRef = "/studienanfaenger"
 
 [main.params]
 icon = "icons/outline/checkup-list.svg"
+makeSingleton = true
 cms = { folder = "demo/content/studienanfaenger" }
+toplevelFile = { file = "demo/content/studienanfaenger.{{locale}}.md" }
 
 [[main]]
 identifier = "getting-started"
@@ -80,22 +82,6 @@ weight = 5
 parent = "firstsemester"
 pageRef = "/studienanfaenger/faq"
 
-
-#--------------------------------------------------------------------------------------------------
-# Veranstaltungen
-#--------------------------------------------------------------------------------------------------
-
-[[main]]
-identifier = "events"
-weight = 6
-pageRef = "/veranstaltungen"
-parent = "faq"
-
-[[main]]
-identifier = "industryevents"
-weight = 1
-pageRef = "/veranstaltungen/branchenevents"
-parent = "jobshead"
 
 #--------------------------------------------------------------------------------------------------
 # FAQ

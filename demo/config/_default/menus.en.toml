@@ -51,7 +51,9 @@ pageRef = "/studienanfaenger"
 
 [main.params]
 icon = "icons/outline/checkup-list.svg"
+makeSingleton = true
 cms = { folder = "demo/content/studienanfaenger" }
+toplevelFile = { file = "demo/content/studienanfaenger.{{locale}}.md" }
 
 [[main]]
 identifier = "getting-started"
@@ -83,22 +85,6 @@ weight = 5
 parent = "firstsemester"
 pageRef = "/studienanfaenger/faq"
 
-
-#--------------------------------------------------------------------------------------------------
-# Veranstaltungen
-#--------------------------------------------------------------------------------------------------
-
-[[main]]
-identifier = "events"
-weight = 6
-pageRef = "/veranstaltungen"
-parent = "faq"
-
-[[main]]
-identifier = "industryevents"
-weight = 1
-pageRef = "/veranstaltungen/branchenevents"
-parent = "jobshead"
 
 #--------------------------------------------------------------------------------------------------
 # FAQ
