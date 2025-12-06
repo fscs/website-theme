@@ -68,6 +68,45 @@
     {{- $collections = append $collection $collections -}}
 {{- end -}}
 
+{{- $files := slice -}}
+
+{{- range $menus -}}
+    {{- if .Params.disableCms -}}
+        {{- continue -}} 
+    {{- end -}}
+
+    {{- if (not .Params.makeSingleton) -}}
+        {{- continue -}} 
+    {{- end -}}
+
+    {{- $collection := $defaults.collection -}}
+    
+    {{- $collection = merge $collection (dict "name" (printf "%s-index-file" .Identifier)) -}}
+    {{- $collection = merge $collection (dict "label" (printf "%s Index" .Name)) -}}
+    {{- $collection = merge $collection (dict "i18n" hugo.IsMultilingual ) -}}
+
+    {{- $file := dict -}}
+
+    {{- $file = merge $file (dict "i18n" hugo.IsMultilingual ) -}}
+
+    {{- $file = merge $file (dict "name" (printf "%s-index-file" .Identifier)) -}}
+    {{- $file = merge $file (dict "label" (printf "%s Index" .Name)) -}}
+
+    {{- $file = merge $file (dict "file" (path.Join "content" (printf "%s.{{locale}}.md" .PageRef)) ) -}}
+
+    {{- $file = merge $file (dict "media_folder" (path.Join "{{media_folder}}" .PageRef)) -}}
+    {{- $file = merge $file (dict "public_folder" (path.Join "{{public_folder}}" .PageRef)) -}}
+
+    {{- $file = merge $file (dict "fields" $defaults.fields) -}}
+
+    {{- $file := merge $file (or .Params.toplevelFile (dict)) -}}
+
+    {{- $collection := merge $collection (dict "files" (slice $file)) -}}
+
+
+    {{- $collections = append $collection $collections -}}
+{{- end -}}
+
 {{- $cfg = merge $cfg (dict "collections" $collections)}}
 
 {{- $cfg := merge $cfg (or site.Params.cms (dict)) -}}
