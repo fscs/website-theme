@@ -170,7 +170,7 @@ async function get_next_sitzungen() {
   time.setTime(time.getTime() - 2 * 60 * 60 * 1000);
 
   let response = await fetch(
-    "https://fscs.hhu.de/api/sitzungen/after?timestamp=" + time.toISOString(),
+    "/api/sitzungen/after?timestamp=" + time.toISOString(),
   );
   return await response.json();
 }
