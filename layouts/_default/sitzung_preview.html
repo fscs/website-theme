@@ -1,0 +1,52 @@
+{{ define "main" }}
+
+<template id="top-template">
+  <h2 class="heading">
+    <span id="top-titel" class="d-inline-flex align-items-center gap-1">Toptitel</span>
+  </h2>
+</template>
+
+<template id="antrags-template">
+  <div>
+   <h3 class="heading">
+    <span id="antrags-titel" class="d-inline-flex align-items-center gap-1">Antragstitel</span>
+   </h3>
+    <p id="antrags-text" class="language-vote" data-lang="vote">
+      Antragstext
+    </p>
+    <h4 class="heading">Begründung:</h4>
+    <p id="antrags-begruendung" class="language-vote" data-lang="vote">
+      Begründung
+    </p>
+  </div>
+</template>
+
+<article class="rounded m-2 py-2 px-3 shadow text-break" style="background-color: var(--bs-body-bg);"
+    id="mainContent">
+    <h1><span id="sitzungstitel">Sitzung</span></h1>
+    <span class="badge text-bg-secondary me-1 mb-2 d-inline-flex align-items-center gap-1">
+      {{partial "svg.html" "icons/outline/clock.svg"}}
+      <span id="time" class="modal-calendar-time">Time</span>
+    </span>
+    <span class="badge text-bg-secondary me-1 mb-2 d-inline-flex align-items-center gap-1">
+      {{partial "svg.html" "icons/outline/calendar-month.svg"}}
+      <span id="date" class="modal-calendar-date">Date</span>
+    </span>
+    <span class="badge text-bg-secondary me-1 mb-2 d-inline-flex align-items-center gap-1">
+      {{partial "svg.html" "icons/filled/map-pin.svg"}}
+      <span id="location" class="modal-calendar-location">Location</span>
+    </span>
+    <div id="tops">
+      <h2 class="heading">
+	<span id="top-titel" class="d-inline-flex align-items-center gap-1">Top 0: Regularia</span>
+      </h2>
+      <h2 class="heading">
+	<span id="top-titel" class="d-inline-flex align-items-center gap-1">Top 1: Berichte, Mail und Post</span>
+      </h2>
+    </div>
+</article>
+<script>
+  init_sitzung_preview("/api/sitzungen/")
+</script>
+
+{{ end }}

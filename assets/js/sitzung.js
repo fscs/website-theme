@@ -170,12 +170,13 @@ async function get_next_sitzungen() {
   time.setTime(time.getTime() - 2 * 60 * 60 * 1000);
 
   let response = await fetch(
-    "/api/sitzungen/after?timestamp=" + time.toISOString(),
+    "https://fscs.hhu.de/api/sitzungen/after?timestamp=" + time.toISOString(),
   );
   return await response.json();
 }
 
 function build_announcement(sitzung) {
+  let lang = window.location.href.split("/")[3];
   let template = document.getElementById("sitzung-template");
   let clone = document.importNode(template, true);
 
@@ -229,6 +230,7 @@ function build_announcement(sitzung) {
 
   // fill in title, date, time, and location
   clone.content.getElementById("title").innerHTML = sitzungTitle;
+  clone.content.getElementById("sitzungpreview").href = "/" + lang + "/sitzungpreview/?sitzung_id=" + sitzung.id;
 
   clone.content.getElementById("date").innerHTML = date.toLocaleDateString(
     "de-DE",
