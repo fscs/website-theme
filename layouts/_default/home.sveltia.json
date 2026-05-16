@@ -12,10 +12,10 @@
     {{- $i18n := dict -}}
     {{- $locales := slice -}}
 
-    {{- $i18n = merge $i18n (dict "default_locale" site.Sites.Default.Language.Lang) -}}
+    {{- $i18n = merge $i18n (dict "default_locale" hugo.Sites.Default.Language.Lang) -}}
     {{- $i18n = merge $i18n (dict "structure" "multiple_files") -}}
     {{- $i18n = merge $i18n (dict "save_all_locales" false) -}}
-    {{- $i18n = merge $i18n (dict "initial_locales" (slice site.Sites.Default.Language.Lang)) -}}
+    {{- $i18n = merge $i18n (dict "initial_locales" (slice hugo.Sites.Default.Language.Lang)) -}}
 
     {{- range site.Languages -}}
         {{- $locales = append .Lang $locales -}}

@@ -44,14 +44,14 @@ icon = "icons/outline/brand-github.svg"
 
 # languages
 [languages.de]
-languageName = "Deutsch"
+label = "Deutsch"
 title = "Fachschaft Informatik"
-languageCode = "de"
-languageDirection = "ltr"
+locale = "de"
+direction = "ltr"
 
 [languages.en]
-languageName = "English"
+label = "English"
 title = "Fachschaft Informatik"
-languageCode = "en"
-languageDirection = "ltr"
+locale = "en"
+direction = "ltr"
 

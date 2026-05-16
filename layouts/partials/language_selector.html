@@ -8,7 +8,7 @@
         data-bs-tooltip 
         data-bs-placement="left" 
         title="{{ T "theme.languageSelectorLabel" }}"
-        aria-label="{{ T "theme.languageSelectorLabel" }} {{ .LanguageName}}"
+        aria-label="{{ T "theme.languageSelectorLabel" }} {{ .Label}}"
         type="button">
         {{ or (index site.Params.flags .Lang) .Lang }}
     </button>
@@ -16,7 +16,7 @@
 
     <div class="dropdown-menu" data-bs-popper="none" style="min-width: 0px;">
         {{ range .Translations }}
-        <a class="dropdown-item" aria-label="{{ .Language.LanguageName }}" href="{{ .RelPermalink }}"
+        <a class="dropdown-item" aria-label="{{ .Language.Label }}" href="{{ .RelPermalink }}"
             hreflang="{{ .Language.Lang }}">
             {{ or (index site.Params.flags .Lang) .Lang }}
         </a>
